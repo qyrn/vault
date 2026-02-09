@@ -1,4 +1,7 @@
 {
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "framework": null,
   "functions": {
     "api/extract.js": {
       "memory": 256,
