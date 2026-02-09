@@ -136,7 +136,7 @@ function getFavItems() {
   const favs = [];
   all.forEach(cat => {
     cat.items.forEach(item => {
-      if (isFav(item.name, item.url)) favs.push({ ...item, catColor: cat.color, catIcon: cat.icon });
+      if (isFav(item.name, item.url)) favs.push({ ...item, category: cat.category, catColor: cat.color, catIcon: cat.icon });
     });
   });
   return favs;
@@ -195,7 +195,7 @@ function updateStats() {
   document.getElementById('catCount').textContent = data.length;
   document.getElementById('customCount').textContent = customItems.length;
 }
-function renderCard(item, color, showDelete) {
+function renderCard(item, color) {
   const isAcronym = item.special === 'acronym';
   const href = isAcronym ? 'javascript:void(0)' : escHtml(item.url);
   const target = isAcronym ? '' : 'target="_blank" rel="noopener noreferrer"';
@@ -206,13 +206,12 @@ function renderCard(item, color, showDelete) {
   const eName = escHtml(item.name);
   const eUrl = escHtml(item.url);
   const favBtn = `<button class="btn-fav" onclick="event.preventDefault();event.stopPropagation();toggleFav('${eName.replace(/'/g,"\\'")}','${eUrl.replace(/'/g,"\\'")}')">${faved?'★ unfav':'☆ fav'}</button>`;
-  const delBtn = showDelete ? `<button class="btn-del" onclick="event.preventDefault();event.stopPropagation();deleteCustom('${eName.replace(/'/g,"\\'")}')">✕ suppr</button>` : '';
-  return `<a href="${href}" ${target} class="card" style="--accent:${color}" ${onclick}>
+  return `<a href="${href}" ${target} class="card" style="--accent:${color}" data-name="${eName}" data-url="${eUrl}" data-custom="${item.custom?'1':'0'}" data-tag="${escHtml(item.tag)}" data-desc="${escHtml(item.desc)}" data-category="${escHtml(item.category||'')}" ${onclick}>
     ${favStar}
     <div class="card-top"><span class="card-name">${eName}</span><span class="card-tag" style="background:${color}15;color:${color}">${escHtml(item.tag)}</span></div>
     <div class="card-desc">${escHtml(item.desc)}</div>
     <div class="card-url">${escHtml(displayUrl)}</div>
-    <div class="card-actions">${favBtn}${delBtn}</div>
+    <div class="card-actions">${favBtn}</div>
   </a>`;
 }
 function render() {
@@ -229,7 +228,7 @@ function render() {
     );
     if (favItems.length > 0 && !activeFilter) {
       html += `<div class="pinned-section"><div class="section-header"><span style="font-size:18px">★</span><h2 style="color:var(--yellow)">Favoris</h2><span class="count">${favItems.length}</span></div><div class="cards">`;
-      favItems.forEach(item => { html += renderCard(item, item.catColor, item.custom); });
+      favItems.forEach(item => { html += renderCard(item, item.catColor); });
       html += '</div></div>';
     }
   }
@@ -242,7 +241,7 @@ function render() {
     if (!items.length) return;
     totalVisible += items.length;
     html += `<div class="section"><div class="section-header"><span style="font-size:18px">${section.icon}</span><h2 style="color:${section.color}">${escHtml(section.category)}</h2><span class="count">${items.length}</span></div><div class="cards">`;
-    items.forEach(item => { html += renderCard(item, section.color, item.custom); });
+    items.forEach(item => { item.category = section.category; html += renderCard(item, section.color); });
     html += '</div></div>';
   });
   contentEl.innerHTML = html;
@@ -262,6 +261,10 @@ function closeAddModal() {
   addModal.classList.remove('open');
   ['fName','fUrl','fTag','fDesc'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('fetchStatus').textContent = '';
+  editMode = false;
+  editOriginalName = null;
+  addModal.querySelector('h3').textContent = '+ Nouvelle ressource';
+  addModal.querySelector('.btn-save').textContent = 'Ajouter';
 }
 fCategory.addEventListener('change', () => {
   if (fCategory.value === '__new') {
@@ -279,8 +282,14 @@ document.getElementById('btnSaveAdd').addEventListener('click', () => {
   const desc = document.getElementById('fDesc').value.trim() || 'Pas de description';
   const category = fCategory.value;
   if (!name || !url) { showToast('Nom et URL requis'); return; }
-  customItems.push({ name, url, tag, desc, category });
-  saveCustom(); closeAddModal(); render(); showToast('Ressource ajoutée !');
+  if (editMode && editOriginalName) {
+    const idx = customItems.findIndex(c => c.name === editOriginalName);
+    if (idx !== -1) { customItems[idx] = { name, url, tag, desc, category }; }
+    saveCustom(); closeAddModal(); render(); showToast('Ressource modifiée');
+  } else {
+    customItems.push({ name, url, tag, desc, category });
+    saveCustom(); closeAddModal(); render(); showToast('Ressource ajoutée !');
+  }
 });
 document.getElementById('btnFetch').addEventListener('click', async () => {
   const url = document.getElementById('fUrl').value.trim();
@@ -358,6 +367,53 @@ document.addEventListener('keydown', e => {
     e.preventDefault(); searchEl.focus();
   }
 });
+const ctxMenu = document.getElementById('ctxMenu');
+let ctxTarget = null;
+let editMode = false;
+let editOriginalName = null;
+
+document.addEventListener('contextmenu', e => {
+  const card = e.target.closest('.card');
+  if (!card) { ctxMenu.classList.remove('open'); return; }
+  e.preventDefault();
+  ctxTarget = card;
+  const isCustom = card.dataset.custom === '1';
+  ctxMenu.querySelector('[data-action="edit"]').style.display = isCustom ? '' : 'none';
+  ctxMenu.querySelector('[data-action="delete"]').style.display = isCustom ? '' : 'none';
+  ctxMenu.style.left = Math.min(e.clientX, window.innerWidth - 160) + 'px';
+  ctxMenu.style.top = Math.min(e.clientY, window.innerHeight - 120) + 'px';
+  ctxMenu.classList.add('open');
+});
+
+document.addEventListener('click', () => ctxMenu.classList.remove('open'));
+
+ctxMenu.querySelector('[data-action="copy"]').addEventListener('click', () => {
+  if (!ctxTarget) return;
+  navigator.clipboard.writeText(ctxTarget.dataset.url).then(() => showToast('URL copiée'));
+});
+
+ctxMenu.querySelector('[data-action="delete"]').addEventListener('click', () => {
+  if (!ctxTarget) return;
+  const name = ctxTarget.dataset.name;
+  customItems = customItems.filter(c => c.name !== name);
+  saveCustom(); render(); showToast('Ressource supprimée');
+});
+
+ctxMenu.querySelector('[data-action="edit"]').addEventListener('click', () => {
+  if (!ctxTarget) return;
+  editMode = true;
+  editOriginalName = ctxTarget.dataset.name;
+  populateCategorySelect();
+  document.getElementById('fName').value = ctxTarget.dataset.name;
+  document.getElementById('fUrl').value = ctxTarget.dataset.url;
+  document.getElementById('fTag').value = ctxTarget.dataset.tag;
+  document.getElementById('fDesc').value = ctxTarget.dataset.desc;
+  fCategory.value = ctxTarget.dataset.category;
+  addModal.querySelector('h3').textContent = 'Éditer la ressource';
+  addModal.querySelector('.btn-save').textContent = 'Sauvegarder';
+  addModal.classList.add('open');
+});
+
 document.getElementById('vaultTitle').addEventListener('click', e => {
   e.preventDefault();
   activeFilter = null; favOnly = false; searchEl.value = '';
