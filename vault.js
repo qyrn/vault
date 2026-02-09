@@ -1,6 +1,6 @@
 const BUILTIN = [
   {
-    category: "Cyber", icon: "🛡️", color: "#00ff88",
+    category: "Cyber", icon: "shield", color: "#00ff88",
     items: [
       { name: "Acronymes Cybersec", url: "#acronyms", desc: "Tableau périodique des acronymes cybersécurité (Paul Baird v4)", tag: "Référence", special: "acronym" },
       { name: "5 Pillars of Cybersec", url: "https://github.com/DFIRmadness/5pillars/blob/master/5-Pillars.md#fundamentals-breakdown", desc: "Les 5 piliers fondamentaux de la cybersécurité", tag: "Fondamentaux" },
@@ -15,7 +15,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Outils", icon: "🛠️", color: "#ff6b6b",
+    category: "Outils", icon: "wrench", color: "#ff6b6b",
     items: [
       { name: "Secator", url: "https://github.com/freelabz/secator", desc: "Le couteau suisse du pentester — framework CLI unifié", tag: "Framework" },
       { name: "Exegol", url: "https://exegol.readthedocs.io/en/latest/", desc: "L'environnement Docker parfait pour le pentest", tag: "Env" },
@@ -30,7 +30,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "CTF", icon: "🏴", color: "#ffd93d",
+    category: "CTF", icon: "flag", color: "#ffd93d",
     items: [
       { name: "CTFtime", url: "https://ctftime.org", desc: "Calendrier des CTF mondiaux", tag: "Events" },
       { name: "Root Me", url: "https://www.root-me.org", desc: "Challenges variés, grande communauté FR", tag: "FR" },
@@ -40,7 +40,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Cheatsheets", icon: "📋", color: "#a78bfa",
+    category: "Cheatsheets", icon: "clipboard-list", color: "#a78bfa",
     items: [
       { name: "HackTricks", url: "https://book.hacktricks.xyz", desc: "Bible du pentesting, énorme base de connaissances", tag: "Must-have" },
       { name: "PayloadsAllTheThings", url: "https://github.com/swisskyrepo/PayloadsAllTheThings", desc: "Payloads & bypass techniques", tag: "Payloads" },
@@ -52,7 +52,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Veille", icon: "📡", color: "#38bdf8",
+    category: "Veille", icon: "radio", color: "#38bdf8",
     items: [
       { name: "The Hacker News", url: "https://thehackernews.com", desc: "Actualités cybersec quotidiennes", tag: "News" },
       { name: "Krebs on Security", url: "https://krebsonsecurity.com", desc: "Blog sécurité de référence", tag: "Blog" },
@@ -63,7 +63,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "YT FR", icon: "🇫🇷", color: "#f472b6",
+    category: "YT FR", icon: "video", color: "#f472b6",
     items: [
       { name: "noraj (Rawsec)", url: "https://www.youtube.com/@noraj_rawsec", desc: "Pentester & chercheur, outils open-source, sécurité offensive", tag: "Offensive" },
       { name: "Fransosiche", url: "https://www.youtube.com/@Fransosiche", desc: "Sécurité offensive, recherche technique, partage de connaissances", tag: "Offensive" },
@@ -72,7 +72,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "YT EN", icon: "🌍", color: "#22d3ee",
+    category: "YT EN", icon: "globe", color: "#22d3ee",
     items: [
       { name: "0xdf", url: "https://www.youtube.com/@0xdf/videos", desc: "Writeups HTB détaillés, méthodologie propre", tag: "Writeups" },
       { name: "xct", url: "https://www.youtube.com/xct_de", desc: "Challenges, techniques d'exploitation avancées", tag: "Exploit" },
@@ -81,7 +81,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Podcasts", icon: "🎙️", color: "#fb923c",
+    category: "Podcasts", icon: "mic", color: "#fb923c",
     items: [
       { name: "Hack'n Speak", url: "https://open.spotify.com/show/2lwA1WLVqnYvnlc7WkV3yU", desc: "Podcast cybersec francophone sur Spotify", tag: "FR" },
       { name: "CyberTalk (HacktBack)", url: "https://podcast.ausha.co/cybertalk", desc: "Les cybertalk de HacktBack", tag: "FR" },
@@ -91,7 +91,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Certifs", icon: "🎯", color: "#fbbf24",
+    category: "Certifs", icon: "award", color: "#fbbf24",
     items: [
       { name: "CompTIA Security+", url: "https://www.comptia.org/certifications/security", desc: "Certification d'entrée reconnue mondialement", tag: "Certif" },
       { name: "eJPT (INE)", url: "https://security.ine.com/certifications/ejpt-certification/", desc: "Junior Penetration Tester", tag: "Certif" },
@@ -100,7 +100,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Projets", icon: "⚡", color: "#ffd93d",
+    category: "Projets", icon: "zap", color: "#ffd93d",
     items: [
       { name: "Échelon", url: "https://web-beta-roan-27.vercel.app/", desc: "Mon outil de veille cybersec hebdomadaire (chaque dimanche)", tag: "Perso" },
     ]
@@ -154,7 +154,7 @@ function getMergedData() {
   const merged = BUILTIN.map(cat => ({ ...cat, items: cat.items.map(i => ({ ...i })) }));
   customItems.forEach(ci => {
     let section = merged.find(s => s.category === ci.category);
-    if (!section) { section = { category: ci.category, icon: "📁", color: "#888", items: [] }; merged.push(section); }
+    if (!section) { section = { category: ci.category, icon: "folder", color: "#888", items: [] }; merged.push(section); }
     section.items.push({ ...ci, custom: true });
   });
   return merged;
@@ -208,7 +208,7 @@ function renderFilters() {
   let html = `<button class="${!activeFilter?'active':''}" data-cat="">TOUT</button>`;
   data.forEach(s => {
     const a = activeFilter === s.category;
-    html += `<button class="${a?'active':''}" data-cat="${escHtml(s.category)}" style="${a?'background:'+s.color+'18;border-color:'+s.color+'55;color:'+s.color:''}">${s.icon} ${escHtml(s.category).toUpperCase()}</button>`;
+    html += `<button class="${a?'active':''}" data-cat="${escHtml(s.category)}" style="${a?'background:'+s.color+'18;border-color:'+s.color+'55;color:'+s.color:''}"><i data-lucide="${s.icon}"></i> ${escHtml(s.category).toUpperCase()}</button>`;
   });
   filtersEl.innerHTML = html;
   filtersEl.querySelectorAll('button').forEach(btn => {
@@ -229,10 +229,10 @@ function renderCard(item, color) {
   const onclick = isAcronym ? `onclick="openImgModal()"` : '';
   const displayUrl = item.url.replace('https://','').replace('http://','').replace('#acronyms','Image — cliquer pour agrandir');
   const faved = isFav(item.name, item.url);
-  const favStar = faved ? '<span class="fav-star">★</span>' : '';
+  const favStar = faved ? '<span class="fav-star"><i data-lucide="star"></i></span>' : '';
   const eName = escHtml(item.name);
   const eUrl = escHtml(item.url);
-  const favBtn = `<button class="btn-fav" onclick="event.preventDefault();event.stopPropagation();toggleFav('${eName.replace(/'/g,"\\'")}','${eUrl.replace(/'/g,"\\'")}')">${faved?'★ unfav':'☆ fav'}</button>`;
+  const favBtn = `<button class="btn-fav" onclick="event.preventDefault();event.stopPropagation();toggleFav('${eName.replace(/'/g,"\\'")}','${eUrl.replace(/'/g,"\\'")}')">${faved?'<i data-lucide="star" class="lucide-filled"></i> unfav':'<i data-lucide="star"></i> fav'}</button>`;
   return `<a href="${href}" ${target} class="card" style="--accent:${color}" data-name="${eName}" data-url="${eUrl}" data-custom="${item.custom?'1':'0'}" data-tag="${escHtml(item.tag)}" data-desc="${escHtml(item.desc)}" data-category="${escHtml(item.category||'')}" ${onclick}>
     ${favStar}
     <div class="card-top"><span class="card-name">${eName}</span><span class="card-tag" style="background:${color}15;color:${color}">${escHtml(item.tag)}</span></div>
@@ -254,7 +254,7 @@ function render() {
       !q || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.tag.toLowerCase().includes(q)
     );
     if (favItems.length > 0 && !activeFilter) {
-      html += `<div class="pinned-section"><div class="section-header"><span style="font-size:18px">★</span><h2 style="color:var(--yellow)">Favoris</h2><span class="count">${favItems.length}</span></div><div class="cards">`;
+      html += `<div class="pinned-section"><div class="section-header"><span style="font-size:18px"><i data-lucide="star" class="lucide-filled"></i></span><h2 style="color:var(--yellow)">Favoris</h2><span class="count">${favItems.length}</span></div><div class="cards">`;
       favItems.forEach(item => { html += renderCard(item, item.catColor); });
       html += '</div></div>';
     }
@@ -267,13 +267,14 @@ function render() {
     if (favOnly) items = items.filter(i => isFav(i.name, i.url));
     if (!items.length) return;
     totalVisible += items.length;
-    html += `<div class="section"><div class="section-header"><span style="font-size:18px">${section.icon}</span><h2 style="color:${section.color}">${escHtml(section.category)}</h2><span class="count">${items.length}</span></div><div class="cards">`;
+    html += `<div class="section"><div class="section-header"><span style="font-size:18px"><i data-lucide="${section.icon}"></i></span><h2 style="color:${section.color}">${escHtml(section.category)}</h2><span class="count">${items.length}</span></div><div class="cards">`;
     items.forEach(item => { item.category = section.category; html += renderCard(item, section.color); });
     html += '</div></div>';
   });
   contentEl.innerHTML = html;
   emptyEl.style.display = totalVisible === 0 ? 'block' : 'none';
   if (totalVisible === 0) emptyQueryEl.textContent = q ? `Aucune ressource trouvée pour "${searchEl.value}"` : (favOnly ? 'Aucun favori pour le moment' : 'Aucune ressource');
+  lucide.createIcons();
 }
 window.deleteCustom = function(name) {
   customItems = customItems.filter(c => c.name !== name);
@@ -323,7 +324,7 @@ document.getElementById('btnFetch').addEventListener('click', async () => {
   const statusEl = document.getElementById('fetchStatus');
   const btn = document.getElementById('btnFetch');
   if (!url) { statusEl.className = 'fetch-status err'; statusEl.textContent = 'URL requise'; return; }
-  btn.disabled = true; btn.textContent = '⟳ Analyse IA en cours...';
+  btn.disabled = true; btn.innerHTML = '<i data-lucide="loader" class="lucide-spin"></i> Analyse IA en cours...'; lucide.createIcons({attrs:{class:['lucide-inline']}});
   statusEl.className = 'fetch-status'; statusEl.textContent = '';
   try {
     const res = await fetch(`/api/extract?url=${encodeURIComponent(url)}`);
@@ -340,12 +341,12 @@ document.getElementById('btnFetch').addEventListener('click', async () => {
     }
     statusEl.className = 'fetch-status ok';
     const src = data.source === 'gemini' ? 'Analysé par IA' : 'Récupéré (fallback regex)';
-    statusEl.textContent = '✓ ' + src;
+    statusEl.innerHTML = '<i data-lucide="check" class="lucide-inline"></i> ' + src; lucide.createIcons({attrs:{class:['lucide-inline']}});
   } catch(err) {
     statusEl.className = 'fetch-status err';
     statusEl.textContent = 'Erreur: ' + err.message + '. Essaie manuellement.';
   }
-  btn.disabled = false; btn.textContent = '⟳ Analyser avec l\'IA';
+  btn.disabled = false; btn.innerHTML = '<i data-lucide="loader"></i> Analyser avec l\'IA'; lucide.createIcons({attrs:{class:['lucide-inline']}});
 });
 document.getElementById('btnFavFilter').addEventListener('click', () => { favOnly = !favOnly; render(); });
 function closeImgModal() { imgModal.classList.remove('open'); document.body.style.overflow = ''; }
