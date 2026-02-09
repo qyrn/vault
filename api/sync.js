@@ -17,15 +17,20 @@ module.exports = async function handler(req, res) {
   try {
     if (req.method === "GET") {
       const data = await redis.get(KEY);
-      return res.status(200).json(data || { custom: [], favorites: [] });
+      return res.status(200).json(data || { custom: [], favorites: [], deletedBuiltins: [], editedBuiltins: [] });
     }
 
     if (req.method === "POST") {
-      const { custom, favorites } = req.body;
+      const { custom, favorites, deletedBuiltins, editedBuiltins } = req.body;
       if (!Array.isArray(custom) || !Array.isArray(favorites)) {
         return res.status(400).json({ error: "Format invalide" });
       }
-      await redis.set(KEY, { custom, favorites });
+      await redis.set(KEY, {
+        custom,
+        favorites,
+        deletedBuiltins: Array.isArray(deletedBuiltins) ? deletedBuiltins : [],
+        editedBuiltins: Array.isArray(editedBuiltins) ? editedBuiltins : []
+      });
       return res.status(200).json({ ok: true });
     }
 

@@ -108,8 +108,12 @@ const BUILTIN = [
 ];
 let customItems = [];
 let favorites = [];
+let deletedBuiltins = [];
+let editedBuiltins = [];
 try { customItems = JSON.parse(localStorage.getItem('vault_custom') || '[]'); } catch(e) {}
 try { favorites = JSON.parse(localStorage.getItem('vault_favs') || '[]'); } catch(e) {}
+try { deletedBuiltins = JSON.parse(localStorage.getItem('vault_deleted_builtins') || '[]'); } catch(e) {}
+try { editedBuiltins = JSON.parse(localStorage.getItem('vault_edited_builtins') || '[]'); } catch(e) {}
 const CAT_MIGRATION = {"Ressources Cyber":"Cyber","Outils & Environnement":"Outils","CTF & Challenges":"CTF","Cheat Sheets & Docs":"Cheatsheets","Veille & News":"Veille","YouTubeurs FR":"YT FR","YouTubeurs EN":"YT EN","Certifications & Carrière":"Certifs","Mes Projets":"Projets"};
 let migrated = false;
 customItems.forEach(ci => { if (CAT_MIGRATION[ci.category]) { ci.category = CAT_MIGRATION[ci.category]; migrated = true; } });
@@ -122,7 +126,7 @@ function syncToCloud() {
       await fetch('/api/sync', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ custom: customItems, favorites })
+        body: JSON.stringify({ custom: customItems, favorites, deletedBuiltins, editedBuiltins })
       });
     } catch(e) {}
   }, 1500);
@@ -139,10 +143,23 @@ async function loadFromCloud() {
       favorites = data.favorites;
       localStorage.setItem('vault_favs', JSON.stringify(favorites));
     }
+    if (data.deletedBuiltins && Array.isArray(data.deletedBuiltins)) {
+      deletedBuiltins = data.deletedBuiltins;
+      localStorage.setItem('vault_deleted_builtins', JSON.stringify(deletedBuiltins));
+    }
+    if (data.editedBuiltins && Array.isArray(data.editedBuiltins)) {
+      editedBuiltins = data.editedBuiltins;
+      localStorage.setItem('vault_edited_builtins', JSON.stringify(editedBuiltins));
+    }
     render();
   } catch(e) {}
 }
 function saveCustom() { try { localStorage.setItem('vault_custom', JSON.stringify(customItems)); } catch(e) {} syncToCloud(); }
+function saveOverrides() {
+  try { localStorage.setItem('vault_deleted_builtins', JSON.stringify(deletedBuiltins)); } catch(e) {}
+  try { localStorage.setItem('vault_edited_builtins', JSON.stringify(editedBuiltins)); } catch(e) {}
+  syncToCloud();
+}
 function saveFavs() { try { localStorage.setItem('vault_favs', JSON.stringify(favorites)); } catch(e) {} syncToCloud(); }
 function isFav(name, url) { return favorites.some(f => f.name === name && f.url === url); }
 function toggleFav(name, url) {
@@ -150,14 +167,46 @@ function toggleFav(name, url) {
   else { favorites.push({ name, url }); }
   saveFavs(); render();
 }
+function isDeletedBuiltin(name, url) {
+  return deletedBuiltins.some(d => d.name === name && d.url === url);
+}
+function getEditedBuiltin(name, url) {
+  return editedBuiltins.find(e => e.originalName === name && e.originalUrl === url);
+}
 function getMergedData() {
-  const merged = BUILTIN.map(cat => ({ ...cat, items: cat.items.map(i => ({ ...i })) }));
+  const merged = BUILTIN.map(cat => {
+    const items = cat.items
+      .filter(i => !isDeletedBuiltin(i.name, i.url))
+      .map(i => {
+        const edited = getEditedBuiltin(i.name, i.url);
+        if (edited) return { ...i, name: edited.name, url: edited.url, tag: edited.tag, desc: edited.desc, category: edited.category || cat.category, builtinEdited: true };
+        return { ...i };
+      });
+    return { ...cat, items };
+  });
+  editedBuiltins.forEach(edited => {
+    if (edited.category) {
+      const originalCat = BUILTIN.find(c => c.items.some(i => i.name === edited.originalName && i.url === edited.originalUrl));
+      if (originalCat && edited.category !== originalCat.category) {
+        const srcSection = merged.find(s => s.category === originalCat.category);
+        if (srcSection) {
+          const idx = srcSection.items.findIndex(i => i.name === edited.name && i.url === edited.url);
+          if (idx !== -1) {
+            const [movedItem] = srcSection.items.splice(idx, 1);
+            let destSection = merged.find(s => s.category === edited.category);
+            if (!destSection) { destSection = { category: edited.category, icon: "folder", color: "#888", items: [] }; merged.push(destSection); }
+            destSection.items.push(movedItem);
+          }
+        }
+      }
+    }
+  });
   customItems.forEach(ci => {
     let section = merged.find(s => s.category === ci.category);
     if (!section) { section = { category: ci.category, icon: "folder", color: "#888", items: [] }; merged.push(section); }
     section.items.push({ ...ci, custom: true });
   });
-  return merged;
+  return merged.filter(cat => cat.items.length > 0);
 }
 function getFavItems() {
   const all = getMergedData();
@@ -233,7 +282,9 @@ function renderCard(item, color) {
   const eName = escHtml(item.name);
   const eUrl = escHtml(item.url);
   const favBtn = `<button class="btn-fav" onclick="event.preventDefault();event.stopPropagation();toggleFav('${eName.replace(/'/g,"\\'")}','${eUrl.replace(/'/g,"\\'")}')">${faved?'<i data-lucide="star" class="lucide-filled"></i> unfav':'<i data-lucide="star"></i> fav'}</button>`;
-  return `<a href="${href}" ${target} class="card" style="--accent:${color}" data-name="${eName}" data-url="${eUrl}" data-custom="${item.custom?'1':'0'}" data-tag="${escHtml(item.tag)}" data-desc="${escHtml(item.desc)}" data-category="${escHtml(item.category||'')}" ${onclick}>
+  const origName = item.builtinEdited ? escHtml(editedBuiltins.find(e => e.name === item.name && e.url === item.url)?.originalName || '') : '';
+  const origUrl = item.builtinEdited ? escHtml(editedBuiltins.find(e => e.name === item.name && e.url === item.url)?.originalUrl || '') : '';
+  return `<a href="${href}" ${target} class="card" style="--accent:${color}" data-name="${eName}" data-url="${eUrl}" data-custom="${item.custom?'1':'0'}" data-tag="${escHtml(item.tag)}" data-desc="${escHtml(item.desc)}" data-category="${escHtml(item.category||'')}" data-original-name="${origName}" data-original-url="${origUrl}" ${onclick}>
     ${favStar}
     <div class="card-top"><span class="card-name">${eName}</span><span class="card-tag" style="background:${color}15;color:${color}">${escHtml(item.tag)}</span></div>
     <div class="card-desc">${escHtml(item.desc)}</div>
@@ -291,6 +342,8 @@ function closeAddModal() {
   document.getElementById('fetchStatus').textContent = '';
   editMode = false;
   editOriginalName = null;
+  editOriginalUrl = null;
+  editIsCustom = false;
   addModal.querySelector('h3').textContent = '+ Nouvelle ressource';
   addModal.querySelector('.btn-save').textContent = 'Ajouter';
 }
@@ -311,9 +364,18 @@ document.getElementById('btnSaveAdd').addEventListener('click', () => {
   const category = fCategory.value;
   if (!name || !url) { showToast('Nom et URL requis'); return; }
   if (editMode && editOriginalName) {
-    const idx = customItems.findIndex(c => c.name === editOriginalName);
-    if (idx !== -1) { customItems[idx] = { name, url, tag, desc, category }; }
-    saveCustom(); closeAddModal(); render(); showToast('Ressource modifiée');
+    if (editIsCustom) {
+      const idx = customItems.findIndex(c => c.name === editOriginalName && c.url === editOriginalUrl);
+      if (idx !== -1) { customItems[idx] = { name, url, tag, desc, category }; }
+      saveCustom();
+    } else {
+      const existingIdx = editedBuiltins.findIndex(e => e.originalName === editOriginalName && e.originalUrl === editOriginalUrl);
+      const entry = { originalName: editOriginalName, originalUrl: editOriginalUrl, name, url, tag, desc, category };
+      if (existingIdx !== -1) { editedBuiltins[existingIdx] = entry; }
+      else { editedBuiltins.push(entry); }
+      saveOverrides();
+    }
+    closeAddModal(); render(); showToast('Ressource modifiée');
   } else {
     customItems.push({ name, url, tag, desc, category });
     saveCustom(); closeAddModal(); render(); showToast('Ressource ajoutée !');
@@ -362,15 +424,14 @@ const ctxMenu = document.getElementById('ctxMenu');
 let ctxTarget = null;
 let editMode = false;
 let editOriginalName = null;
+let editOriginalUrl = null;
+let editIsCustom = false;
 
 document.addEventListener('contextmenu', e => {
   const card = e.target.closest('.card');
   if (!card) { ctxMenu.classList.remove('open'); return; }
   e.preventDefault();
   ctxTarget = card;
-  const isCustom = card.dataset.custom === '1';
-  ctxMenu.querySelector('[data-action="edit"]').style.display = isCustom ? '' : 'none';
-  ctxMenu.querySelector('[data-action="delete"]').style.display = isCustom ? '' : 'none';
   ctxMenu.style.left = Math.min(e.clientX, window.innerWidth - 160) + 'px';
   ctxMenu.style.top = Math.min(e.clientY, window.innerHeight - 120) + 'px';
   ctxMenu.classList.add('open');
@@ -386,14 +447,27 @@ ctxMenu.querySelector('[data-action="copy"]').addEventListener('click', () => {
 ctxMenu.querySelector('[data-action="delete"]').addEventListener('click', () => {
   if (!ctxTarget) return;
   const name = ctxTarget.dataset.name;
-  customItems = customItems.filter(c => c.name !== name);
-  saveCustom(); render(); showToast('Ressource supprimée');
+  const url = ctxTarget.dataset.url;
+  const isCustom = ctxTarget.dataset.custom === '1';
+  if (isCustom) {
+    customItems = customItems.filter(c => !(c.name === name && c.url === url));
+    saveCustom();
+  } else {
+    const origName = ctxTarget.dataset.originalName || name;
+    const origUrl = ctxTarget.dataset.originalUrl || url;
+    deletedBuiltins.push({ name: origName, url: origUrl });
+    editedBuiltins = editedBuiltins.filter(e => !(e.originalName === origName && e.originalUrl === origUrl));
+    saveOverrides();
+  }
+  render(); showToast('Ressource supprimée');
 });
 
 ctxMenu.querySelector('[data-action="edit"]').addEventListener('click', () => {
   if (!ctxTarget) return;
   editMode = true;
-  editOriginalName = ctxTarget.dataset.name;
+  editIsCustom = ctxTarget.dataset.custom === '1';
+  editOriginalName = ctxTarget.dataset.originalName || ctxTarget.dataset.name;
+  editOriginalUrl = ctxTarget.dataset.originalUrl || ctxTarget.dataset.url;
   populateCategorySelect();
   document.getElementById('fName').value = ctxTarget.dataset.name;
   document.getElementById('fUrl').value = ctxTarget.dataset.url;
