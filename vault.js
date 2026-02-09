@@ -1,6 +1,6 @@
 const BUILTIN = [
   {
-    category: "Ressources Cyber", icon: "🛡️", color: "#00ff88",
+    category: "Cyber", icon: "🛡️", color: "#00ff88",
     items: [
       { name: "Acronymes Cybersec", url: "#acronyms", desc: "Tableau périodique des acronymes cybersécurité (Paul Baird v4)", tag: "Référence", special: "acronym" },
       { name: "5 Pillars of Cybersec", url: "https://github.com/DFIRmadness/5pillars/blob/master/5-Pillars.md#fundamentals-breakdown", desc: "Les 5 piliers fondamentaux de la cybersécurité", tag: "Fondamentaux" },
@@ -15,7 +15,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Outils & Environnement", icon: "🛠️", color: "#ff6b6b",
+    category: "Outils", icon: "🛠️", color: "#ff6b6b",
     items: [
       { name: "Secator", url: "https://github.com/freelabz/secator", desc: "Le couteau suisse du pentester — framework CLI unifié", tag: "Framework" },
       { name: "Exegol", url: "https://exegol.readthedocs.io/en/latest/", desc: "L'environnement Docker parfait pour le pentest", tag: "Env" },
@@ -30,7 +30,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "CTF & Challenges", icon: "🏴", color: "#ffd93d",
+    category: "CTF", icon: "🏴", color: "#ffd93d",
     items: [
       { name: "CTFtime", url: "https://ctftime.org", desc: "Calendrier des CTF mondiaux", tag: "Events" },
       { name: "Root Me", url: "https://www.root-me.org", desc: "Challenges variés, grande communauté FR", tag: "FR" },
@@ -40,7 +40,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Cheat Sheets & Docs", icon: "📋", color: "#a78bfa",
+    category: "Cheatsheets", icon: "📋", color: "#a78bfa",
     items: [
       { name: "HackTricks", url: "https://book.hacktricks.xyz", desc: "Bible du pentesting, énorme base de connaissances", tag: "Must-have" },
       { name: "PayloadsAllTheThings", url: "https://github.com/swisskyrepo/PayloadsAllTheThings", desc: "Payloads & bypass techniques", tag: "Payloads" },
@@ -52,7 +52,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Veille & News", icon: "📡", color: "#38bdf8",
+    category: "Veille", icon: "📡", color: "#38bdf8",
     items: [
       { name: "The Hacker News", url: "https://thehackernews.com", desc: "Actualités cybersec quotidiennes", tag: "News" },
       { name: "Krebs on Security", url: "https://krebsonsecurity.com", desc: "Blog sécurité de référence", tag: "Blog" },
@@ -63,7 +63,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "YouTubeurs FR", icon: "🇫🇷", color: "#f472b6",
+    category: "YT FR", icon: "🇫🇷", color: "#f472b6",
     items: [
       { name: "noraj (Rawsec)", url: "https://www.youtube.com/@noraj_rawsec", desc: "Pentester & chercheur, outils open-source, sécurité offensive", tag: "Offensive" },
       { name: "Fransosiche", url: "https://www.youtube.com/@Fransosiche", desc: "Sécurité offensive, recherche technique, partage de connaissances", tag: "Offensive" },
@@ -72,7 +72,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "YouTubeurs EN", icon: "🌍", color: "#22d3ee",
+    category: "YT EN", icon: "🌍", color: "#22d3ee",
     items: [
       { name: "0xdf", url: "https://www.youtube.com/@0xdf/videos", desc: "Writeups HTB détaillés, méthodologie propre", tag: "Writeups" },
       { name: "xct", url: "https://www.youtube.com/xct_de", desc: "Challenges, techniques d'exploitation avancées", tag: "Exploit" },
@@ -91,7 +91,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Certifications & Carrière", icon: "🎯", color: "#fbbf24",
+    category: "Certifs", icon: "🎯", color: "#fbbf24",
     items: [
       { name: "CompTIA Security+", url: "https://www.comptia.org/certifications/security", desc: "Certification d'entrée reconnue mondialement", tag: "Certif" },
       { name: "eJPT (INE)", url: "https://security.ine.com/certifications/ejpt-certification/", desc: "Junior Penetration Tester", tag: "Certif" },
@@ -100,7 +100,7 @@ const BUILTIN = [
     ]
   },
   {
-    category: "Mes Projets", icon: "⚡", color: "#ffd93d",
+    category: "Projets", icon: "⚡", color: "#ffd93d",
     items: [
       { name: "Échelon", url: "https://web-beta-roan-27.vercel.app/", desc: "Mon outil de veille cybersec hebdomadaire (chaque dimanche)", tag: "Perso" },
     ]
@@ -110,6 +110,10 @@ let customItems = [];
 let favorites = [];
 try { customItems = JSON.parse(localStorage.getItem('vault_custom') || '[]'); } catch(e) {}
 try { favorites = JSON.parse(localStorage.getItem('vault_favs') || '[]'); } catch(e) {}
+const CAT_MIGRATION = {"Ressources Cyber":"Cyber","Outils & Environnement":"Outils","CTF & Challenges":"CTF","Cheat Sheets & Docs":"Cheatsheets","Veille & News":"Veille","YouTubeurs FR":"YT FR","YouTubeurs EN":"YT EN","Certifications & Carrière":"Certifs","Mes Projets":"Projets"};
+let migrated = false;
+customItems.forEach(ci => { if (CAT_MIGRATION[ci.category]) { ci.category = CAT_MIGRATION[ci.category]; migrated = true; } });
+if (migrated) { try { localStorage.setItem('vault_custom', JSON.stringify(customItems)); } catch(e) {} }
 function saveCustom() { try { localStorage.setItem('vault_custom', JSON.stringify(customItems)); } catch(e) {} }
 function saveFavs() { try { localStorage.setItem('vault_favs', JSON.stringify(favorites)); } catch(e) {} }
 function isFav(name, url) { return favorites.some(f => f.name === name && f.url === url); }
@@ -199,13 +203,12 @@ function renderCard(item, color, showDelete) {
   const displayUrl = item.url.replace('https://','').replace('http://','').replace('#acronyms','Image — cliquer pour agrandir');
   const faved = isFav(item.name, item.url);
   const favStar = faved ? '<span class="fav-star">★</span>' : '';
-  const badge = item.custom ? '<span class="card-badge">CUSTOM</span>' : '';
   const eName = escHtml(item.name);
   const eUrl = escHtml(item.url);
   const favBtn = `<button class="btn-fav" onclick="event.preventDefault();event.stopPropagation();toggleFav('${eName.replace(/'/g,"\\'")}','${eUrl.replace(/'/g,"\\'")}')">${faved?'★ unfav':'☆ fav'}</button>`;
   const delBtn = showDelete ? `<button class="btn-del" onclick="event.preventDefault();event.stopPropagation();deleteCustom('${eName.replace(/'/g,"\\'")}')">✕ suppr</button>` : '';
   return `<a href="${href}" ${target} class="card" style="--accent:${color}" ${onclick}>
-    ${favStar}${badge}
+    ${favStar}
     <div class="card-top"><span class="card-name">${eName}</span><span class="card-tag" style="background:${color}15;color:${color}">${escHtml(item.tag)}</span></div>
     <div class="card-desc">${escHtml(item.desc)}</div>
     <div class="card-url">${escHtml(displayUrl)}</div>
@@ -354,6 +357,11 @@ document.addEventListener('keydown', e => {
   if (e.key === '/' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'SELECT') {
     e.preventDefault(); searchEl.focus();
   }
+});
+document.getElementById('vaultTitle').addEventListener('click', e => {
+  e.preventDefault();
+  activeFilter = null; favOnly = false; searchEl.value = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' }); render();
 });
 searchEl.addEventListener('input', render);
 render();

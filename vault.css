@@ -29,8 +29,8 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
 .header-left .label{font-size:11px;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
 .header-title{display:flex;align-items:center;gap:12px}
-.logo{height:40px;width:auto}
-.header-left h1{font-size:36px;font-weight:700;letter-spacing:-1px;background:linear-gradient(135deg,#00ff88 0%,#38bdf8 50%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header-left h1{font-size:36px;font-weight:700;letter-spacing:-1px;color:#00ff88}
+#vaultTitle{text-decoration:none;cursor:pointer}
 .header-stats{display:flex;gap:20px;align-items:center;margin-top:8px}
 .stat{font-size:11px;color:var(--text-faint);letter-spacing:0.5px}
 .stat strong{color:var(--green);font-size:14px;font-weight:700}
@@ -69,7 +69,6 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .card-tag{font-size:10px;padding:2px 8px;border-radius:4px;white-space:nowrap;letter-spacing:0.5px;flex-shrink:0}
 .card-desc{font-size:12px;color:var(--text-dim);margin-top:6px;line-height:1.5}
 .card-url{font-size:10px;color:var(--text-faint);margin-top:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.card-badge{position:absolute;top:8px;right:8px;font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.06);color:#555;letter-spacing:0.5px}
 .card-actions{position:absolute;bottom:8px;right:10px;display:flex;gap:4px;opacity:0;transition:opacity 0.2s}
 .card:hover .card-actions{opacity:1}
 .card-actions button{font-size:11px;color:#444;cursor:pointer;background:none;border:none;font-family:inherit;padding:2px 6px;border-radius:4px;transition:all 0.2s}
