@@ -75,7 +75,7 @@ module.exports = async function handler(req, res) {
       const pageText = cleanHtml(html);
       const prompt = `Analyse cette page web et retourne un JSON avec exactement 3 champs :
 - "title" : un titre court et clair en français (max 60 caractères)
-- "description" : une description concise en français de ce que propose cette page (max 150 caractères)
+- "description" : une seule phrase courte en français, max 80 caractères
 - "tag" : un seul tag parmi cette liste : ${ALLOWED_TAGS.join(", ")}
 
 Contenu de la page :
@@ -98,9 +98,12 @@ Réponds UNIQUEMENT avec le JSON, sans backticks, sans explication.`;
         parsed.tag = "Autre";
       }
 
+      let desc = (parsed.description || "").substring(0, 100);
+      if (parsed.description && parsed.description.length > 100) desc = desc.replace(/\s+\S*$/, "") + "...";
+
       return res.status(200).json({
         title: parsed.title || "",
-        description: parsed.description || "",
+        description: desc,
         tag: parsed.tag || "Autre",
         source: "gemini"
       });
