@@ -98,10 +98,6 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .fetch-status{font-size:10px;margin-top:4px}
 .fetch-status.ok{color:var(--green)}
 .fetch-status.err{color:var(--red)}
-.json-area{width:100%;min-height:200px;padding:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:var(--text);font-size:11px;font-family:inherit;outline:none;resize:vertical}
-.json-area:focus{border-color:rgba(0,255,136,0.4)}
-.import-btns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.import-btns button{padding:8px 16px;border-radius:6px;font-size:11px;font-family:inherit;cursor:pointer;transition:all 0.2s}
 .img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1100;justify-content:center;align-items:center;padding:24px}
 .img-modal.open{display:flex}
 .img-modal img{max-width:95vw;max-height:90vh;border-radius:8px;border:1px solid rgba(255,255,255,0.1)}
