@@ -65,9 +65,7 @@ module.exports = async function handler(req, res) {
 
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      const fb = fallbackRegex(html);
-      fb.debug = "no_api_key";
-      return res.status(200).json(fb);
+      return res.status(200).json(fallbackRegex(html));
     }
 
     try {
@@ -107,9 +105,7 @@ Réponds UNIQUEMENT avec le JSON, sans backticks, sans explication.`;
         source: "gemini"
       });
     } catch (e) {
-      const fb = fallbackRegex(html);
-      fb.geminiError = e.message;
-      return res.status(200).json(fb);
+      return res.status(200).json(fallbackRegex(html));
     }
   } catch (e) {
     return res.status(500).json({ error: "Erreur serveur : " + e.message });
