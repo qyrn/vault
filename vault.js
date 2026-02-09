@@ -114,8 +114,36 @@ const CAT_MIGRATION = {"Ressources Cyber":"Cyber","Outils & Environnement":"Outi
 let migrated = false;
 customItems.forEach(ci => { if (CAT_MIGRATION[ci.category]) { ci.category = CAT_MIGRATION[ci.category]; migrated = true; } });
 if (migrated) { try { localStorage.setItem('vault_custom', JSON.stringify(customItems)); } catch(e) {} }
-function saveCustom() { try { localStorage.setItem('vault_custom', JSON.stringify(customItems)); } catch(e) {} }
-function saveFavs() { try { localStorage.setItem('vault_favs', JSON.stringify(favorites)); } catch(e) {} }
+let syncTimer;
+function syncToCloud() {
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(async () => {
+    try {
+      await fetch('/api/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ custom: customItems, favorites })
+      });
+    } catch(e) {}
+  }, 1500);
+}
+async function loadFromCloud() {
+  try {
+    const res = await fetch('/api/sync');
+    const data = await res.json();
+    if (data.custom && Array.isArray(data.custom)) {
+      customItems = data.custom;
+      localStorage.setItem('vault_custom', JSON.stringify(customItems));
+    }
+    if (data.favorites && Array.isArray(data.favorites)) {
+      favorites = data.favorites;
+      localStorage.setItem('vault_favs', JSON.stringify(favorites));
+    }
+    render();
+  } catch(e) {}
+}
+function saveCustom() { try { localStorage.setItem('vault_custom', JSON.stringify(customItems)); } catch(e) {} syncToCloud(); }
+function saveFavs() { try { localStorage.setItem('vault_favs', JSON.stringify(favorites)); } catch(e) {} syncToCloud(); }
 function isFav(name, url) { return favorites.some(f => f.name === name && f.url === url); }
 function toggleFav(name, url) {
   if (isFav(name, url)) { favorites = favorites.filter(f => !(f.name === name && f.url === url)); }
@@ -147,7 +175,6 @@ const searchEl = document.getElementById('search');
 const emptyEl = document.getElementById('empty');
 const emptyQueryEl = document.getElementById('emptyQuery');
 const addModal = document.getElementById('addModal');
-const dataModal = document.getElementById('dataModal');
 const imgModal = document.getElementById('imgModal');
 const fCategory = document.getElementById('fCategory');
 const toastEl = document.getElementById('toast');
@@ -320,49 +347,12 @@ document.getElementById('btnFetch').addEventListener('click', async () => {
   }
   btn.disabled = false; btn.textContent = '⟳ Analyser avec l\'IA';
 });
-const jsonArea = document.getElementById('jsonArea');
-const importStatus = document.getElementById('importStatus');
-document.getElementById('btnData').addEventListener('click', () => {
-  jsonArea.value = JSON.stringify({ custom: customItems, favorites }, null, 2);
-  importStatus.textContent = '';
-  dataModal.classList.add('open');
-});
-document.getElementById('btnCancelData').addEventListener('click', () => dataModal.classList.remove('open'));
-dataModal.addEventListener('click', e => { if (e.target === dataModal) dataModal.classList.remove('open'); });
-document.getElementById('btnExport').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify({ custom: customItems, favorites }, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'vault-backup.json'; a.click();
-  showToast('Backup téléchargé');
-});
-document.getElementById('btnCopyJson').addEventListener('click', () => {
-  navigator.clipboard.writeText(jsonArea.value).then(() => showToast('JSON copié !')).catch(() => {
-    jsonArea.select(); document.execCommand('copy'); showToast('JSON copié !');
-  });
-});
-document.getElementById('btnImport').addEventListener('click', () => {
-  try {
-    const data = JSON.parse(jsonArea.value);
-    if (data.custom && Array.isArray(data.custom)) {
-      const newCount = data.custom.filter(nc => !customItems.some(ec => ec.name === nc.name && ec.url === nc.url)).length;
-      data.custom.forEach(nc => { if (!customItems.some(ec => ec.name === nc.name && ec.url === nc.url)) customItems.push(nc); });
-      saveCustom();
-      importStatus.className = 'fetch-status ok'; importStatus.textContent = `✓ ${newCount} nouvelles ressources importées`;
-    }
-    if (data.favorites && Array.isArray(data.favorites)) {
-      data.favorites.forEach(nf => { if (!favorites.some(ef => ef.name === nf.name && ef.url === nf.url)) favorites.push(nf); });
-      saveFavs();
-    }
-    render(); showToast('Import réussi !');
-  } catch(e) {
-    importStatus.className = 'fetch-status err'; importStatus.textContent = 'JSON invalide: ' + e.message;
-  }
-});
 document.getElementById('btnFavFilter').addEventListener('click', () => { favOnly = !favOnly; render(); });
 function closeImgModal() { imgModal.classList.remove('open'); document.body.style.overflow = ''; }
 document.getElementById('imgClose').addEventListener('click', closeImgModal);
 imgModal.addEventListener('click', e => { if (e.target === imgModal) closeImgModal(); });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeImgModal(); closeAddModal(); dataModal.classList.remove('open'); }
+  if (e.key === 'Escape') { closeImgModal(); closeAddModal(); }
   if (e.key === '/' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'SELECT') {
     e.preventDefault(); searchEl.focus();
   }
@@ -421,3 +411,4 @@ document.getElementById('vaultTitle').addEventListener('click', e => {
 });
 searchEl.addEventListener('input', render);
 render();
+loadFromCloud();

@@ -2,6 +2,7 @@
   "name": "vault",
   "private": true,
   "dependencies": {
-    "@google/generative-ai": "^0.21.0"
+    "@google/generative-ai": "^0.21.0",
+    "@upstash/redis": "^1.36.2"
   }
 }
