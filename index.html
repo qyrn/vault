@@ -75,6 +75,16 @@
   <button data-action="delete">Supprimer</button>
   <button data-action="copy">Copier URL</button>
 </div>
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal modal-confirm">
+    <h3>Confirmer la suppression</h3>
+    <p id="confirmMsg">Supprimer cette ressource ?</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="btnCancelConfirm">Annuler</button>
+      <button class="btn-delete" id="btnConfirmDelete">Supprimer</button>
+    </div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 <script src="vault.js"></script>
 </body>

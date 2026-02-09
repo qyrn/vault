@@ -335,7 +335,6 @@ window.toggleFav = toggleFav;
 window.openImgModal = function() { imgModal.classList.add('open'); document.body.style.overflow = 'hidden'; };
 document.getElementById('btnAdd').addEventListener('click', () => { populateCategorySelect(); addModal.classList.add('open'); });
 document.getElementById('btnCancelAdd').addEventListener('click', closeAddModal);
-addModal.addEventListener('click', e => { if (e.target === addModal) closeAddModal(); });
 function closeAddModal() {
   addModal.classList.remove('open');
   ['fName','fUrl','fTag','fDesc'].forEach(id => document.getElementById(id).value = '');
@@ -415,7 +414,7 @@ function closeImgModal() { imgModal.classList.remove('open'); document.body.styl
 document.getElementById('imgClose').addEventListener('click', closeImgModal);
 imgModal.addEventListener('click', e => { if (e.target === imgModal) closeImgModal(); });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeImgModal(); closeAddModal(); }
+  if (e.key === 'Escape') { closeImgModal(); closeAddModal(); closeConfirmModal(); }
   if (e.key === '/' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'SELECT') {
     e.preventDefault(); searchEl.focus();
   }
@@ -444,22 +443,43 @@ ctxMenu.querySelector('[data-action="copy"]').addEventListener('click', () => {
   navigator.clipboard.writeText(ctxTarget.dataset.url).then(() => showToast('URL copiée'));
 });
 
+const confirmModal = document.getElementById('confirmModal');
+const confirmMsg = document.getElementById('confirmMsg');
+let pendingDeleteCallback = null;
+
+function openConfirmModal(name, callback) {
+  confirmMsg.textContent = `Supprimer « ${name} » ?`;
+  pendingDeleteCallback = callback;
+  confirmModal.classList.add('open');
+}
+function closeConfirmModal() {
+  confirmModal.classList.remove('open');
+  pendingDeleteCallback = null;
+}
+document.getElementById('btnCancelConfirm').addEventListener('click', closeConfirmModal);
+document.getElementById('btnConfirmDelete').addEventListener('click', () => {
+  if (pendingDeleteCallback) pendingDeleteCallback();
+  closeConfirmModal();
+});
+
 ctxMenu.querySelector('[data-action="delete"]').addEventListener('click', () => {
   if (!ctxTarget) return;
   const name = ctxTarget.dataset.name;
   const url = ctxTarget.dataset.url;
   const isCustom = ctxTarget.dataset.custom === '1';
-  if (isCustom) {
-    customItems = customItems.filter(c => !(c.name === name && c.url === url));
-    saveCustom();
-  } else {
-    const origName = ctxTarget.dataset.originalName || name;
-    const origUrl = ctxTarget.dataset.originalUrl || url;
-    deletedBuiltins.push({ name: origName, url: origUrl });
-    editedBuiltins = editedBuiltins.filter(e => !(e.originalName === origName && e.originalUrl === origUrl));
-    saveOverrides();
-  }
-  render(); showToast('Ressource supprimée');
+  openConfirmModal(name, () => {
+    if (isCustom) {
+      customItems = customItems.filter(c => !(c.name === name && c.url === url));
+      saveCustom();
+    } else {
+      const origName = ctxTarget.dataset.originalName || name;
+      const origUrl = ctxTarget.dataset.originalUrl || url;
+      deletedBuiltins.push({ name: origName, url: origUrl });
+      editedBuiltins = editedBuiltins.filter(e => !(e.originalName === origName && e.originalUrl === origUrl));
+      saveOverrides();
+    }
+    render(); showToast('Ressource supprimée');
+  });
 });
 
 ctxMenu.querySelector('[data-action="edit"]').addEventListener('click', () => {

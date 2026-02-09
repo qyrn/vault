@@ -91,6 +91,11 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .btn-cancel:hover{color:#ccc;border-color:rgba(255,255,255,0.2)}
 .btn-save{background:rgba(0,255,136,0.15);border:1px solid rgba(0,255,136,0.4);color:var(--green)}
 .btn-save:hover{background:rgba(0,255,136,0.25)}
+.btn-delete{background:rgba(255,107,107,0.15);border:1px solid rgba(255,107,107,0.4);color:var(--red)}
+.btn-delete:hover{background:rgba(255,107,107,0.3)}
+.modal-confirm{max-width:400px}
+.modal-confirm h3{color:var(--red)}
+.modal-confirm p{font-size:13px;color:var(--text-dim);margin-bottom:8px}
 .btn-fetch{padding:8px 14px;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.3);border-radius:6px;color:var(--blue);font-size:11px;font-family:inherit;cursor:pointer;transition:all 0.2s;margin-top:8px}
 .btn-fetch:hover{background:rgba(56,189,248,0.2)}
 .btn-fetch:disabled{opacity:0.4;cursor:not-allowed}
