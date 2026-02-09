@@ -37,37 +37,43 @@ function fallbackRegex(html) {
 module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
   if (req.method === "OPTIONS") return res.status(200).end();
 
-  const { url } = req.query;
-  if (!url) return res.status(400).json({ error: "Paramètre ?url= requis" });
-
-  let html;
   try {
-    const response = await fetch(url, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; VaultBot/1.0)",
-        "Accept": "text/html",
-      },
-      redirect: "follow",
-      signal: AbortSignal.timeout(10000),
-    });
-    html = await response.text();
-  } catch (e) {
-    return res.status(502).json({ error: "Impossible de récupérer la page : " + e.message });
-  }
+    const { url } = req.query;
+    if (!url) return res.status(400).json({ error: "Paramètre ?url= requis" });
 
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    return res.status(200).json(fallbackRegex(html));
-  }
+    let html;
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 10000);
+      const response = await fetch(url, {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (compatible; VaultBot/1.0)",
+          "Accept": "text/html,application/xhtml+xml,*/*",
+        },
+        redirect: "follow",
+        signal: controller.signal,
+      });
+      html = await response.text();
+      clearTimeout(timeout);
+    } catch (e) {
+      return res.status(502).json({ error: "Impossible de récupérer la page : " + e.message });
+    }
 
-  try {
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return res.status(200).json(fallbackRegex(html));
+    }
 
-    const pageText = cleanHtml(html);
-    const prompt = `Analyse cette page web et retourne un JSON avec exactement 3 champs :
+    try {
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+      const pageText = cleanHtml(html);
+      const prompt = `Analyse cette page web et retourne un JSON avec exactement 3 champs :
 - "title" : un titre court et clair en français (max 60 caractères)
 - "description" : une description concise en français de ce que propose cette page (max 150 caractères)
 - "tag" : un seul tag parmi cette liste : ${ALLOWED_TAGS.join(", ")}
@@ -77,28 +83,31 @@ ${pageText}
 
 Réponds UNIQUEMENT avec le JSON, sans backticks, sans explication.`;
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text().trim();
+      const result = await model.generateContent(prompt);
+      const text = result.response.text().trim();
 
-    let parsed;
-    try {
-      const jsonStr = text.replace(/```json?\s*/g, "").replace(/```/g, "").trim();
-      parsed = JSON.parse(jsonStr);
-    } catch {
+      let parsed;
+      try {
+        const jsonStr = text.replace(/```json?\s*/g, "").replace(/```/g, "").trim();
+        parsed = JSON.parse(jsonStr);
+      } catch {
+        return res.status(200).json(fallbackRegex(html));
+      }
+
+      if (!ALLOWED_TAGS.includes(parsed.tag)) {
+        parsed.tag = "Autre";
+      }
+
+      return res.status(200).json({
+        title: parsed.title || "",
+        description: parsed.description || "",
+        tag: parsed.tag || "Autre",
+        source: "gemini"
+      });
+    } catch (e) {
       return res.status(200).json(fallbackRegex(html));
     }
-
-    if (!ALLOWED_TAGS.includes(parsed.tag)) {
-      parsed.tag = "Autre";
-    }
-
-    return res.status(200).json({
-      title: parsed.title || "",
-      description: parsed.description || "",
-      tag: parsed.tag || "Autre",
-      source: "gemini"
-    });
   } catch (e) {
-    return res.status(200).json(fallbackRegex(html));
+    return res.status(500).json({ error: "Erreur serveur : " + e.message });
   }
 };
