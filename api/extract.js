@@ -105,7 +105,9 @@ Réponds UNIQUEMENT avec le JSON, sans backticks, sans explication.`;
         source: "gemini"
       });
     } catch (e) {
-      return res.status(200).json(fallbackRegex(html));
+      const fb = fallbackRegex(html);
+      fb.geminiError = e.message;
+      return res.status(200).json(fb);
     }
   } catch (e) {
     return res.status(500).json({ error: "Erreur serveur : " + e.message });
