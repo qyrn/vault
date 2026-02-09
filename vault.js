@@ -284,29 +284,29 @@ document.getElementById('btnFetch').addEventListener('click', async () => {
   const statusEl = document.getElementById('fetchStatus');
   const btn = document.getElementById('btnFetch');
   if (!url) { statusEl.className = 'fetch-status err'; statusEl.textContent = 'URL requise'; return; }
-  btn.disabled = true; btn.textContent = '⟳ Chargement...';
+  btn.disabled = true; btn.textContent = '⟳ Analyse IA en cours...';
   statusEl.className = 'fetch-status'; statusEl.textContent = '';
   try {
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-    const res = await fetch(proxyUrl);
-    const text = await res.text();
-    const titleMatch = text.match(/<title[^>]*>([^<]+)<\/title>/i);
-    const descMatch = text.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']+)["']/i)
-                   || text.match(/<meta[^>]*content=["']([^"']+)["'][^>]*name=["']description["']/i)
-                   || text.match(/<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']+)["']/i);
-    if (titleMatch && !document.getElementById('fName').value.trim()) {
-      document.getElementById('fName').value = titleMatch[1].trim();
+    const res = await fetch(`/api/extract?url=${encodeURIComponent(url)}`);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    if (data.title && !document.getElementById('fName').value.trim()) {
+      document.getElementById('fName').value = data.title;
     }
-    if (descMatch) {
-      document.getElementById('fDesc').value = descMatch[1].trim();
+    if (data.description) {
+      document.getElementById('fDesc').value = data.description;
+    }
+    if (data.tag) {
+      document.getElementById('fTag').value = data.tag;
     }
     statusEl.className = 'fetch-status ok';
-    statusEl.textContent = '✓ Récupéré' + (titleMatch ? ' — titre: ' + titleMatch[1].trim().substring(0,40) : '') + (descMatch ? '' : ' (pas de meta description trouvée)');
+    const src = data.source === 'gemini' ? 'Analysé par IA' : 'Récupéré (fallback regex)';
+    statusEl.textContent = '✓ ' + src;
   } catch(err) {
     statusEl.className = 'fetch-status err';
     statusEl.textContent = 'Erreur: ' + err.message + '. Essaie manuellement.';
   }
-  btn.disabled = false; btn.textContent = '⟳ Récupérer titre & description depuis l\'URL';
+  btn.disabled = false; btn.textContent = '⟳ Analyser avec l\'IA';
 });
 const jsonArea = document.getElementById('jsonArea');
 const importStatus = document.getElementById('importStatus');
