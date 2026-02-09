@@ -74,7 +74,6 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .card-actions button{font-size:11px;color:#444;cursor:pointer;background:none;border:none;font-family:inherit;padding:2px 6px;border-radius:4px;transition:all 0.2s}
 .card-actions .btn-fav{color:var(--yellow)}
 .card-actions .btn-fav:hover{background:rgba(255,217,61,0.1)}
-.card-actions .btn-del:hover{color:var(--red);background:rgba(255,107,107,0.1)}
 .fav-star{position:absolute;top:10px;right:10px;font-size:12px;color:var(--yellow);pointer-events:none}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1000;justify-content:center;align-items:center;padding:24px}
 .modal-overlay.open{display:flex}
@@ -112,5 +111,11 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .empty .icon{font-size:28px;margin-bottom:10px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a1a2e;border:1px solid rgba(0,255,136,0.3);color:var(--green);padding:10px 20px;border-radius:8px;font-size:12px;font-family:inherit;z-index:2000;transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0)}
+.ctx-menu{display:none;position:fixed;z-index:1200;background:#111118;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:4px;min-width:150px;box-shadow:0 8px 24px rgba(0,0,0,0.6)}
+.ctx-menu.open{display:block}
+.ctx-menu button{display:block;width:100%;padding:8px 14px;background:none;border:none;color:var(--text);font-size:12px;font-family:inherit;cursor:pointer;text-align:left;border-radius:4px;transition:background 0.15s}
+.ctx-menu button:hover{background:rgba(255,255,255,0.06)}
+.ctx-menu button[data-action="delete"]{color:var(--red)}
+.ctx-menu button[data-action="delete"]:hover{background:rgba(255,107,107,0.1)}
 .pinned-section{margin-bottom:32px;padding:16px;background:rgba(255,217,61,0.03);border:1px solid rgba(255,217,61,0.1);border-radius:12px}
 .pinned-section .section-header{border-bottom:1px solid rgba(255,217,61,0.08);padding-bottom:10px;margin-bottom:14px}
