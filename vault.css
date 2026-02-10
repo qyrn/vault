@@ -146,3 +146,5 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .random-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
 .random-desc{font-size:13px;color:var(--text-dim);line-height:1.6}
 .modal-actions a{display:inline-flex;align-items:center;text-decoration:none}
+.progression-section{padding:16px;background:rgba(16,185,129,0.03);border:1px solid rgba(16,185,129,0.12);border-radius:12px}
+.progression-section .section-header{border-bottom:1px solid rgba(16,185,129,0.08);padding-bottom:10px;margin-bottom:14px}

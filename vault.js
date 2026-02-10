@@ -353,7 +353,8 @@ function render() {
     if (favOnly) items = items.filter(i => isFav(i.name, i.url));
     if (!items.length) return;
     totalVisible += items.length;
-    html += `<div class="section"><div class="section-header"><span style="font-size:18px"><i data-lucide="${section.icon}"></i></span><h2 style="color:${section.color}">${escHtml(section.category)}</h2><span class="count">${items.length}</span></div><div class="cards">`;
+    const isProgression = section.category === 'Ma Progression';
+    html += `<div class="section${isProgression ? ' progression-section' : ''}"><div class="section-header"><span style="font-size:18px"><i data-lucide="${section.icon}"></i></span><h2 style="color:${section.color}">${escHtml(section.category)}</h2><span class="count">${items.length}</span></div><div class="cards">`;
     items.forEach(item => { item.category = section.category; html += renderCard(item, section.color); });
     html += '</div></div>';
   });
@@ -565,7 +566,7 @@ function getAllVisibleItems() {
   return items;
 }
 function showRandomChallenge() {
-  const items = getAllVisibleItems().filter(i => i.url !== '#acronyms');
+  const items = getAllVisibleItems().filter(i => i.url !== '#acronyms' && (!activeDifficulty || i.difficulty === activeDifficulty));
   if (!items.length) { showToast('Aucune ressource disponible'); return; }
   const item = items[Math.floor(Math.random() * items.length)];
   const diffColors = { 'Débutant': '#00ff88', 'Intermédiaire': '#fb923c', 'Avancé': '#ff6b6b' };
