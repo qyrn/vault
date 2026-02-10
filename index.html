@@ -36,10 +36,17 @@
       <span class="search-hint">/</span>
     </div>
     <div class="toolbar-btns">
+      <button class="btn-tool" id="btnRandom"><i data-lucide="shuffle"></i> Random</button>
       <button class="btn-tool btn-add" id="btnAdd">+ Ajouter</button>
     </div>
   </div>
   <div class="filters" id="filters"></div>
+  <div class="diff-filter" id="diffFilter">
+    <button class="active" data-diff="">TOUT</button>
+    <button data-diff="Débutant" style="--diff-color:#00ff88"><i data-lucide="circle"></i> Débutant</button>
+    <button data-diff="Intermédiaire" style="--diff-color:#fb923c"><i data-lucide="circle"></i> Intermédiaire</button>
+    <button data-diff="Avancé" style="--diff-color:#ff6b6b"><i data-lucide="circle"></i> Avancé</button>
+  </div>
   <div class="fav-filter"><button id="btnFavFilter"><i data-lucide="star"></i> Favoris uniquement</button></div>
   <div id="content"></div>
   <div class="empty" id="empty"><div class="icon"><i data-lucide="search"></i></div><span id="emptyQuery"></span></div>
@@ -58,6 +65,13 @@
     <select id="fCategory"></select>
     <label>Tag</label>
     <input type="text" id="fTag" placeholder="Ex: Outil, CTF, Blog...">
+    <label>Difficulté</label>
+    <select id="fDifficulty">
+      <option value="">Aucune</option>
+      <option value="Débutant">Débutant</option>
+      <option value="Intermédiaire">Intermédiaire</option>
+      <option value="Avancé">Avancé</option>
+    </select>
     <label>Description</label>
     <textarea id="fDesc" placeholder="Description de la ressource..."></textarea>
     <div class="modal-actions">
@@ -82,6 +96,17 @@
     <div class="modal-actions">
       <button class="btn-cancel" id="btnCancelConfirm">Annuler</button>
       <button class="btn-delete" id="btnConfirmDelete">Supprimer</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="randomModal">
+  <div class="modal modal-random">
+    <h3><i data-lucide="shuffle"></i> Random Challenge</h3>
+    <div id="randomContent"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="btnRandomClose">Fermer</button>
+      <button class="btn-tool" id="btnRandomAgain"><i data-lucide="shuffle"></i> Autre</button>
+      <a class="btn-save" id="btnRandomOpen" href="#" target="_blank" rel="noopener noreferrer">Ouvrir</a>
     </div>
   </div>
 </div>

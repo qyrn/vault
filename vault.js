@@ -209,7 +209,7 @@ function getMergedData() {
       .filter(i => !isDeletedBuiltin(i.name, i.url))
       .map(i => {
         const edited = getEditedBuiltin(i.name, i.url);
-        if (edited) return { ...i, name: edited.name, url: edited.url, tag: edited.tag, desc: edited.desc, category: edited.category || cat.category, builtinEdited: true };
+        if (edited) return { ...i, name: edited.name, url: edited.url, tag: edited.tag, desc: edited.desc, difficulty: edited.difficulty !== undefined ? edited.difficulty : i.difficulty, category: edited.category || cat.category, builtinEdited: true };
         return { ...i };
       });
     return { ...cat, items };
@@ -258,6 +258,7 @@ const imgModal = document.getElementById('imgModal');
 const fCategory = document.getElementById('fCategory');
 const toastEl = document.getElementById('toast');
 let activeFilter = null;
+let activeDifficulty = null;
 let favOnly = false;
 let toastTimer;
 function showToast(msg) {
@@ -314,9 +315,11 @@ function renderCard(item, color) {
   const favBtn = `<button class="btn-fav" onclick="event.preventDefault();event.stopPropagation();toggleFav('${eName.replace(/'/g,"\\'")}','${eUrl.replace(/'/g,"\\'")}')">${faved?'<i data-lucide="star" class="lucide-filled"></i> unfav':'<i data-lucide="star"></i> fav'}</button>`;
   const origName = item.builtinEdited ? escHtml(editedBuiltins.find(e => e.name === item.name && e.url === item.url)?.originalName || '') : '';
   const origUrl = item.builtinEdited ? escHtml(editedBuiltins.find(e => e.name === item.name && e.url === item.url)?.originalUrl || '') : '';
-  return `<a href="${href}" ${target} class="card" style="--accent:${color}" data-name="${eName}" data-url="${eUrl}" data-custom="${item.custom?'1':'0'}" data-tag="${escHtml(item.tag)}" data-desc="${escHtml(item.desc)}" data-category="${escHtml(item.category||'')}" data-original-name="${origName}" data-original-url="${origUrl}" ${onclick}>
+  const diffColors = { 'Débutant': '#00ff88', 'Intermédiaire': '#fb923c', 'Avancé': '#ff6b6b' };
+  const diffBadge = item.difficulty ? `<span class="diff-badge" style="background:${diffColors[item.difficulty]}15;color:${diffColors[item.difficulty]};border-color:${diffColors[item.difficulty]}33">${escHtml(item.difficulty)}</span>` : '';
+  return `<a href="${href}" ${target} class="card" style="--accent:${color}" data-name="${eName}" data-url="${eUrl}" data-custom="${item.custom?'1':'0'}" data-tag="${escHtml(item.tag)}" data-desc="${escHtml(item.desc)}" data-category="${escHtml(item.category||'')}" data-difficulty="${escHtml(item.difficulty||'')}" data-original-name="${origName}" data-original-url="${origUrl}" ${onclick}>
     ${favStar}
-    <div class="card-top"><span class="card-name">${eName}</span><span class="card-tag" style="background:${color}15;color:${color}">${escHtml(item.tag)}</span></div>
+    <div class="card-top"><span class="card-name">${eName}</span>${diffBadge}<span class="card-tag" style="background:${color}15;color:${color}">${escHtml(item.tag)}</span></div>
     <div class="card-desc">${escHtml(item.desc)}</div>
     <div class="card-url">${escHtml(displayUrl)}</div>
     <div class="card-actions">${favBtn}</div>
@@ -328,11 +331,13 @@ function render() {
   let totalVisible = 0;
   let html = '';
   renderFilters();
+  renderDiffFilter();
   updateStats();
   document.getElementById('btnFavFilter').className = favOnly ? 'active' : '';
+  const diffMatch = item => !activeDifficulty || item.difficulty === activeDifficulty;
   if (!favOnly) {
     const favItems = getFavItems().filter(item =>
-      !q || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.tag.toLowerCase().includes(q)
+      (!q || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.tag.toLowerCase().includes(q)) && diffMatch(item)
     );
     if (favItems.length > 0 && !activeFilter) {
       html += `<div class="pinned-section"><div class="section-header"><span style="font-size:18px"><i data-lucide="star" class="lucide-filled"></i></span><h2 style="color:var(--yellow)">Favoris</h2><span class="count">${favItems.length}</span></div><div class="cards">`;
@@ -343,7 +348,7 @@ function render() {
   data.forEach(section => {
     if (activeFilter && section.category !== activeFilter) return;
     let items = section.items.filter(item =>
-      !q || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.tag.toLowerCase().includes(q)
+      (!q || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.tag.toLowerCase().includes(q)) && diffMatch(item)
     );
     if (favOnly) items = items.filter(i => isFav(i.name, i.url));
     if (!items.length) return;
@@ -368,6 +373,7 @@ document.getElementById('btnCancelAdd').addEventListener('click', closeAddModal)
 function closeAddModal() {
   addModal.classList.remove('open');
   ['fName','fUrl','fTag','fDesc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fDifficulty').value = '';
   document.getElementById('fetchStatus').textContent = '';
   editMode = false;
   editOriginalName = null;
@@ -391,22 +397,23 @@ document.getElementById('btnSaveAdd').addEventListener('click', () => {
   const tag = document.getElementById('fTag').value.trim() || 'Autre';
   const desc = document.getElementById('fDesc').value.trim() || 'Pas de description';
   const category = fCategory.value;
+  const difficulty = document.getElementById('fDifficulty').value || null;
   if (!name || !url) { showToast('Nom et URL requis'); return; }
   if (editMode && editOriginalName) {
     if (editIsCustom) {
       const idx = customItems.findIndex(c => c.name === editOriginalName && c.url === editOriginalUrl);
-      if (idx !== -1) { customItems[idx] = { name, url, tag, desc, category }; }
+      if (idx !== -1) { customItems[idx] = { name, url, tag, desc, category, difficulty }; }
       saveCustom();
     } else {
       const existingIdx = editedBuiltins.findIndex(e => e.originalName === editOriginalName && e.originalUrl === editOriginalUrl);
-      const entry = { originalName: editOriginalName, originalUrl: editOriginalUrl, name, url, tag, desc, category };
+      const entry = { originalName: editOriginalName, originalUrl: editOriginalUrl, name, url, tag, desc, category, difficulty };
       if (existingIdx !== -1) { editedBuiltins[existingIdx] = entry; }
       else { editedBuiltins.push(entry); }
       saveOverrides();
     }
     closeAddModal(); render(); showToast('Ressource modifiée');
   } else {
-    customItems.push({ name, url, tag, desc, category });
+    customItems.push({ name, url, tag, desc, category, difficulty });
     saveCustom(); closeAddModal(); render(); showToast('Ressource ajoutée !');
   }
 });
@@ -444,7 +451,7 @@ function closeImgModal() { imgModal.classList.remove('open'); document.body.styl
 document.getElementById('imgClose').addEventListener('click', closeImgModal);
 imgModal.addEventListener('click', e => { if (e.target === imgModal) closeImgModal(); });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeImgModal(); closeAddModal(); closeConfirmModal(); }
+  if (e.key === 'Escape') { closeImgModal(); closeAddModal(); closeConfirmModal(); document.getElementById('randomModal').classList.remove('open'); }
   if (e.key === '/' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'SELECT') {
     e.preventDefault(); searchEl.focus();
   }
@@ -523,6 +530,7 @@ ctxMenu.querySelector('[data-action="edit"]').addEventListener('click', () => {
   document.getElementById('fUrl').value = ctxTarget.dataset.url;
   document.getElementById('fTag').value = ctxTarget.dataset.tag;
   document.getElementById('fDesc').value = ctxTarget.dataset.desc;
+  document.getElementById('fDifficulty').value = ctxTarget.dataset.difficulty || '';
   fCategory.value = ctxTarget.dataset.category;
   addModal.querySelector('h3').textContent = 'Éditer la ressource';
   addModal.querySelector('.btn-save').textContent = 'Sauvegarder';
@@ -535,5 +543,46 @@ document.getElementById('vaultTitle').addEventListener('click', e => {
   window.scrollTo({ top: 0, behavior: 'smooth' }); render();
 });
 searchEl.addEventListener('input', render);
+function renderDiffFilter() {
+  const btns = document.querySelectorAll('#diffFilter button');
+  btns.forEach(btn => {
+    const d = btn.dataset.diff;
+    btn.className = ((!activeDifficulty && !d) || activeDifficulty === d) ? 'active' : '';
+  });
+}
+document.querySelectorAll('#diffFilter button').forEach(btn => {
+  btn.addEventListener('click', () => { activeDifficulty = btn.dataset.diff || null; render(); });
+});
+const randomModal = document.getElementById('randomModal');
+function getAllVisibleItems() {
+  const data = getMergedData();
+  const items = [];
+  data.forEach(section => {
+    section.items.forEach(item => {
+      items.push({ ...item, category: section.category, catColor: section.color, catIcon: section.icon });
+    });
+  });
+  return items;
+}
+function showRandomChallenge() {
+  const items = getAllVisibleItems().filter(i => i.url !== '#acronyms');
+  if (!items.length) { showToast('Aucune ressource disponible'); return; }
+  const item = items[Math.floor(Math.random() * items.length)];
+  const diffColors = { 'Débutant': '#00ff88', 'Intermédiaire': '#fb923c', 'Avancé': '#ff6b6b' };
+  const diffHtml = item.difficulty ? `<span class="diff-badge" style="background:${diffColors[item.difficulty]}15;color:${diffColors[item.difficulty]};border-color:${diffColors[item.difficulty]}33">${escHtml(item.difficulty)}</span>` : '';
+  document.getElementById('randomContent').innerHTML = `
+    <div class="random-card">
+      <div class="random-name">${escHtml(item.name)}</div>
+      <div class="random-meta"><span class="card-tag" style="background:${item.catColor}15;color:${item.catColor}">${escHtml(item.category)}</span> <span class="card-tag" style="background:${item.catColor}15;color:${item.catColor}">${escHtml(item.tag)}</span> ${diffHtml}</div>
+      <div class="random-desc">${escHtml(item.desc)}</div>
+    </div>`;
+  document.getElementById('btnRandomOpen').href = item.url;
+  randomModal.classList.add('open');
+  lucide.createIcons();
+}
+document.getElementById('btnRandom').addEventListener('click', showRandomChallenge);
+document.getElementById('btnRandomAgain').addEventListener('click', showRandomChallenge);
+document.getElementById('btnRandomClose').addEventListener('click', () => randomModal.classList.remove('open'));
+randomModal.addEventListener('click', e => { if (e.target === randomModal) randomModal.classList.remove('open'); });
 render();
 loadFromCloud();
