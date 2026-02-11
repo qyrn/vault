@@ -286,28 +286,27 @@ function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replac
 function renderFilterBar() {
   const data = getMergedData();
   const bar = document.getElementById('filterBar');
-  let catHtml = `<button class="${!activeFilter?'active':''}" data-cat="">Tout</button>`;
+  let catHtml = '';
   data.forEach(s => {
     const a = activeFilter === s.category;
     const style = a ? `background:${s.color}12;border-color:${s.color}50;color:${s.color}` : `border-color:${s.color}25;color:${s.color}99`;
     catHtml += `<button class="${a?'active':''}" data-cat="${escHtml(s.category)}" style="${style}"><i data-lucide="${s.icon}"></i> ${escHtml(s.category)}</button>`;
   });
   const diffBtns = [
-    { d: '', label: 'Tout' },
     { d: 'Débutant', label: 'Débutant' },
     { d: 'Intermédiaire', label: 'Intermédiaire' },
     { d: 'Avancé', label: 'Avancé' }
   ];
-  let diffHtml = diffBtns.map(b => `<button class="${((!activeDifficulty && !b.d) || activeDifficulty === b.d)?'active':''}" data-diff="${b.d}">${b.label}</button>`).join('');
+  let diffHtml = diffBtns.map(b => `<button class="${activeDifficulty === b.d?'active':''}" data-diff="${b.d}">${b.label}</button>`).join('');
   let favHtml = `<button class="fav-btn${favOnly?' active':''}" id="btnFavFilter2"><i data-lucide="star"></i> Favoris</button>`;
   bar.innerHTML = `
     <div class="filter-row"><span class="filter-label">Catégorie</span><div class="filter-pills" id="catPills">${catHtml}</div></div>
     <div class="filter-row-split"><div class="filter-left"><span class="filter-label">Niveau</span><div class="filter-pills" id="diffPills">${diffHtml}</div></div><div class="filter-right"><div class="filter-pills">${favHtml}</div></div></div>`;
   bar.querySelectorAll('#catPills button').forEach(btn => {
-    btn.addEventListener('click', () => { activeFilter = btn.dataset.cat || null; render(); });
+    btn.addEventListener('click', () => { activeFilter = activeFilter === btn.dataset.cat ? null : btn.dataset.cat; render(); });
   });
   bar.querySelectorAll('#diffPills button').forEach(btn => {
-    btn.addEventListener('click', () => { activeDifficulty = btn.dataset.diff || null; render(); });
+    btn.addEventListener('click', () => { activeDifficulty = activeDifficulty === btn.dataset.diff ? null : btn.dataset.diff; render(); });
   });
   bar.querySelector('#btnFavFilter2').addEventListener('click', () => { favOnly = !favOnly; render(); });
 }
