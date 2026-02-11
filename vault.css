@@ -49,8 +49,9 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .btn-tool:hover{border-color:var(--border-hover);color:#ccc}
 .btn-add{background:rgba(0,255,136,0.1);border-color:rgba(0,255,136,0.3);color:var(--green)}
 .btn-add:hover{background:rgba(0,255,136,0.18);border-color:rgba(0,255,136,0.5)}
-.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
-.filters button{padding:7px 14px;border-radius:6px;font-size:11px;font-family:inherit;cursor:pointer;letter-spacing:0.5px;background:var(--surface);border:1px solid var(--border);color:#888;transition:all 0.2s}
+.filters{display:flex;gap:6px;margin-bottom:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:2px}
+.filters::-webkit-scrollbar{display:none}
+.filters button{padding:7px 14px;border-radius:6px;font-size:11px;font-family:inherit;cursor:pointer;letter-spacing:0.5px;background:var(--surface);border:1px solid var(--border);color:#888;transition:all 0.2s;white-space:nowrap;flex-shrink:0}
 .filters button:hover{border-color:var(--border-hover);color:#bbb}
 .filters button.active{background:rgba(0,255,136,0.12);border-color:rgba(0,255,136,0.4);color:var(--green)}
 .fav-filter{margin-bottom:28px}
@@ -63,8 +64,8 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
 .card{display:block;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:inherit;transition:all 0.25s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden}
 .card:hover{transform:translateY(-2px);border-color:var(--border-hover);background:var(--surface-hover)}
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.card-name{font-size:14px;font-weight:600;color:#ddd;transition:color 0.2s}
+.card-top{display:flex;align-items:center;gap:6px;min-width:0}
+.card-name{font-size:14px;font-weight:600;color:#ddd;transition:color 0.2s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1}
 .card:hover .card-name{color:var(--accent)}
 .card-tag{font-size:10px;padding:2px 8px;border-radius:4px;white-space:nowrap;letter-spacing:0.5px;flex-shrink:0}
 .card-desc{font-size:12px;color:var(--text-dim);margin-top:6px;line-height:1.5}

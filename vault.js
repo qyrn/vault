@@ -288,7 +288,7 @@ function renderFilters() {
   let html = `<button class="${!activeFilter?'active':''}" data-cat="">TOUT</button>`;
   data.forEach(s => {
     const a = activeFilter === s.category;
-    html += `<button class="${a?'active':''}" data-cat="${escHtml(s.category)}" style="${a?'background:'+s.color+'18;border-color:'+s.color+'55;color:'+s.color:''}"><i data-lucide="${s.icon}"></i> ${escHtml(s.category).toUpperCase()}</button>`;
+    html += `<button class="${a?'active':''}" data-cat="${escHtml(s.category)}" style="--cat-color:${s.color};${a?'background:'+s.color+'18;border-color:'+s.color+'55;color:'+s.color:'border-color:'+s.color+'30;color:'+s.color+'cc'}"><i data-lucide="${s.icon}"></i> ${escHtml(s.category).toUpperCase()}</button>`;
   });
   filtersEl.innerHTML = html;
   filtersEl.querySelectorAll('button').forEach(btn => {
@@ -300,7 +300,6 @@ function updateStats() {
   let total = 0; data.forEach(c => total += c.items.length);
   document.getElementById('totalCount').textContent = total;
   document.getElementById('catCount').textContent = data.length;
-  document.getElementById('customCount').textContent = customItems.length;
 }
 function renderCard(item, color) {
   const isAcronym = item.special === 'acronym';
@@ -335,6 +334,19 @@ function render() {
   updateStats();
   document.getElementById('btnFavFilter').className = favOnly ? 'active' : '';
   const diffMatch = item => !activeDifficulty || item.difficulty === activeDifficulty;
+  const progressionSection = data.find(s => s.category === 'Ma Progression');
+  if (progressionSection && (!activeFilter || activeFilter === 'Ma Progression')) {
+    let pItems = progressionSection.items.filter(item =>
+      (!q || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.tag.toLowerCase().includes(q)) && diffMatch(item)
+    );
+    if (favOnly) pItems = pItems.filter(i => isFav(i.name, i.url));
+    if (pItems.length) {
+      totalVisible += pItems.length;
+      html += `<div class="section progression-section"><div class="section-header"><span style="font-size:18px"><i data-lucide="${progressionSection.icon}"></i></span><h2 style="color:${progressionSection.color}">${escHtml(progressionSection.category)}</h2><span class="count">${pItems.length}</span></div><div class="cards">`;
+      pItems.forEach(item => { item.category = progressionSection.category; html += renderCard(item, progressionSection.color); });
+      html += '</div></div>';
+    }
+  }
   if (!favOnly) {
     const favItems = getFavItems().filter(item =>
       (!q || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.tag.toLowerCase().includes(q)) && diffMatch(item)
@@ -346,6 +358,7 @@ function render() {
     }
   }
   data.forEach(section => {
+    if (section.category === 'Ma Progression') return;
     if (activeFilter && section.category !== activeFilter) return;
     let items = section.items.filter(item =>
       (!q || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.tag.toLowerCase().includes(q)) && diffMatch(item)
@@ -353,8 +366,7 @@ function render() {
     if (favOnly) items = items.filter(i => isFav(i.name, i.url));
     if (!items.length) return;
     totalVisible += items.length;
-    const isProgression = section.category === 'Ma Progression';
-    html += `<div class="section${isProgression ? ' progression-section' : ''}"><div class="section-header"><span style="font-size:18px"><i data-lucide="${section.icon}"></i></span><h2 style="color:${section.color}">${escHtml(section.category)}</h2><span class="count">${items.length}</span></div><div class="cards">`;
+    html += `<div class="section"><div class="section-header"><span style="font-size:18px"><i data-lucide="${section.icon}"></i></span><h2 style="color:${section.color}">${escHtml(section.category)}</h2><span class="count">${items.length}</span></div><div class="cards">`;
     items.forEach(item => { item.category = section.category; html += renderCard(item, section.color); });
     html += '</div></div>';
   });
