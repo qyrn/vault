@@ -248,7 +248,6 @@ function getFavItems() {
   });
   return favs;
 }
-const filtersEl = document.getElementById('filters');
 const contentEl = document.getElementById('content');
 const searchEl = document.getElementById('search');
 const emptyEl = document.getElementById('empty');
@@ -283,7 +282,7 @@ function populateCategorySelect() {
   fCategory.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('') + '<option value="__new">+ Nouvelle catégorie...</option>';
 }
 function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); }
-function renderFilters() {}
+
 function renderFilterBar() {
   const data = getMergedData();
   const bar = document.getElementById('filterBar');
@@ -346,8 +345,6 @@ function render() {
   const q = searchEl.value.toLowerCase().trim();
   let totalVisible = 0;
   let html = '';
-  renderFilters();
-  renderDiffFilter();
   renderFilterBar();
   updateStats();
   const diffMatch = item => !activeDifficulty || item.difficulty === activeDifficulty;
@@ -476,7 +473,6 @@ document.getElementById('btnFetch').addEventListener('click', async () => {
   }
   btn.disabled = false; btn.innerHTML = '<i data-lucide="loader"></i> Analyser avec l\'IA'; lucide.createIcons({attrs:{class:['lucide-inline']}});
 });
-document.getElementById('btnFavFilter').addEventListener('click', () => { favOnly = !favOnly; render(); });
 function closeImgModal() { imgModal.classList.remove('open'); document.body.style.overflow = ''; }
 document.getElementById('imgClose').addEventListener('click', closeImgModal);
 imgModal.addEventListener('click', e => { if (e.target === imgModal) closeImgModal(); });
@@ -573,16 +569,6 @@ document.getElementById('vaultTitle').addEventListener('click', e => {
   window.scrollTo({ top: 0, behavior: 'smooth' }); render();
 });
 searchEl.addEventListener('input', render);
-function renderDiffFilter() {
-  const btns = document.querySelectorAll('#diffFilter button');
-  btns.forEach(btn => {
-    const d = btn.dataset.diff;
-    btn.className = ((!activeDifficulty && !d) || activeDifficulty === d) ? 'active' : '';
-  });
-}
-document.querySelectorAll('#diffFilter button').forEach(btn => {
-  btn.addEventListener('click', () => { activeDifficulty = btn.dataset.diff || null; render(); });
-});
 const randomModal = document.getElementById('randomModal');
 function getAllVisibleItems() {
   const data = getMergedData();
