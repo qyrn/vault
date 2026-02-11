@@ -49,14 +49,21 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .btn-tool:hover{border-color:var(--border-hover);color:#ccc}
 .btn-add{background:rgba(0,255,136,0.1);border-color:rgba(0,255,136,0.3);color:var(--green)}
 .btn-add:hover{background:rgba(0,255,136,0.18);border-color:rgba(0,255,136,0.5)}
-.filters{display:flex;gap:6px;margin-bottom:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:2px}
-.filters::-webkit-scrollbar{display:none}
-.filters button{padding:7px 14px;border-radius:6px;font-size:11px;font-family:inherit;cursor:pointer;letter-spacing:0.5px;background:var(--surface);border:1px solid var(--border);color:#888;transition:all 0.2s;white-space:nowrap;flex-shrink:0}
-.filters button:hover{border-color:var(--border-hover);color:#bbb}
-.filters button.active{background:rgba(0,255,136,0.12);border-color:rgba(0,255,136,0.4);color:var(--green)}
-.fav-filter{margin-bottom:28px}
-.fav-filter button{padding:6px 12px;border-radius:6px;font-size:11px;font-family:inherit;cursor:pointer;background:var(--surface);border:1px solid var(--border);color:#888;transition:all 0.2s}
-.fav-filter button.active{background:rgba(255,217,61,0.12);border-color:rgba(255,217,61,0.4);color:var(--yellow)}
+.filter-bar{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;padding:14px 16px;background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:10px}
+.filter-row{display:flex;align-items:center;gap:8px}
+.filter-label{font-size:10px;color:var(--text-faint);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;min-width:72px}
+.filter-pills{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:1px}
+.filter-pills::-webkit-scrollbar{display:none}
+.filter-pills button{padding:6px 13px;border-radius:20px;font-size:10px;font-family:inherit;cursor:pointer;letter-spacing:0.4px;background:transparent;border:1px solid var(--border);color:#666;transition:all 0.2s;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:5px}
+.filter-pills button:hover{border-color:var(--border-hover);color:#bbb;background:rgba(255,255,255,0.02)}
+.filter-pills button.active{color:var(--green);border-color:rgba(0,255,136,0.35);background:rgba(0,255,136,0.08)}
+.filter-pills button[data-diff="Débutant"].active{color:#00ff88;border-color:rgba(0,255,136,0.4);background:rgba(0,255,136,0.08)}
+.filter-pills button[data-diff="Intermédiaire"].active{color:#fb923c;border-color:rgba(251,146,60,0.4);background:rgba(251,146,60,0.08)}
+.filter-pills button[data-diff="Avancé"].active{color:#ff6b6b;border-color:rgba(255,107,107,0.4);background:rgba(255,107,107,0.08)}
+.filter-pills button.fav-btn.active{color:var(--yellow);border-color:rgba(255,217,61,0.4);background:rgba(255,217,61,0.08)}
+.filters{display:none}
+.fav-filter{display:none}
+.diff-filter{display:none}
 .section{margin-bottom:32px}
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px}
 .section-header h2{font-size:15px;font-weight:600;letter-spacing:1px}
@@ -64,10 +71,10 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
 .card{display:block;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:inherit;transition:all 0.25s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden}
 .card:hover{transform:translateY(-2px);border-color:var(--border-hover);background:var(--surface-hover)}
-.card-top{display:flex;align-items:center;gap:6px;min-width:0}
-.card-name{font-size:14px;font-weight:600;color:#ddd;transition:color 0.2s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1}
+.card-top{display:flex;flex-wrap:wrap;align-items:center;gap:5px 8px}
+.card-name{font-size:14px;font-weight:600;color:#ddd;transition:color 0.2s}
 .card:hover .card-name{color:var(--accent)}
-.card-tag{font-size:10px;padding:2px 8px;border-radius:4px;white-space:nowrap;letter-spacing:0.5px;flex-shrink:0}
+.card-tag{font-size:10px;padding:2px 8px;border-radius:4px;white-space:nowrap;letter-spacing:0.5px}
 .card-desc{font-size:12px;color:var(--text-dim);margin-top:6px;line-height:1.5}
 .card-url{font-size:10px;color:var(--text-faint);margin-top:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card-actions{position:absolute;bottom:8px;right:10px;display:flex;gap:4px;opacity:0;transition:opacity 0.2s}
@@ -122,7 +129,7 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .pinned-section{margin-bottom:32px;padding:16px;background:rgba(255,217,61,0.03);border:1px solid rgba(255,217,61,0.1);border-radius:12px}
 .pinned-section .section-header{border-bottom:1px solid rgba(255,217,61,0.08);padding-bottom:10px;margin-bottom:14px}
 .lucide{width:16px;height:16px;stroke-width:2;vertical-align:middle;display:inline-block}
-.filters .lucide,.fav-filter .lucide{width:14px;height:14px;margin-right:2px}
+.filters .lucide,.fav-filter .lucide,.filter-pills .lucide{width:13px;height:13px}
 .section-header .lucide{width:18px;height:18px}
 .search-icon .lucide{width:14px;height:14px}
 .fav-star .lucide{width:12px;height:12px;fill:var(--yellow);stroke:var(--yellow)}
@@ -135,11 +142,6 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 @keyframes lucide-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .lucide-spin{animation:lucide-spin 1s linear infinite}
 .diff-badge{font-size:9px;padding:2px 7px;border-radius:4px;border:1px solid;letter-spacing:0.3px;white-space:nowrap;flex-shrink:0}
-.diff-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
-.diff-filter button{padding:5px 12px;border-radius:6px;font-size:10px;font-family:inherit;cursor:pointer;letter-spacing:0.5px;background:var(--surface);border:1px solid var(--border);color:#888;transition:all 0.2s}
-.diff-filter button:hover{border-color:var(--border-hover);color:#bbb}
-.diff-filter button.active{background:rgba(0,255,136,0.12);border-color:rgba(0,255,136,0.4);color:var(--green)}
-.diff-filter .lucide{width:10px;height:10px;margin-right:2px}
 .modal-random{max-width:480px}
 .modal-random h3{display:flex;align-items:center;gap:8px}
 .random-card{padding:16px 0}

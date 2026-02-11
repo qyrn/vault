@@ -283,17 +283,34 @@ function populateCategorySelect() {
   fCategory.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('') + '<option value="__new">+ Nouvelle catégorie...</option>';
 }
 function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); }
-function renderFilters() {
+function renderFilters() {}
+function renderFilterBar() {
   const data = getMergedData();
-  let html = `<button class="${!activeFilter?'active':''}" data-cat="">TOUT</button>`;
+  const bar = document.getElementById('filterBar');
+  let catHtml = `<button class="${!activeFilter?'active':''}" data-cat="">Tout</button>`;
   data.forEach(s => {
     const a = activeFilter === s.category;
-    html += `<button class="${a?'active':''}" data-cat="${escHtml(s.category)}" style="--cat-color:${s.color};${a?'background:'+s.color+'18;border-color:'+s.color+'55;color:'+s.color:'border-color:'+s.color+'30;color:'+s.color+'cc'}"><i data-lucide="${s.icon}"></i> ${escHtml(s.category).toUpperCase()}</button>`;
+    const style = a ? `background:${s.color}12;border-color:${s.color}50;color:${s.color}` : `border-color:${s.color}25;color:${s.color}99`;
+    catHtml += `<button class="${a?'active':''}" data-cat="${escHtml(s.category)}" style="${style}"><i data-lucide="${s.icon}"></i> ${escHtml(s.category)}</button>`;
   });
-  filtersEl.innerHTML = html;
-  filtersEl.querySelectorAll('button').forEach(btn => {
+  const diffBtns = [
+    { d: '', label: 'Tout' },
+    { d: 'Débutant', label: 'Débutant' },
+    { d: 'Intermédiaire', label: 'Intermédiaire' },
+    { d: 'Avancé', label: 'Avancé' }
+  ];
+  let diffHtml = diffBtns.map(b => `<button class="${((!activeDifficulty && !b.d) || activeDifficulty === b.d)?'active':''}" data-diff="${b.d}">${b.label}</button>`).join('');
+  let favHtml = `<button class="fav-btn${favOnly?' active':''}" id="btnFavFilter2"><i data-lucide="star"></i> Favoris</button>`;
+  bar.innerHTML = `
+    <div class="filter-row"><span class="filter-label">Catégorie</span><div class="filter-pills" id="catPills">${catHtml}</div></div>
+    <div class="filter-row"><span class="filter-label">Niveau</span><div class="filter-pills" id="diffPills">${diffHtml}</div><div class="filter-pills">${favHtml}</div></div>`;
+  bar.querySelectorAll('#catPills button').forEach(btn => {
     btn.addEventListener('click', () => { activeFilter = btn.dataset.cat || null; render(); });
   });
+  bar.querySelectorAll('#diffPills button').forEach(btn => {
+    btn.addEventListener('click', () => { activeDifficulty = btn.dataset.diff || null; render(); });
+  });
+  bar.querySelector('#btnFavFilter2').addEventListener('click', () => { favOnly = !favOnly; render(); });
 }
 function updateStats() {
   const data = getMergedData();
@@ -331,8 +348,8 @@ function render() {
   let html = '';
   renderFilters();
   renderDiffFilter();
+  renderFilterBar();
   updateStats();
-  document.getElementById('btnFavFilter').className = favOnly ? 'active' : '';
   const diffMatch = item => !activeDifficulty || item.difficulty === activeDifficulty;
   const progressionSection = data.find(s => s.category === 'Ma Progression');
   if (progressionSection && (!activeFilter || activeFilter === 'Ma Progression')) {
