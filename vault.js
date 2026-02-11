@@ -303,7 +303,7 @@ function renderFilterBar() {
   let favHtml = `<button class="fav-btn${favOnly?' active':''}" id="btnFavFilter2"><i data-lucide="star"></i> Favoris</button>`;
   bar.innerHTML = `
     <div class="filter-row"><span class="filter-label">Catégorie</span><div class="filter-pills" id="catPills">${catHtml}</div></div>
-    <div class="filter-row"><span class="filter-label">Niveau</span><div class="filter-pills" id="diffPills">${diffHtml}</div><div class="filter-pills">${favHtml}</div></div>`;
+    <div class="filter-row-split"><div class="filter-left"><span class="filter-label">Niveau</span><div class="filter-pills" id="diffPills">${diffHtml}</div></div><div class="filter-right"><div class="filter-pills">${favHtml}</div></div></div>`;
   bar.querySelectorAll('#catPills button').forEach(btn => {
     btn.addEventListener('click', () => { activeFilter = btn.dataset.cat || null; render(); });
   });
@@ -335,7 +335,7 @@ function renderCard(item, color) {
   const diffBadge = item.difficulty ? `<span class="diff-badge" style="background:${diffColors[item.difficulty]}15;color:${diffColors[item.difficulty]};border-color:${diffColors[item.difficulty]}33">${escHtml(item.difficulty)}</span>` : '';
   return `<a href="${href}" ${target} class="card" style="--accent:${color}" data-name="${eName}" data-url="${eUrl}" data-custom="${item.custom?'1':'0'}" data-tag="${escHtml(item.tag)}" data-desc="${escHtml(item.desc)}" data-category="${escHtml(item.category||'')}" data-difficulty="${escHtml(item.difficulty||'')}" data-original-name="${origName}" data-original-url="${origUrl}" ${onclick}>
     ${favStar}
-    <div class="card-top"><span class="card-name">${eName}</span>${diffBadge}<span class="card-tag" style="background:${color}15;color:${color}">${escHtml(item.tag)}</span></div>
+    <div class="card-top"><div class="card-title-row"><span class="card-name">${eName}</span></div><div class="card-badges">${diffBadge}<span class="card-tag" style="background:${color}15;color:${color}">${escHtml(item.tag)}</span></div></div>
     <div class="card-desc">${escHtml(item.desc)}</div>
     <div class="card-url">${escHtml(displayUrl)}</div>
     <div class="card-actions">${favBtn}</div>
