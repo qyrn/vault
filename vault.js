@@ -424,7 +424,10 @@ fCategory.addEventListener('change', () => {
 });
 document.getElementById('btnSaveAdd').addEventListener('click', () => {
   const name = document.getElementById('fName').value.trim();
-  const url = document.getElementById('fUrl').value.trim();
+  let url = document.getElementById('fUrl').value.trim();
+  if (url && !url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('#')) {
+    url = 'https://' + url;
+  }
   const tag = document.getElementById('fTag').value.trim() || 'Autre';
   const desc = document.getElementById('fDesc').value.trim() || 'Pas de description';
   const category = fCategory.value;
@@ -449,7 +452,11 @@ document.getElementById('btnSaveAdd').addEventListener('click', () => {
   }
 });
 document.getElementById('btnFetch').addEventListener('click', async () => {
-  const url = document.getElementById('fUrl').value.trim();
+  let url = document.getElementById('fUrl').value.trim();
+  if (url && !url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('#')) {
+    url = 'https://' + url;
+    document.getElementById('fUrl').value = url;
+  }
   const statusEl = document.getElementById('fetchStatus');
   const btn = document.getElementById('btnFetch');
   if (!url) { statusEl.className = 'fetch-status err'; statusEl.textContent = 'URL requise'; return; }
