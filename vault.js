@@ -422,6 +422,14 @@ fCategory.addEventListener('change', () => {
     } else { fCategory.value = fCategory.options[0].value; }
   }
 });
+function isValidUrl(str) {
+  if (str.startsWith('#')) return true;
+  try {
+    const u = new URL(str);
+    return ['http:', 'https:'].includes(u.protocol);
+  } catch { return false; }
+}
+
 document.getElementById('btnSaveAdd').addEventListener('click', () => {
   const name = document.getElementById('fName').value.trim();
   let url = document.getElementById('fUrl').value.trim();
@@ -433,6 +441,7 @@ document.getElementById('btnSaveAdd').addEventListener('click', () => {
   const category = fCategory.value;
   const difficulty = document.getElementById('fDifficulty').value || null;
   if (!name || !url) { showToast('Nom et URL requis'); return; }
+  if (!isValidUrl(url)) { showToast('URL invalide (http/https uniquement)'); return; }
   if (editMode && editOriginalName) {
     if (editIsCustom) {
       const idx = customItems.findIndex(c => c.name === editOriginalName && c.url === editOriginalUrl);

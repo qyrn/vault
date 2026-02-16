@@ -44,7 +44,11 @@ function isAdmin(req) {
 }
 
 module.exports = async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const origin = req.headers.origin;
+  const allowedOrigins = [process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null, 'http://localhost:3000', 'http://localhost:5173'].filter(Boolean);
+  if (origin && allowedOrigins.some(o => origin.startsWith(o) || origin.includes('vercel.app'))) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.setHeader("Access-Control-Allow-Credentials", "true");
