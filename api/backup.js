@@ -44,38 +44,23 @@ function isAdmin(req) {
 }
 
 module.exports = async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
+  if (req.method !== "GET") {
+    return res.status(405).json({ error: "Méthode non autorisée" });
+  }
 
-  if (req.method === "OPTIONS") return res.status(200).end();
+  if (!isAdmin(req)) {
+    return res.status(403).json({ error: "Non autorisé" });
+  }
 
   try {
-    if (req.method === "GET") {
-      const data = await redis.get(KEY);
-      return res.status(200).json(data || { custom: [], favorites: [], deletedBuiltins: [], editedBuiltins: [] });
-    }
+    const data = await redis.get(KEY);
+    const backup = data || { custom: [], favorites: [], deletedBuiltins: [], editedBuiltins: [] };
 
-    if (req.method === "POST") {
-      if (!isAdmin(req)) {
-        return res.status(403).json({ error: "Non autorisé" });
-      }
+    const date = new Date().toISOString().split('T')[0];
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Content-Disposition", `attachment; filename="vault-backup-${date}.json"`);
 
-      const { custom, favorites, deletedBuiltins, editedBuiltins } = req.body;
-      if (!Array.isArray(custom) || !Array.isArray(favorites)) {
-        return res.status(400).json({ error: "Format invalide" });
-      }
-      await redis.set(KEY, {
-        custom,
-        favorites,
-        deletedBuiltins: Array.isArray(deletedBuiltins) ? deletedBuiltins : [],
-        editedBuiltins: Array.isArray(editedBuiltins) ? editedBuiltins : []
-      });
-      return res.status(200).json({ ok: true });
-    }
-
-    return res.status(405).json({ error: "Méthode non autorisée" });
+    return res.status(200).json(backup);
   } catch (e) {
     return res.status(500).json({ error: "Erreur serveur : " + e.message });
   }
