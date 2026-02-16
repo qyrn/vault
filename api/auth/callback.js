@@ -57,11 +57,12 @@ module.exports = async function handler(req, res) {
 
     const sessionToken = createSessionToken(githubId, process.env.SESSION_SECRET);
 
-    const cookieOptions = 'Path=/; HttpOnly; SameSite=Lax; Max-Age=604800';
+    const secure = process.env.NODE_ENV === 'production' || req.headers['x-forwarded-proto'] === 'https' ? '; Secure' : '';
+    const cookieOptions = `Path=/; HttpOnly; SameSite=Lax; Max-Age=604800${secure}`;
     res.setHeader('Set-Cookie', [
       `session=${sessionToken}; ${cookieOptions}`,
       `github_id=${githubId}; ${cookieOptions}`,
-      `is_admin=${isAdmin ? '1' : '0'}; Path=/; SameSite=Lax; Max-Age=604800`,
+      `is_admin=${isAdmin ? '1' : '0'}; Path=/; SameSite=Lax; Max-Age=604800${secure}`,
       'oauth_state=; Path=/; HttpOnly; Max-Age=0'
     ]);
 
