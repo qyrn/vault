@@ -23,9 +23,12 @@
         <span class="stat"><strong id="catCount">0</strong> catégories</span>
       </div>
     </div>
-    <div class="clock">
-      <div class="clock-time" id="clockTime"></div>
-      <div class="clock-date" id="clockDate"></div>
+    <div class="header-right">
+      <div class="auth-zone" id="authZone"></div>
+      <div class="clock">
+        <div class="clock-time" id="clockTime"></div>
+        <div class="clock-date" id="clockDate"></div>
+      </div>
     </div>
   </header>
   <div class="toolbar">
@@ -36,7 +39,7 @@
     </div>
     <div class="toolbar-btns">
       <button class="btn-tool" id="btnRandom"><i data-lucide="shuffle"></i> Random</button>
-      <button class="btn-tool btn-add" id="btnAdd">+ Ajouter</button>
+      <button class="btn-tool btn-add admin-only" id="btnAdd" style="display:none">+ Ajouter</button>
     </div>
   </div>
   <div class="filter-bar" id="filterBar"></div>
