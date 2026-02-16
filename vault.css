@@ -166,3 +166,64 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .admin-badge{font-size:10px;color:var(--green);background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.25);padding:4px 10px;border-radius:4px;letter-spacing:0.5px}
 .btn-backup{padding:6px 12px;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);border-radius:6px;color:var(--blue);font-size:10px;font-family:inherit;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
 .btn-backup:hover{background:rgba(56,189,248,0.15);border-color:rgba(56,189,248,0.4)}
+@media(max-width:768px){
+  .container{padding:16px 16px 32px}
+  header{flex-direction:column;gap:12px;padding:20px 0 16px}
+  .header-left h1{font-size:28px}
+  .header-right{width:100%;justify-content:space-between}
+  .clock{text-align:left}
+  .clock-time{font-size:16px}
+  .toolbar{flex-direction:column;gap:8px}
+  .search-bar{flex:1 1 100%}
+  .toolbar-btns{width:100%;justify-content:stretch}
+  .toolbar-btns .btn-tool{flex:1;justify-content:center}
+  .filter-bar{padding:12px}
+  .filter-row,.filter-row-split{flex-wrap:wrap}
+  .filter-row-split{flex-direction:column;align-items:flex-start;gap:10px}
+  .filter-row-split .filter-right{width:100%}
+  .filter-label{min-width:auto;width:100%;margin-bottom:4px}
+  .filter-pills{width:100%;padding-bottom:6px}
+  .cards{grid-template-columns:1fr}
+  .modal{padding:20px;margin:12px;max-width:calc(100vw - 24px)}
+  .modal-actions{flex-direction:column-reverse}
+  .modal-actions button,.modal-actions a{width:100%;justify-content:center}
+  .auth-zone{flex-wrap:wrap;gap:6px}
+  .glow-tl,.glow-br{display:none}
+}
+@media(max-width:480px){
+  .container{padding:12px 12px 24px}
+  header{padding:16px 0 12px}
+  .header-left .label{font-size:9px;letter-spacing:2px}
+  .header-left h1{font-size:24px}
+  .header-stats{gap:12px;flex-wrap:wrap}
+  .stat{font-size:10px}
+  .stat strong{font-size:12px}
+  .clock-time{font-size:14px}
+  .clock-date{font-size:10px}
+  .search-bar input{padding:10px 12px 10px 34px;font-size:12px}
+  .search-hint{display:none}
+  .btn-tool{padding:10px 12px;font-size:11px}
+  .filter-pills button{padding:5px 10px;font-size:9px}
+  .card{padding:12px}
+  .card-name{font-size:13px}
+  .card-desc{font-size:11px}
+  .card-tag{font-size:9px;padding:2px 6px}
+  .section-header h2{font-size:13px}
+  .modal{padding:16px}
+  .modal h3{font-size:14px}
+  .modal input,.modal textarea,.modal select{padding:8px 12px;font-size:12px}
+  .random-name{font-size:16px}
+  .random-desc{font-size:12px}
+  .toast{font-size:11px;padding:8px 16px}
+}
+@media(min-width:1400px){
+  .container{max-width:1400px}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+}
+@media(hover:none){
+  .card:hover{transform:none}
+  .card-actions{opacity:1}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
