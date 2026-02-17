@@ -89,6 +89,9 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .card-actions .btn-fav{color:var(--yellow)}
 .card-actions .btn-fav:hover{background:rgba(255,217,61,0.1)}
 .fav-star{position:absolute;top:10px;right:10px;font-size:12px;color:var(--yellow);pointer-events:none}
+.private-badge{position:absolute;top:10px;right:28px;font-size:11px;color:var(--purple);pointer-events:none}
+.card-private{border-color:rgba(167,139,250,0.2);background:rgba(167,139,250,0.03)}
+.card-private:hover{border-color:rgba(167,139,250,0.35)}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1000;justify-content:center;align-items:center;padding:24px}
 .modal-overlay.open{display:flex}
 .modal{background:#111118;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto}
@@ -116,6 +119,9 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .fetch-status{font-size:10px;margin-top:4px}
 .fetch-status.ok{color:var(--green)}
 .fetch-status.err{color:var(--red)}
+.checkbox-label{display:flex!important;align-items:center;gap:10px;margin-top:16px;cursor:pointer;user-select:none}
+.checkbox-label input[type="checkbox"]{width:16px;height:16px;accent-color:var(--purple);cursor:pointer;flex-shrink:0}
+.checkbox-label span{font-size:12px;color:var(--text-dim);letter-spacing:0;text-transform:none}
 .img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1100;justify-content:center;align-items:center;padding:24px}
 .img-modal.open{display:flex}
 .img-modal img{max-width:95vw;max-height:90vh;border-radius:8px;border:1px solid rgba(255,255,255,0.1)}
