@@ -136,6 +136,7 @@ const BUILTIN = [
     category: "Ma Progression", icon: "compass", color: "#10b981",
     items: [
       { name: "Échelon", url: "https://web-beta-roan-27.vercel.app/", desc: "Mon outil de veille cybersec hebdomadaire (chaque dimanche)", tag: "Perso", difficulty: null },
+      { name: "Roadmap 2026", url: "/api/roadmap", desc: "Ma roadmap cybersec personnelle avec objectifs et progression", tag: "Privé", difficulty: null, adminOnly: true },
     ]
   },
 ];
@@ -211,6 +212,7 @@ function getEditedBuiltin(name, url) {
 function getMergedData() {
   const merged = BUILTIN.map(cat => {
     const items = cat.items
+      .filter(i => !i.adminOnly || isAdmin)
       .filter(i => !isDeletedBuiltin(i.name, i.url))
       .map(i => {
         const edited = getEditedBuiltin(i.name, i.url);
