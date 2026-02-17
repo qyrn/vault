@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Cyber 2026 — qyrn</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg:#0a0a0a; --card:#111; --border:#222; --text:#eee; --dim:#888; --red:#ef4444; --blue:#3b82f6; --green:#22c55e; --yellow:#eab308; --purple:#a855f7; --orange:#f97316; --cyan:#06b6d4; --pink:#ec4899; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+        .container { max-width:1000px; margin:0 auto; padding:16px; }
+        header { text-align:center; padding:30px 16px; border-bottom:1px solid var(--border); }
+        .title { font-family:'JetBrains Mono',monospace; font-size:1.8rem; font-weight:700; }
+        .subtitle { color:var(--dim); font-size:0.9rem; }
+        .stoic { background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(59,130,246,0.1)); border:1px solid rgba(168,85,247,0.3); border-radius:8px; padding:12px; margin:16px auto; max-width:600px; font-style:italic; font-size:0.85rem; text-align:center; }
+        .stoic cite { display:block; margin-top:6px; color:var(--dim); font-style:normal; font-size:0.75rem; }
+        .badge { display:inline-block; padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:600; margin:12px 4px 0; }
+        .badge-soc { background:rgba(6,182,212,0.2); color:var(--cyan); }
+        .badge-pentest { background:rgba(239,68,68,0.2); color:var(--red); }
+        .progress-box { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:12px; margin:16px auto; max-width:500px; }
+        .progress-header { display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px; }
+        .progress-bar { height:8px; background:#1a1a1a; border-radius:4px; overflow:hidden; }
+        .progress-fill { height:100%; background:linear-gradient(90deg,var(--cyan),var(--purple),var(--red)); width:0%; transition:width 0.3s; }
+        nav { display:flex; gap:4px; flex-wrap:wrap; justify-content:center; padding:12px 0; position:sticky; top:0; background:rgba(10,10,10,0.95); backdrop-filter:blur(8px); z-index:100; border-bottom:1px solid var(--border); }
+        .nav-btn { padding:6px 10px; background:var(--card); border:1px solid var(--border); border-radius:4px; color:var(--dim); cursor:pointer; font-family:inherit; font-size:0.75rem; transition:all 0.15s; }
+        .nav-btn:hover { border-color:var(--purple); color:var(--text); }
+        .nav-btn.active { background:var(--purple); border-color:var(--purple); color:white; }
+        .tab { display:none; animation:fadeIn 0.2s; }
+        .tab.active { display:block; }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        .section-title { font-family:'JetBrains Mono',monospace; font-size:1.1rem; font-weight:700; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--purple); }
+        .section-title.cyan { border-color:var(--cyan); }
+        .section-title.red { border-color:var(--red); }
+        .section-title.green { border-color:var(--green); }
+        .section-title.orange { border-color:var(--orange); }
+        .section-title.yellow { border-color:var(--yellow); }
+        .section-title.pink { border-color:var(--pink); }
+        .card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:14px; margin-bottom:10px; }
+        .card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; flex-wrap:wrap; gap:6px; }
+        .card-title { font-weight:700; font-size:0.95rem; }
+        .card-sub { font-size:0.8rem; color:var(--dim); margin-top:2px; }
+        .tag { font-size:0.65rem; padding:2px 6px; border-radius:3px; font-weight:600; text-transform:uppercase; margin-left:6px; }
+        .tag-soc { background:rgba(6,182,212,0.2); color:var(--cyan); }
+        .tag-pentest { background:rgba(239,68,68,0.2); color:var(--red); }
+        .tag-thm { background:rgba(34,197,94,0.2); color:var(--green); }
+        .tag-project { background:rgba(236,72,153,0.2); color:var(--pink); }
+        .tag-blog { background:rgba(249,115,22,0.2); color:var(--orange); }
+        .tasks { display:flex; flex-direction:column; gap:1px; }
+        .task { display:flex; align-items:flex-start; gap:8px; padding:6px 8px; border-radius:4px; cursor:pointer; font-size:0.85rem; }
+        .task:hover { background:#1a1a1a; }
+        .task input[type="checkbox"] { appearance:none; width:16px; height:16px; border:2px solid #444; border-radius:3px; cursor:pointer; flex-shrink:0; margin-top:2px; position:relative; }
+        .task input[type="checkbox"]:checked { background:var(--green); border-color:var(--green); }
+        .task input[type="checkbox"]:checked::after { content:'✓'; position:absolute; color:white; font-size:10px; left:2px; top:-1px; }
+        .task.done span { text-decoration:line-through; color:var(--dim); }
+        .info-box { border-radius:6px; padding:12px; margin:10px 0; font-size:0.85rem; }
+        .info-box.cyan { background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3); }
+        .info-box.red { background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); }
+        .info-box.green { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); }
+        .info-box.orange { background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.3); }
+        .info-box.purple { background:rgba(168,85,247,0.1); border:1px solid rgba(168,85,247,0.3); }
+        .info-title { font-weight:700; margin-bottom:4px; }
+        table { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.8rem; }
+        th,td { border:1px solid var(--border); padding:8px; text-align:left; }
+        th { background:#151515; font-weight:600; }
+        code { font-family:'JetBrains Mono',monospace; background:#1a1a1a; padding:1px 4px; border-radius:2px; font-size:0.8em; color:var(--yellow); }
+        .quiz-section { background:linear-gradient(135deg,rgba(249,115,22,0.08),rgba(168,85,247,0.08)); border:1px solid rgba(249,115,22,0.2); border-radius:8px; padding:14px; margin:12px 0; }
+        .quiz-item { background:var(--card); border-radius:4px; padding:10px; margin:6px 0; }
+        .quiz-item label { font-weight:600; font-size:0.85rem; display:block; margin-bottom:6px; }
+        .quiz-input { width:100%; padding:8px; background:#0a0a0a; border:1px solid var(--border); border-radius:4px; color:var(--text); font-family:inherit; font-size:0.85rem; }
+        .quiz-input:focus { outline:none; border-color:var(--purple); }
+        .quiz-btn { padding:6px 12px; background:var(--orange); border:none; border-radius:4px; color:white; cursor:pointer; font-size:0.8rem; margin-top:6px; }
+        .quiz-answer { margin-top:8px; padding:8px; background:rgba(34,197,94,0.1); border-left:3px solid var(--green); border-radius:0 4px 4px 0; font-size:0.8rem; display:none; }
+        .quiz-answer.visible { display:block; }
+        .quiz-result { margin-top:4px; font-size:0.75rem; font-weight:600; }
+        .quiz-result.correct { color:var(--green); }
+        .quiz-result.incorrect { color:var(--red); }
+        .logbook { background:#0d0d0d; border:1px solid var(--border); border-radius:6px; padding:12px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; white-space:pre-wrap; }
+        .project-card { background:linear-gradient(135deg,rgba(236,72,153,0.05),rgba(168,85,247,0.05)); border:1px solid rgba(236,72,153,0.2); }
+        .project-meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin-top:10px; font-size:0.8rem; }
+        .project-meta div { background:#0a0a0a; padding:6px 8px; border-radius:4px; }
+        .project-meta strong { color:var(--dim); font-size:0.7rem; display:block; margin-bottom:2px; }
+        .blocking-gate { background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(239,68,68,0.05)); border:2px solid var(--red); border-radius:8px; padding:14px; margin:16px 0; }
+        .blocking-gate h4 { color:var(--red); margin-bottom:8px; }
+        .week-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+        .week-dates { color:var(--dim); font-size:0.85rem; }
+        .resource-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; }
+        .resource-item { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:10px; }
+        .resource-item h4 { font-size:0.85rem; margin-bottom:4px; }
+        .resource-item p { font-size:0.75rem; color:var(--dim); }
+        .challenge-card { background:linear-gradient(135deg,rgba(234,179,8,0.08),rgba(249,115,22,0.08)); border:1px solid rgba(234,179,8,0.3); border-radius:8px; padding:14px; margin:8px 0; }
+        .challenge-week { font-size:0.7rem; color:var(--yellow); font-weight:600; text-transform:uppercase; margin-bottom:4px; }
+        .challenge-title { font-weight:700; font-size:0.95rem; margin-bottom:6px; }
+        .challenge-desc { font-size:0.8rem; color:var(--dim); }
+        .secret-input { position:fixed; bottom:10px; right:10px; width:100px; padding:6px; background:transparent; border:1px solid transparent; border-radius:4px; color:transparent; font-size:0.7rem; outline:none; }
+        .secret-input:focus { background:var(--card); border-color:var(--border); color:var(--text); }
+        #berlin-tab { display:none; }
+        #berlin-tab.unlocked { display:block; }
+        .berlin-section { background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(168,85,247,0.08)); border:1px solid rgba(236,72,153,0.3); border-radius:8px; padding:16px; margin:12px 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1 class="title">ROADMAP CYBER 2026</h1>
+        <p class="subtitle">qyrn.dev — 11 mois • Mode Strict • Début 17 Février</p>
+        <div class="stoic">"Quelqu'un d'intelligent va trop réfléchir au lieu de se lancer. Un bon entrepreneur n'est pas quelqu'un d'intelligent mais quelqu'un qui se lance sans attendre."<cite>— Xavier Niel</cite></div>
+        <span class="badge badge-soc">🛡️ SOC (2027)</span>
+        <span class="badge badge-pentest">🔴 Pentest (2028+)</span>
+        <div class="progress-box">
+            <div class="progress-header"><span id="progressText">0%</span><span id="taskCount">0/0</span></div>
+            <div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
+        </div>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" onclick="showTab('overview')">Accueil</button>
+        <button class="nav-btn" onclick="showTab('s1')">S1</button>
+        <button class="nav-btn" onclick="showTab('s2')">S2</button>
+        <button class="nav-btn" onclick="showTab('s3')">S3</button>
+        <button class="nav-btn" onclick="showTab('s4')">S4</button>
+        <button class="nav-btn" onclick="showTab('s5')">S5</button>
+        <button class="nav-btn" onclick="showTab('s6')">S6</button>
+        <button class="nav-btn" onclick="showTab('s7')">S7</button>
+        <button class="nav-btn" onclick="showTab('s8')">S8</button>
+        <button class="nav-btn" onclick="showTab('challenges')">Défis</button>
+        <button class="nav-btn" onclick="showTab('projects')">Projets</button>
+        <button class="nav-btn" onclick="showTab('logbook')">Logbook</button>
+        <button class="nav-btn" onclick="showTab('job')">Emploi</button>
+        <button class="nav-btn" onclick="showTab('resources')">Ressources</button>
+    </nav>
+
+    <!-- OVERVIEW -->
+    <div id="overview" class="tab active">
+        <div class="section-title purple">Mindset : Stoïcisme & Action</div>
+        <div class="info-box purple">
+            <div class="info-title">⚡ Règle #1 : Arrête l'analysis paralysis</div>
+            <p>Foncer. Peu importe les échecs. Essayer en boucle jusqu'à réussir. Ne pas perfectionner pour procrastiner.</p>
+        </div>
+
+        <div class="section-title cyan">Timeline 2026-2028</div>
+        <table>
+            <tr><th>Période</th><th>Focus</th><th>Certification</th><th>Coût</th></tr>
+            <tr><td>Fév-Avr 2026</td><td>Phase 1 : Fondations</td><td>—</td><td>THM ~12€/mois</td></tr>
+            <tr><td>Avr-Juin 2026</td><td>Phase 2 : Web Security</td><td>—</td><td>—</td></tr>
+            <tr><td>Août 2026</td><td>Blue Team</td><td style="color:var(--cyan)">BTL1</td><td>~500€</td></tr>
+            <tr><td>Oct 2026</td><td>Pentest basics</td><td style="color:var(--red)">eJPT</td><td>~250€</td></tr>
+            <tr><td>Nov-Déc 2026</td><td>Job Hunt Lyon</td><td>—</td><td>—</td></tr>
+            <tr><td style="background:#151515">Jan 2027</td><td style="background:#151515">🎯 Début SOC Lyon</td><td style="background:#151515">—</td><td style="background:#151515">—</td></tr>
+            <tr><td>Mars 2027</td><td>Web avancé</td><td style="color:var(--orange)">BSCP</td><td>~100€</td></tr>
+            <tr><td>Sept 2027</td><td>Network pentest</td><td style="color:var(--purple)">PNPT</td><td>~500€</td></tr>
+            <tr><td>Oct 2027</td><td>Job Hunt Berlin</td><td>—</td><td>—</td></tr>
+            <tr><td style="background:#151515">Jan 2028</td><td style="background:#151515">🇩🇪 Berlin</td><td style="background:#151515">—</td><td style="background:#151515">—</td></tr>
+            <tr><td>Juin 2028</td><td>HTB avancé</td><td style="color:var(--green)">CPTS</td><td>~300€</td></tr>
+            <tr><td>Déc 2028</td><td>Gold standard</td><td style="color:var(--yellow)">OSCP</td><td>~1750€</td></tr>
+        </table>
+
+        <div class="section-title red">Règles strictes</div>
+        <div class="info-box red">
+            <div class="info-title">⛔ Phases bloquantes</div>
+            <p>Tu ne passes PAS à la phase suivante sans :</p>
+            <ul style="margin-left:16px;margin-top:6px;">
+                <li>Quiz validé (≥70%)</li>
+                <li>Projet clé terminé + publié GitHub</li>
+                <li>Write-up publié sur blog</li>
+            </ul>
+        </div>
+
+        <div class="section-title green">Plateformes (MAX 3 par phase)</div>
+        <table>
+            <tr><th>Phase</th><th>Plateformes</th><th>Bonus</th></tr>
+            <tr><td>Phase 1</td><td>TryHackMe, OverTheWire, Root Me</td><td>1-2 vidéos/semaine</td></tr>
+            <tr><td>Phase 2</td><td>PortSwigger, TryHackMe, HackTheBox</td><td>IppSec</td></tr>
+            <tr><td>Phase 3</td><td>LetsDefend, CyberDefenders, TryHackMe</td><td>Darknet Diaries</td></tr>
+            <tr><td>Phase 4</td><td>HackTheBox, Proving Grounds, PortSwigger</td><td>TCM YouTube</td></tr>
+        </table>
+    </div>
+
+    <!-- S1 -->
+    <div id="s1" class="tab">
+        <div class="week-header">
+            <div class="section-title red">Semaine 1 : Linux Fondamentaux</div>
+            <span class="week-dates">📅 17-23 Février 2026</span>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Linux Fundamentals Part 1</span></label>
+                <label class="task"><input type="checkbox"><span>Linux Fundamentals Part 2</span></label>
+                <label class="task"><input type="checkbox"><span>Linux Fundamentals Part 3</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">⚡ OverTheWire Bandit</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Bandit Level 0 → 5</span></label>
+                <label class="task"><input type="checkbox"><span>Bandit Level 5 → 10</span></label>
+                <label class="task"><input type="checkbox"><span>Bandit Level 10 → 15</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Log quotidien (7 jours)</span></label>
+                <label class="task"><input type="checkbox"><span>📝 Article blog : un truc appris cette semaine</span><span class="tag tag-blog">BLOG</span></label>
+            </div>
+        </div>
+        <div class="quiz-section">
+            <div class="info-title" style="color:var(--orange)">🧠 Quiz S1 — 5 questions</div>
+            <div class="quiz-item"><label>Q1: Commande pour afficher les 10 dernières lignes ?</label><input type="text" class="quiz-input" id="q1-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-1',['tail'])">Vérifier</button><div class="quiz-answer" id="q1-1-answer"><code>tail fichier.txt</code></div><div class="quiz-result" id="q1-1-result"></div></div>
+            <div class="quiz-item"><label>Q2: Permission 755 signifie ?</label><input type="text" class="quiz-input" id="q1-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-2',['rwx','r-x'])">Vérifier</button><div class="quiz-answer" id="q1-2-answer">rwxr-xr-x (owner full, group+others read+exec)</div><div class="quiz-result" id="q1-2-result"></div></div>
+            <div class="quiz-item"><label>Q3: Chercher "error" dans un fichier ?</label><input type="text" class="quiz-input" id="q1-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-3',['grep'])">Vérifier</button><div class="quiz-answer" id="q1-3-answer"><code>grep "error" fichier</code></div><div class="quiz-result" id="q1-3-result"></div></div>
+            <div class="quiz-item"><label>Q4: Créer listener netcat port 4444 ?</label><input type="text" class="quiz-input" id="q1-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-4',['nc -l','nc -lvnp'])">Vérifier</button><div class="quiz-answer" id="q1-4-answer"><code>nc -lvnp 4444</code></div><div class="quiz-result" id="q1-4-result"></div></div>
+            <div class="quiz-item"><label>Q5: Décoder base64 ?</label><input type="text" class="quiz-input" id="q1-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-5',['base64 -d'])">Vérifier</button><div class="quiz-answer" id="q1-5-answer"><code>base64 -d fichier</code></div><div class="quiz-result" id="q1-5-result"></div></div>
+        </div>
+    </div>
+
+    <!-- S2 -->
+    <div id="s2" class="tab">
+        <div class="week-header">
+            <div class="section-title red">Semaine 2 : Linux Avancé + Bash</div>
+            <span class="week-dates">📅 24 Fév - 2 Mars 2026</span>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Linux PrivEsc</span></label>
+                <label class="task"><input type="checkbox"><span>Bash Scripting</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">⚡ Bandit suite</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Bandit 15 → 20</span></label>
+                <label class="task"><input type="checkbox"><span>Bandit 20 → 25</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">🛠️ Mini-Lab Scripts</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Script backup automatique</span></label>
+                <label class="task"><input type="checkbox"><span>Script vérifier service</span></label>
+                <label class="task"><input type="checkbox"><span>Script parser logs</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Scripts sur GitHub</span></label>
+                <label class="task"><input type="checkbox"><span>📝 Article blog</span><span class="tag tag-blog">BLOG</span></label>
+            </div>
+        </div>
+        <div class="quiz-section">
+            <div class="info-title" style="color:var(--orange)">🧠 Quiz S2 — 5 questions</div>
+            <div class="quiz-item"><label>Q1: Syntaxe boucle for 1 à 10 en bash ?</label><input type="text" class="quiz-input" id="q2-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-1',['for i in','for (('])">Vérifier</button><div class="quiz-answer" id="q2-1-answer"><code>for i in {1..10}; do echo $i; done</code></div><div class="quiz-result" id="q2-1-result"></div></div>
+            <div class="quiz-item"><label>Q2: Accéder au 2ème argument d'un script ?</label><input type="text" class="quiz-input" id="q2-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-2',['$2'])">Vérifier</button><div class="quiz-answer" id="q2-2-answer"><code>$2</code></div><div class="quiz-result" id="q2-2-result"></div></div>
+            <div class="quiz-item"><label>Q3: Que fait */5 * * * * en cron ?</label><input type="text" class="quiz-input" id="q2-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-3',['5 min','toutes les 5','every 5'])">Vérifier</button><div class="quiz-answer" id="q2-3-answer">Exécute toutes les 5 minutes</div><div class="quiz-result" id="q2-3-result"></div></div>
+            <div class="quiz-item"><label>Q4: Lister fichiers SUID ?</label><input type="text" class="quiz-input" id="q2-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-4',['find','perm','-4000'])">Vérifier</button><div class="quiz-answer" id="q2-4-answer"><code>find / -perm -4000 2>/dev/null</code></div><div class="quiz-result" id="q2-4-result"></div></div>
+            <div class="quiz-item"><label>Q5: Rediriger stderr vers stdout ?</label><input type="text" class="quiz-input" id="q2-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-5',['2>&1'])">Vérifier</button><div class="quiz-answer" id="q2-5-answer"><code>2>&1</code></div><div class="quiz-result" id="q2-5-result"></div></div>
+        </div>
+    </div>
+
+    <!-- S3 -->
+    <div id="s3" class="tab">
+        <div class="week-header">
+            <div class="section-title red">Semaine 3 : Réseau Fondamentaux</div>
+            <span class="week-dates">📅 3-9 Mars 2026</span>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Intro to Networking</span></label>
+                <label class="task"><input type="checkbox"><span>Introductory Networking</span></label>
+                <label class="task"><input type="checkbox"><span>Wireshark: The Basics</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">⚡ Pratique Wireshark</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Capturer TCP handshake</span></label>
+                <label class="task"><input type="checkbox"><span>Capturer DNS</span></label>
+                <label class="task"><input type="checkbox"><span>Capturer HTTP</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Cheatsheet networking.md</span></label>
+                <label class="task"><input type="checkbox"><span>📝 Article blog</span><span class="tag tag-blog">BLOG</span></label>
+            </div>
+        </div>
+        <div class="quiz-section">
+            <div class="info-title" style="color:var(--orange)">🧠 Quiz S3 — 5 questions</div>
+            <div class="quiz-item"><label>Q1: 3 étapes TCP handshake ?</label><input type="text" class="quiz-input" id="q3-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-1',['syn','ack'])">Vérifier</button><div class="quiz-answer" id="q3-1-answer">SYN → SYN-ACK → ACK</div><div class="quiz-result" id="q3-1-result"></div></div>
+            <div class="quiz-item"><label>Q2: Différence TCP vs UDP ?</label><input type="text" class="quiz-input" id="q3-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-2',['connection','fiable','reliable'])">Vérifier</button><div class="quiz-answer" id="q3-2-answer">TCP=connection-oriented, fiable. UDP=connectionless, rapide.</div><div class="quiz-result" id="q3-2-result"></div></div>
+            <div class="quiz-item"><label>Q3: Ports SSH, HTTP, HTTPS, DNS ?</label><input type="text" class="quiz-input" id="q3-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-3',['22','80','443','53'])">Vérifier</button><div class="quiz-answer" id="q3-3-answer">SSH:22, HTTP:80, HTTPS:443, DNS:53</div><div class="quiz-result" id="q3-3-result"></div></div>
+            <div class="quiz-item"><label>Q4: Voir connexions actives ?</label><input type="text" class="quiz-input" id="q3-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-4',['netstat','ss'])">Vérifier</button><div class="quiz-answer" id="q3-4-answer"><code>netstat -tulpn</code> ou <code>ss -tulpn</code></div><div class="quiz-result" id="q3-4-result"></div></div>
+            <div class="quiz-item"><label>Q5: Que signifie /24 ?</label><input type="text" class="quiz-input" id="q3-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-5',['255.255.255.0','256','254'])">Vérifier</button><div class="quiz-answer" id="q3-5-answer">Masque 255.255.255.0 = 256 adresses</div><div class="quiz-result" id="q3-5-result"></div></div>
+        </div>
+    </div>
+
+    <!-- S4 -->
+    <div id="s4" class="tab">
+        <div class="week-header">
+            <div class="section-title red">Semaine 4 : Nmap & Recon</div>
+            <span class="week-dates">📅 10-16 Mars 2026</span>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Nmap</span></label>
+                <label class="task"><input type="checkbox"><span>Nmap Live Host Discovery</span></label>
+                <label class="task"><input type="checkbox"><span>Passive Reconnaissance</span></label>
+                <label class="task"><input type="checkbox"><span>Active Reconnaissance</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">⚡ Pratique</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Scan réseau local</span></label>
+                <label class="task"><input type="checkbox"><span>Scan scanme.nmap.org</span></label>
+                <label class="task"><input type="checkbox"><span>Utiliser Shodan et crt.sh</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Cheatsheet nmap.md</span></label>
+                <label class="task"><input type="checkbox"><span>📝 Article blog</span><span class="tag tag-blog">BLOG</span></label>
+            </div>
+        </div>
+        <div class="quiz-section">
+            <div class="info-title" style="color:var(--orange)">🧠 Quiz S4 — 5 questions</div>
+            <div class="quiz-item"><label>Q1: Scan SYN stealth ?</label><input type="text" class="quiz-input" id="q4-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-1',['-sS'])">Vérifier</button><div class="quiz-answer" id="q4-1-answer"><code>nmap -sS target</code></div><div class="quiz-result" id="q4-1-result"></div></div>
+            <div class="quiz-item"><label>Q2: Détecter versions services ?</label><input type="text" class="quiz-input" id="q4-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-2',['-sV'])">Vérifier</button><div class="quiz-answer" id="q4-2-answer"><code>nmap -sV target</code></div><div class="quiz-result" id="q4-2-result"></div></div>
+            <div class="quiz-item"><label>Q3: Scanner tous les ports ?</label><input type="text" class="quiz-input" id="q4-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-3',['-p-'])">Vérifier</button><div class="quiz-answer" id="q4-3-answer"><code>nmap -p- target</code></div><div class="quiz-result" id="q4-3-result"></div></div>
+            <div class="quiz-item"><label>Q4: À quoi sert crt.sh ?</label><input type="text" class="quiz-input" id="q4-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-4',['subdomain','certificat','ssl'])">Vérifier</button><div class="quiz-answer" id="q4-4-answer">Trouver sous-domaines via certificats SSL</div><div class="quiz-result" id="q4-4-result"></div></div>
+            <div class="quiz-item"><label>Q5: Scripts NSE par défaut ?</label><input type="text" class="quiz-input" id="q4-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-5',['-sC'])">Vérifier</button><div class="quiz-answer" id="q4-5-answer"><code>nmap -sC target</code></div><div class="quiz-result" id="q4-5-result"></div></div>
+        </div>
+    </div>
+
+    <!-- S5 -->
+    <div id="s5" class="tab">
+        <div class="week-header">
+            <div class="section-title red">Semaine 5 : Python pour Pentest</div>
+            <span class="week-dates">📅 17-23 Mars 2026</span>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Python Basics</span></label>
+                <label class="task"><input type="checkbox"><span>Python for Pentesters</span></label>
+            </div>
+        </div>
+        <div class="card project-card">
+            <div class="card-header"><div><div class="card-title">🛠️ PROJET CV : Port Scanner</div></div><span class="tag tag-project">CV</span></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Scanner avec socket</span></label>
+                <label class="task"><input type="checkbox"><span>Multi-threading</span></label>
+                <label class="task"><input type="checkbox"><span>CLI argparse</span></label>
+                <label class="task"><input type="checkbox"><span>Banner grabbing</span></label>
+                <label class="task"><input type="checkbox"><span>README + GitHub</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Port Scanner publié</span></label>
+                <label class="task"><input type="checkbox"><span>📝 Article blog</span><span class="tag tag-blog">BLOG</span></label>
+            </div>
+        </div>
+        <div class="quiz-section">
+            <div class="info-title" style="color:var(--orange)">🧠 Quiz S5 — 5 questions</div>
+            <div class="quiz-item"><label>Q1: Créer socket TCP ?</label><input type="text" class="quiz-input" id="q5-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-1',['socket.socket','AF_INET','SOCK_STREAM'])">Vérifier</button><div class="quiz-answer" id="q5-1-answer"><code>socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="quiz-result" id="q5-1-result"></div></div>
+            <div class="quiz-item"><label>Q2: Module pour requêtes HTTP ?</label><input type="text" class="quiz-input" id="q5-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-2',['requests'])">Vérifier</button><div class="quiz-answer" id="q5-2-answer"><code>import requests</code></div><div class="quiz-result" id="q5-2-result"></div></div>
+            <div class="quiz-item"><label>Q3: Arguments CLI en Python ?</label><input type="text" class="quiz-input" id="q5-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-3',['argparse','sys.argv'])">Vérifier</button><div class="quiz-answer" id="q5-3-answer"><code>argparse</code> ou <code>sys.argv</code></div><div class="quiz-result" id="q5-3-result"></div></div>
+            <div class="quiz-item"><label>Q4: Multi-threading module ?</label><input type="text" class="quiz-input" id="q5-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-4',['threading','concurrent'])">Vérifier</button><div class="quiz-answer" id="q5-4-answer"><code>import threading</code></div><div class="quiz-result" id="q5-4-result"></div></div>
+            <div class="quiz-item"><label>Q5: Qu'est-ce que banner grabbing ?</label><input type="text" class="quiz-input" id="q5-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-5',['service','version','info'])">Vérifier</button><div class="quiz-answer" id="q5-5-answer">Récupérer infos/version d'un service via sa bannière</div><div class="quiz-result" id="q5-5-result"></div></div>
+        </div>
+    </div>
+
+    <!-- S6 -->
+    <div id="s6" class="tab">
+        <div class="week-header">
+            <div class="section-title red">Semaine 6 : Burp Suite & HTTP</div>
+            <span class="week-dates">📅 24-30 Mars 2026</span>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Burp Suite: The Basics</span></label>
+                <label class="task"><input type="checkbox"><span>Burp Suite: Repeater</span></label>
+                <label class="task"><input type="checkbox"><span>OWASP Top 10</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">📚 PortSwigger (début)</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Lab: Unprotected admin</span></label>
+                <label class="task"><input type="checkbox"><span>Lab: User ID parameter</span></label>
+                <label class="task"><input type="checkbox"><span>Lab: Information disclosure</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Cheatsheet burp.md</span></label>
+                <label class="task"><input type="checkbox"><span>📝 Write-up PortSwigger</span><span class="tag tag-blog">BLOG</span></label>
+            </div>
+        </div>
+        <div class="quiz-section">
+            <div class="info-title" style="color:var(--orange)">🧠 Quiz S6 — 5 questions</div>
+            <div class="quiz-item"><label>Q1: Différence GET vs POST ?</label><input type="text" class="quiz-input" id="q6-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-1',['url','body','visible'])">Vérifier</button><div class="quiz-answer" id="q6-1-answer">GET=params URL visible. POST=params body caché.</div><div class="quiz-result" id="q6-1-result"></div></div>
+            <div class="quiz-item"><label>Q2: Onglet Burp pour modifier/rejouer ?</label><input type="text" class="quiz-input" id="q6-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-2',['repeater'])">Vérifier</button><div class="quiz-answer" id="q6-2-answer">Repeater</div><div class="quiz-result" id="q6-2-result"></div></div>
+            <div class="quiz-item"><label>Q3: OWASP Top 10 #1 (2021) ?</label><input type="text" class="quiz-input" id="q6-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-3',['broken access','access control'])">Vérifier</button><div class="quiz-answer" id="q6-3-answer">Broken Access Control</div><div class="quiz-result" id="q6-3-result"></div></div>
+            <div class="quiz-item"><label>Q4: Qu'est-ce qu'un IDOR ?</label><input type="text" class="quiz-input" id="q6-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-4',['insecure','direct','object','reference'])">Vérifier</button><div class="quiz-answer" id="q6-4-answer">Insecure Direct Object Reference - accéder objets autres users</div><div class="quiz-result" id="q6-4-result"></div></div>
+            <div class="quiz-item"><label>Q5: Code HTTP "Not Found" ?</label><input type="text" class="quiz-input" id="q6-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-5',['404'])">Vérifier</button><div class="quiz-answer" id="q6-5-answer">404</div><div class="quiz-result" id="q6-5-result"></div></div>
+        </div>
+    </div>
+
+    <!-- S7 -->
+    <div id="s7" class="tab">
+        <div class="week-header">
+            <div class="section-title orange">Semaine 7 : BUFFER + Projet OSINT</div>
+            <span class="week-dates">📅 31 Mars - 6 Avril 2026</span>
+        </div>
+        <div class="info-box orange"><div class="info-title">⚡ Semaine de consolidation</div><p>Rattraper, réviser, terminer projet OSINT.</p></div>
+        <div class="card project-card">
+            <div class="card-header"><div><div class="card-title">🛠️ PROJET CV : Outil OSINT</div></div><span class="tag tag-project">CV</span></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Script domaine input</span></label>
+                <label class="task"><input type="checkbox"><span>WHOIS</span></label>
+                <label class="task"><input type="checkbox"><span>Subdomains crt.sh</span></label>
+                <label class="task"><input type="checkbox"><span>DNS records</span></label>
+                <label class="task"><input type="checkbox"><span>Rapport Markdown</span></label>
+                <label class="task"><input type="checkbox"><span>README + GitHub</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Outil OSINT publié</span></label>
+                <label class="task"><input type="checkbox"><span>📝 Article blog</span><span class="tag tag-blog">BLOG</span></label>
+            </div>
+        </div>
+        <div class="quiz-section">
+            <div class="info-title" style="color:var(--orange)">🧠 Quiz S7 — Récap S1-S6</div>
+            <div class="quiz-item"><label>Q1: Commande chmod pour rwxr-xr-x ?</label><input type="text" class="quiz-input" id="q7-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-1',['755','chmod 755'])">Vérifier</button><div class="quiz-answer" id="q7-1-answer"><code>chmod 755</code></div><div class="quiz-result" id="q7-1-result"></div></div>
+            <div class="quiz-item"><label>Q2: Port SMB ?</label><input type="text" class="quiz-input" id="q7-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-2',['445','139'])">Vérifier</button><div class="quiz-answer" id="q7-2-answer">445 (ou 139)</div><div class="quiz-result" id="q7-2-result"></div></div>
+            <div class="quiz-item"><label>Q3: Outil OSINT pour emails ?</label><input type="text" class="quiz-input" id="q7-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-3',['hunter','theharvester'])">Vérifier</button><div class="quiz-answer" id="q7-3-answer">theHarvester, Hunter.io</div><div class="quiz-result" id="q7-3-result"></div></div>
+            <div class="quiz-item"><label>Q4: Qu'est-ce que WHOIS ?</label><input type="text" class="quiz-input" id="q7-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-4',['domain','registrar','owner'])">Vérifier</button><div class="quiz-answer" id="q7-4-answer">Infos enregistrement domaine (owner, registrar, dates)</div><div class="quiz-result" id="q7-4-result"></div></div>
+            <div class="quiz-item"><label>Q5: Outil brute-force web directories ?</label><input type="text" class="quiz-input" id="q7-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-5',['gobuster','dirb','ffuf','dirbuster'])">Vérifier</button><div class="quiz-answer" id="q7-5-answer">gobuster, dirb, ffuf, dirbuster</div><div class="quiz-result" id="q7-5-result"></div></div>
+        </div>
+    </div>
+
+    <!-- S8 -->
+    <div id="s8" class="tab">
+        <div class="week-header">
+            <div class="section-title red">Semaine 8 : Web Vulns Intro</div>
+            <span class="week-dates">📅 7-13 Avril 2026</span>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>OWASP Top 10 - 2021</span></label>
+                <label class="task"><input type="checkbox"><span>Walking An Application</span></label>
+                <label class="task"><input type="checkbox"><span>Content Discovery</span></label>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">📚 PortSwigger Labs</div></div></div>
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>4 labs Access Control</span></label>
+                <label class="task"><input type="checkbox"><span>2 labs Authentication</span></label>
+                <label class="task"><input type="checkbox"><span>Write-up 3 labs</span></label>
+            </div>
+        </div>
+        <div class="quiz-section">
+            <div class="info-title" style="color:var(--orange)">🧠 Quiz S8 — 5 questions</div>
+            <div class="quiz-item"><label>Q1: Payload SQLi basique ?</label><input type="text" class="quiz-input" id="q8-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-1',[\"' or\",\"1=1\",\"--\"])">Vérifier</button><div class="quiz-answer" id="q8-1-answer"><code>' OR 1=1--</code></div><div class="quiz-result" id="q8-1-result"></div></div>
+            <div class="quiz-item"><label>Q2: XSS pour popup alert ?</label><input type="text" class="quiz-input" id="q8-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-2',['<script>','alert'])">Vérifier</button><div class="quiz-answer" id="q8-2-answer"><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></div><div class="quiz-result" id="q8-2-result"></div></div>
+            <div class="quiz-item"><label>Q3: Différence XSS Reflected vs Stored ?</label><input type="text" class="quiz-input" id="q8-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-3',['database','stocké','url','persistant'])">Vérifier</button><div class="quiz-answer" id="q8-3-answer">Reflected=via URL. Stored=persistant en BDD.</div><div class="quiz-result" id="q8-3-result"></div></div>
+            <div class="quiz-item"><label>Q4: Qu'est-ce que LFI ?</label><input type="text" class="quiz-input" id="q8-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-4',['local file','inclusion','../'])">Vérifier</button><div class="quiz-answer" id="q8-4-answer">Local File Inclusion - lire fichiers locaux serveur</div><div class="quiz-result" id="q8-4-result"></div></div>
+            <div class="quiz-item"><label>Q5: Fichier Linux intéressant en LFI ?</label><input type="text" class="quiz-input" id="q8-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-5',['/etc/passwd','/etc/shadow'])">Vérifier</button><div class="quiz-answer" id="q8-5-answer"><code>/etc/passwd</code>, <code>/etc/shadow</code></div><div class="quiz-result" id="q8-5-result"></div></div>
+        </div>
+        <div class="blocking-gate">
+            <h4>⛔ PORTE BLOQUANTE — Fin Phase 1</h4>
+            <div class="tasks" style="margin-top:8px">
+                <label class="task"><input type="checkbox"><span>Quiz S8 validé (≥70%)</span></label>
+                <label class="task"><input type="checkbox"><span>Port Scanner publié GitHub</span></label>
+                <label class="task"><input type="checkbox"><span>Outil OSINT publié GitHub</span></label>
+                <label class="task"><input type="checkbox"><span>≥5 articles publiés blog</span></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHALLENGES -->
+    <div id="challenges" class="tab">
+        <div class="section-title yellow">Défis Hebdomadaires</div>
+        <p style="color:var(--dim);margin-bottom:16px;font-size:0.85rem">Un défi technique principal par semaine. Max 1 défi social.</p>
+        <div class="challenge-card"><div class="challenge-week">S1</div><div class="challenge-title">🎯 Finir Bandit 0-15</div><div class="challenge-desc">Sans write-up.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
+        <div class="challenge-card"><div class="challenge-week">S2</div><div class="challenge-title">🎯 Finir Bandit 15-25</div><div class="challenge-desc">Focus techniques avancées.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
+        <div class="challenge-card"><div class="challenge-week">S3</div><div class="challenge-title">🎯 3 captures Wireshark</div><div class="challenge-desc">TCP, DNS, HTTP. Screenshots blog.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
+        <div class="challenge-card"><div class="challenge-week">S4</div><div class="challenge-title">🎯 Scan complet scanme.nmap.org</div><div class="challenge-desc">Documenter chaque flag.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
+        <div class="challenge-card"><div class="challenge-week">S5</div><div class="challenge-title">🎯 Port Scanner &lt;30sec 1000 ports</div><div class="challenge-desc">Multi-threading fonctionnel.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
+        <div class="challenge-card"><div class="challenge-week">S6</div><div class="challenge-title">🎯 5 labs PortSwigger sans solution</div><div class="challenge-desc">Max 30 min par lab.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
+        <div class="challenge-card"><div class="challenge-week">S7</div><div class="challenge-title">🎯 Outil OSINT complet</div><div class="challenge-desc">WHOIS + subdomains + DNS + rapport.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
+        <div class="challenge-card"><div class="challenge-week">S8</div><div class="challenge-title">🎯 Rejoindre 1 Discord cyber FR</div><div class="challenge-desc">Se présenter. (seul défi social)</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div id="projects" class="tab">
+        <div class="section-title pink">Projets Portfolio</div>
+        <div class="section-title green" style="font-size:1rem">Projets CV (obligatoires)</div>
+        <div class="card project-card">
+            <div class="card-header"><div><div class="card-title">1. Port Scanner Python</div><div class="card-sub">S5 • Obligatoire</div></div><span class="tag tag-project">CV</span></div>
+            <div class="project-meta">
+                <div><strong>OBJECTIF</strong>Scanner multi-thread + banner</div>
+                <div><strong>COMPÉTENCES</strong>Python, socket, threading</div>
+                <div><strong>DIFFICULTÉ</strong>⭐⭐⭐☆☆</div>
+            </div>
+            <label class="task" style="margin-top:10px"><input type="checkbox"><span>Terminé et publié</span></label>
+        </div>
+        <div class="card project-card">
+            <div class="card-header"><div><div class="card-title">2. Outil OSINT</div><div class="card-sub">S7 • Obligatoire</div></div><span class="tag tag-project">CV</span></div>
+            <div class="project-meta">
+                <div><strong>OBJECTIF</strong>Recon auto domaine</div>
+                <div><strong>COMPÉTENCES</strong>Python, APIs, OSINT</div>
+                <div><strong>DIFFICULTÉ</strong>⭐⭐⭐☆☆</div>
+            </div>
+            <label class="task" style="margin-top:10px"><input type="checkbox"><span>Terminé et publié</span></label>
+        </div>
+        <div class="section-title orange" style="font-size:1rem">Projets bonus (non obligatoires)</div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">3. Bot Discord CVE</div><div class="card-sub">Bonus SOC</div></div><span class="tag tag-soc">SOC</span></div>
+            <div class="project-meta"><div><strong>OBJECTIF</strong>Alertes CVE via NVD API</div><div><strong>DIFFICULTÉ</strong>⭐⭐☆☆☆</div></div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">4. Honeypot SSH</div><div class="card-sub">Bonus SOC</div></div><span class="tag tag-soc">SOC</span></div>
+            <div class="project-meta"><div><strong>OBJECTIF</strong>Logger connexions SSH</div><div><strong>DIFFICULTÉ</strong>⭐⭐⭐☆☆</div></div>
+        </div>
+        <div class="card">
+            <div class="card-header"><div><div class="card-title">5. Analyseur de logs</div><div class="card-sub">Bonus SOC</div></div><span class="tag tag-soc">SOC</span></div>
+            <div class="project-meta"><div><strong>OBJECTIF</strong>Détecter brute force</div><div><strong>DIFFICULTÉ</strong>⭐⭐⭐☆☆</div></div>
+        </div>
+    </div>
+
+    <!-- LOGBOOK -->
+    <div id="logbook" class="tab">
+        <div class="section-title cyan">Logbook — Traçabilité</div>
+        <div class="info-box cyan"><div class="info-title">📓 Obligation</div><p>3-5 lignes/jour. Revue hebdo dimanche.</p></div>
+        <div class="section-title green" style="font-size:1rem">Template quotidien</div>
+        <div class="logbook">## 📅 [DATE]
+
+**Durée:** [X] min
+**Focus:** [Thème]
+
+### Ce que j'ai fait
+- [Tâche]
+
+### Ce que j'ai appris
+- [Concept]
+
+### Demain
+- [Priorité]</div>
+        <div class="section-title orange" style="font-size:1rem">Template hebdo</div>
+        <div class="logbook">## 📊 Revue Semaine [X]
+
+**Jours:** [X]/7
+**Quiz:** [X]/5
+
+### Accomplissements
+- 
+
+### Article blog
+- [Titre]
+
+### Objectifs S+1
+1. 
+2.</div>
+    </div>
+
+    <!-- JOB -->
+    <div id="job" class="tab">
+        <div class="section-title green">Préparation Emploi</div>
+        <div class="info-box green"><div class="info-title">🎯 CDI SOC Lyon — Jan 2027</div><p>Job hunt Nov-Déc 2026. Berlin 2028.</p></div>
+        <div class="section-title red" style="font-size:1rem">Questions SOC (format quiz)</div>
+        <div class="quiz-section">
+            <div class="quiz-item"><label>Q1: Qu'est-ce qu'un SIEM ?</label><input type="text" class="quiz-input" id="soc-1" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-1',['security information','event management','logs'])">Vérifier</button><div class="quiz-answer" id="soc-1-answer">Security Information and Event Management. Agrège logs, corrèle événements.</div><div class="quiz-result" id="soc-1-result"></div></div>
+            <div class="quiz-item"><label>Q2: Qu'est-ce qu'un IOC ?</label><input type="text" class="quiz-input" id="soc-2" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-2',['indicator','compromise','hash','ip'])">Vérifier</button><div class="quiz-answer" id="soc-2-answer">Indicator of Compromise. Preuve d'intrusion.</div><div class="quiz-result" id="soc-2-result"></div></div>
+            <div class="quiz-item"><label>Q3: IDS vs IPS ?</label><input type="text" class="quiz-input" id="soc-3" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-3',['detect','prevent','block'])">Vérifier</button><div class="quiz-answer" id="soc-3-answer">IDS=détecte. IPS=détecte et bloque.</div><div class="quiz-result" id="soc-3-result"></div></div>
+            <div class="quiz-item"><label>Q4: MITRE ATT&CK ?</label><input type="text" class="quiz-input" id="soc-4" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-4',['framework','tactics','techniques'])">Vérifier</button><div class="quiz-answer" id="soc-4-answer">Framework tactiques/techniques adverses.</div><div class="quiz-result" id="soc-4-result"></div></div>
+            <div class="quiz-item"><label>Q5: Réaction face à une alerte ?</label><input type="text" class="quiz-input" id="soc-5" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-5',['valider','investiguer','contenir','documenter'])">Vérifier</button><div class="quiz-answer" id="soc-5-answer">Valider → Investiguer → Contenir → Documenter → Escalader</div><div class="quiz-result" id="soc-5-result"></div></div>
+        </div>
+        <div class="section-title purple" style="font-size:1rem">LinkedIn</div>
+        <div class="card">
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Headline: "Aspirant Analyste SOC"</span></label>
+                <label class="task"><input type="checkbox"><span>Section À propos</span></label>
+                <label class="task"><input type="checkbox"><span>Projets comme Expérience</span></label>
+                <label class="task"><input type="checkbox"><span>Poster 1x/mois</span></label>
+            </div>
+        </div>
+        <div class="section-title orange" style="font-size:1rem">Events Lyon/Sainté</div>
+        <div class="card">
+            <div class="tasks">
+                <label class="task"><input type="checkbox"><span>Meetup Lyon Cybersecurity</span></label>
+                <label class="task"><input type="checkbox"><span>CLUSIR Rhône-Alpes</span></label>
+                <label class="task"><input type="checkbox"><span>CTF locaux</span></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESOURCES -->
+    <div id="resources" class="tab">
+        <div class="section-title purple">Ressources (MAX 3/phase)</div>
+        <div class="section-title red" style="font-size:1rem">Phase 1</div>
+        <div class="resource-grid">
+            <div class="resource-item"><h4>🎯 TryHackMe</h4><p>Rooms guidées</p></div>
+            <div class="resource-item"><h4>🏴‍☠️ OverTheWire</h4><p>Bandit</p></div>
+            <div class="resource-item"><h4>🇫🇷 Root Me</h4><p>Score CV</p></div>
+        </div>
+        <div class="section-title blue" style="font-size:1rem">Phase 2</div>
+        <div class="resource-grid">
+            <div class="resource-item"><h4>🎯 PortSwigger</h4><p>Web security</p></div>
+            <div class="resource-item"><h4>📗 TryHackMe</h4><p>Web rooms</p></div>
+            <div class="resource-item"><h4>🔵 HackTheBox</h4><p>Machines</p></div>
+        </div>
+        <div class="section-title cyan" style="font-size:1rem">Phase 3 Blue</div>
+        <div class="resource-grid">
+            <div class="resource-item"><h4>🛡️ LetsDefend</h4><p>Simulateur SOC</p></div>
+            <div class="resource-item"><h4>🔵 CyberDefenders</h4><p>DFIR</p></div>
+            <div class="resource-item"><h4>📗 TryHackMe</h4><p>SOC paths</p></div>
+        </div>
+    </div>
+
+    <!-- BERLIN (hidden) -->
+    <div id="berlin-tab" class="tab">
+        <div class="section-title pink">🇩🇪 Berlin Life</div>
+        <div class="berlin-section">
+            <div class="card-title" style="color:var(--cyan)">Pré-Berlin (2027)</div>
+            <div class="tasks" style="margin-top:10px">
+                <label class="task"><input type="checkbox"><span>Travailler la timidité</span></label>
+                <label class="task"><input type="checkbox"><span>Sortir zone de confort</span></label>
+                <label class="task"><input type="checkbox"><span>Gym consistant</span></label>
+                <label class="task"><input type="checkbox"><span>Bases allemand</span></label>
+            </div>
+        </div>
+        <div class="berlin-section">
+            <div class="card-title" style="color:var(--pink)">Arrivée Berlin (2028)</div>
+            <div class="tasks" style="margin-top:10px">
+                <label class="task"><input type="checkbox"><span>S'inscrire Feeld + FetLife</span></label>
+                <label class="task"><input type="checkbox"><span>Explorer scène sex-positive</span></label>
+                <label class="task"><input type="checkbox"><span>Devenir visage régulier</span></label>
+            </div>
+            <div class="info-box purple" style="margin-top:10px"><p>Pas chercher la perfection : quelqu'un d'ouvert > match parfait Day 1</p></div>
+        </div>
+        <div class="berlin-section">
+            <div class="card-title" style="color:var(--orange)">Installé Berlin (2028+)</div>
+            <div class="tasks" style="margin-top:10px">
+                <label class="task"><input type="checkbox"><span>Voyages: Amsterdam, Prague, Copenhague</span></label>
+            </div>
+            <div class="info-box orange" style="margin-top:10px"><div class="info-title">🎯 Long terme</div><p>Marathon pas sprint. 5-10 ans devant toi.</p></div>
+        </div>
+    </div>
+</div>
+
+<input type="password" class="secret-input" id="secretInput" placeholder="..." onkeyup="checkSecret()">
+
+<script>
+const STORAGE='qyrn_roadmap_v4';
+const SECRET='berlin2028';
+
+function showTab(id){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelector('[onclick="showTab(\''+id+'\')"]')?.classList.add('active');
+}
+
+function save(){
+    const cbs=document.querySelectorAll('input[type="checkbox"]');
+    const s=[];cbs.forEach((c,i)=>{if(c.checked)s.push(i)});
+    localStorage.setItem(STORAGE,JSON.stringify(s));
+    update();
+}
+
+function load(){
+    const s=JSON.parse(localStorage.getItem(STORAGE)||'[]');
+    const cbs=document.querySelectorAll('input[type="checkbox"]');
+    cbs.forEach((c,i)=>{
+        if(s.includes(i)){c.checked=true;c.closest('.task')?.classList.add('done');}
+        c.addEventListener('change',function(){
+            this.closest('.task')?.classList.toggle('done',this.checked);
+            save();
+        });
+    });
+    update();
+}
+
+function update(){
+    const cbs=document.querySelectorAll('input[type="checkbox"]');
+    const t=cbs.length;
+    const c=document.querySelectorAll('input[type="checkbox"]:checked').length;
+    const p=t?Math.round((c/t)*100):0;
+    document.getElementById('progressBar').style.width=p+'%';
+    document.getElementById('progressText').textContent=p+'%';
+    document.getElementById('taskCount').textContent=c+'/'+t;
+}
+
+function checkQuiz(id,valid){
+    const inp=document.getElementById(id);
+    const ans=document.getElementById(id+'-answer');
+    const res=document.getElementById(id+'-result');
+    const v=inp.value.toLowerCase().trim();
+    ans.classList.add('visible');
+    const ok=valid.some(x=>v.includes(x.toLowerCase()));
+    res.textContent=ok?'✓ Correct':'✗ Incorrect';
+    res.className='quiz-result '+(ok?'correct':'incorrect');
+}
+
+function checkSecret(){
+    const inp=document.getElementById('secretInput');
+    if(inp.value===SECRET){
+        document.getElementById('berlin-tab').classList.add('unlocked');
+        const nav=document.querySelector('nav');
+        if(!document.querySelector('[onclick="showTab(\'berlin-tab\')"]')){
+            const btn=document.createElement('button');
+            btn.className='nav-btn';
+            btn.onclick=()=>showTab('berlin-tab');
+            btn.textContent='🔒';
+            btn.style.background='linear-gradient(135deg,rgba(236,72,153,0.3),rgba(168,85,247,0.3))';
+            nav.appendChild(btn);
+        }
+        inp.value='';
+        localStorage.setItem('berlin_unlocked','true');
+        showTab('berlin-tab');
+    }
+}
+
+function checkBerlin(){
+    if(localStorage.getItem('berlin_unlocked')==='true'){
+        document.getElementById('berlin-tab').classList.add('unlocked');
+        const nav=document.querySelector('nav');
+        const btn=document.createElement('button');
+        btn.className='nav-btn';
+        btn.onclick=()=>showTab('berlin-tab');
+        btn.textContent='🔒';
+        btn.style.background='linear-gradient(135deg,rgba(236,72,153,0.3),rgba(168,85,247,0.3))';
+        nav.appendChild(btn);
+    }
+}
+
+document.addEventListener('DOMContentLoaded',()=>{load();checkBerlin();});
+</script>
+</body>
+</html>
