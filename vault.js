@@ -239,6 +239,7 @@ function getMergedData() {
     }
   });
   customItems.forEach(ci => {
+    if (ci.isPrivate && !isAdmin) return;
     let section = merged.find(s => s.category === ci.category);
     if (!section) { section = { category: ci.category, icon: "folder", color: "#888", items: [] }; merged.push(section); }
     section.items.push({ ...ci, custom: true });
@@ -338,8 +339,9 @@ function renderCard(item, color) {
   const origUrl = item.builtinEdited ? escHtml(editedBuiltins.find(e => e.name === item.name && e.url === item.url)?.originalUrl || '') : '';
   const diffColors = { 'Débutant': '#00ff88', 'Intermédiaire': '#fb923c', 'Avancé': '#ff6b6b' };
   const diffBadge = item.difficulty ? `<span class="diff-badge" style="background:${diffColors[item.difficulty]}15;color:${diffColors[item.difficulty]};border-color:${diffColors[item.difficulty]}33">${escHtml(item.difficulty)}</span>` : '';
-  return `<a href="${href}" ${target} class="card" style="--accent:${color}" data-name="${eName}" data-url="${eUrl}" data-custom="${item.custom?'1':'0'}" data-tag="${escHtml(item.tag)}" data-desc="${escHtml(item.desc)}" data-category="${escHtml(item.category||'')}" data-difficulty="${escHtml(item.difficulty||'')}" data-original-name="${origName}" data-original-url="${origUrl}" ${onclick}>
-    ${favStar}
+  const privateBadge = item.isPrivate ? '<span class="private-badge"><i data-lucide="lock"></i></span>' : '';
+  return `<a href="${href}" ${target} class="card${item.isPrivate?' card-private':''}" style="--accent:${color}" data-name="${eName}" data-url="${eUrl}" data-custom="${item.custom?'1':'0'}" data-tag="${escHtml(item.tag)}" data-desc="${escHtml(item.desc)}" data-category="${escHtml(item.category||'')}" data-difficulty="${escHtml(item.difficulty||'')}" data-private="${item.isPrivate?'1':'0'}" data-original-name="${origName}" data-original-url="${origUrl}" ${onclick}>
+    ${favStar}${privateBadge}
     <div class="card-top"><div class="card-title-row"><span class="card-name">${eName}</span></div><div class="card-badges">${diffBadge}<span class="card-tag" style="background:${color}15;color:${color}">${escHtml(item.tag)}</span></div></div>
     <div class="card-desc">${escHtml(item.desc)}</div>
     <div class="card-url">${escHtml(displayUrl)}</div>
@@ -407,6 +409,7 @@ function closeAddModal() {
   addModal.classList.remove('open');
   ['fName','fUrl','fTag','fDesc'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('fDifficulty').value = '';
+  document.getElementById('fPrivate').checked = false;
   document.getElementById('fetchStatus').textContent = '';
   editMode = false;
   editOriginalName = null;
@@ -442,12 +445,13 @@ document.getElementById('btnSaveAdd').addEventListener('click', () => {
   const desc = document.getElementById('fDesc').value.trim() || 'Pas de description';
   const category = fCategory.value;
   const difficulty = document.getElementById('fDifficulty').value || null;
+  const isPrivate = document.getElementById('fPrivate').checked;
   if (!name || !url) { showToast('Nom et URL requis'); return; }
   if (!isValidUrl(url)) { showToast('URL invalide (http/https uniquement)'); return; }
   if (editMode && editOriginalName) {
     if (editIsCustom) {
       const idx = customItems.findIndex(c => c.name === editOriginalName && c.url === editOriginalUrl);
-      if (idx !== -1) { customItems[idx] = { name, url, tag, desc, category, difficulty }; }
+      if (idx !== -1) { customItems[idx] = { name, url, tag, desc, category, difficulty, isPrivate }; }
       saveCustom();
     } else {
       const existingIdx = editedBuiltins.findIndex(e => e.originalName === editOriginalName && e.originalUrl === editOriginalUrl);
@@ -458,7 +462,7 @@ document.getElementById('btnSaveAdd').addEventListener('click', () => {
     }
     closeAddModal(); render(); showToast('Ressource modifiée');
   } else {
-    customItems.push({ name, url, tag, desc, category, difficulty });
+    customItems.push({ name, url, tag, desc, category, difficulty, isPrivate });
     saveCustom(); closeAddModal(); render(); showToast('Ressource ajoutée !');
   }
 });
@@ -581,6 +585,7 @@ ctxMenu.querySelector('[data-action="edit"]').addEventListener('click', () => {
   document.getElementById('fTag').value = ctxTarget.dataset.tag;
   document.getElementById('fDesc').value = ctxTarget.dataset.desc;
   document.getElementById('fDifficulty').value = ctxTarget.dataset.difficulty || '';
+  document.getElementById('fPrivate').checked = ctxTarget.dataset.private === '1';
   fCategory.value = ctxTarget.dataset.category;
   addModal.querySelector('h3').textContent = 'Éditer la ressource';
   addModal.querySelector('.btn-save').textContent = 'Sauvegarder';

@@ -58,7 +58,17 @@ module.exports = async function handler(req, res) {
   try {
     if (req.method === "GET") {
       const data = await redis.get(KEY);
-      return res.status(200).json(data || { custom: [], favorites: [], deletedBuiltins: [], editedBuiltins: [] });
+      if (!data) {
+        return res.status(200).json({ custom: [], favorites: [], deletedBuiltins: [], editedBuiltins: [] });
+      }
+      if (!isAdmin(req)) {
+        const filteredData = {
+          ...data,
+          custom: (data.custom || []).filter(item => !item.isPrivate)
+        };
+        return res.status(200).json(filteredData);
+      }
+      return res.status(200).json(data);
     }
 
     if (req.method === "POST") {
