@@ -164,9 +164,10 @@ header{padding:28px 0 20px;border-bottom:1px solid rgba(0,255,136,0.12);margin-b
 .progression-section .section-header{border-bottom:1px solid rgba(16,185,129,0.08);padding-bottom:10px;margin-bottom:14px}
 .header-right{display:flex;align-items:flex-start;gap:20px}
 .auth-zone{display:flex;align-items:center;gap:10px}
-.btn-login{padding:8px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#888;font-size:11px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s}
-.btn-login:hover{border-color:rgba(255,255,255,0.2);color:#ccc}
-.btn-login svg{width:14px;height:14px}
+.btn-login{padding:4px 8px;background:transparent;border:none;border-radius:4px;color:#333;font-size:10px;font-family:inherit;cursor:pointer;transition:color 0.2s;letter-spacing:0.5px}
+.btn-login:hover{color:#555}
+.btn-submit{background:rgba(56,189,248,0.08);border-color:rgba(56,189,248,0.25);color:var(--blue)}
+.btn-submit:hover{background:rgba(56,189,248,0.14);border-color:rgba(56,189,248,0.45)}
 .btn-logout{padding:6px 12px;background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.2);border-radius:6px;color:#ff6b6b;font-size:10px;font-family:inherit;cursor:pointer;transition:all 0.2s}
 .btn-logout:hover{background:rgba(255,107,107,0.15);border-color:rgba(255,107,107,0.4)}
 .admin-badge{font-size:10px;color:var(--green);background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.25);padding:4px 10px;border-radius:4px;letter-spacing:0.5px}
