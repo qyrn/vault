@@ -83,6 +83,22 @@
   <div id="content"></div>
   <div class="empty" id="empty"><div class="icon"><i data-lucide="search"></i></div><span id="emptyQuery"></span></div>
 </div>
+<div class="modal-overlay" id="submitModal">
+  <div class="modal">
+    <h3><i data-lucide="send"></i> Proposer une ressource</h3>
+    <label>URL <span style="color:#ff6b6b">*</span></label>
+    <input type="text" id="sUrl" placeholder="https://...">
+    <label>Description <span style="color:#555;font-size:10px">(optionnel)</span></label>
+    <textarea id="sDesc" placeholder="Pourquoi tu recommandes cette ressource ?"></textarea>
+    <label>Ton contact <span style="color:#555;font-size:10px">(optionnel — Discord, X...)</span></label>
+    <input type="text" id="sContact" placeholder="@pseudo">
+    <div class="fetch-status" id="submitStatus"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="btnCancelSubmit">Annuler</button>
+      <button class="btn-save" id="btnSaveSubmit">Envoyer</button>
+    </div>
+  </div>
+</div>
 <div class="modal-overlay" id="addModal">
   <div class="modal">
     <h3>+ Nouvelle ressource</h3>
