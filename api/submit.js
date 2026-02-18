@@ -58,7 +58,7 @@ module.exports = async function handler(req, res) {
   ].filter(Boolean).join("\n");
 
   await resend.emails.send({
-    from: "Vault <onboarding@resend.dev>",
+    from: "Vault <no-reply@qyrn.dev>",
     to: process.env.CONTACT_EMAIL,
     subject: "Vault — Nouvelle proposition de ressource",
     html: `<div style="font-family:monospace">${lines}</div>`,
