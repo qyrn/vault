@@ -404,7 +404,49 @@ window.deleteCustom = function(name) {
 window.toggleFav = toggleFav;
 window.openImgModal = function() { imgModal.classList.add('open'); document.body.style.overflow = 'hidden'; };
 document.getElementById('btnAdd').addEventListener('click', () => { populateCategorySelect(); addModal.classList.add('open'); });
-document.getElementById('btnSubmit').addEventListener('click', () => { window.open('https://github.com/qyrn/vault/issues/new', '_blank', 'noopener,noreferrer'); });
+const submitModal = document.getElementById('submitModal');
+document.getElementById('btnSubmit').addEventListener('click', () => {
+  submitModal.classList.add('open');
+});
+document.getElementById('btnCancelSubmit').addEventListener('click', () => {
+  submitModal.classList.remove('open');
+  ['sUrl', 'sDesc', 'sContact'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('submitStatus').textContent = '';
+  document.getElementById('submitStatus').className = 'fetch-status';
+});
+document.getElementById('btnSaveSubmit').addEventListener('click', async () => {
+  const url = document.getElementById('sUrl').value.trim();
+  const description = document.getElementById('sDesc').value.trim();
+  const contact = document.getElementById('sContact').value.trim();
+  const status = document.getElementById('submitStatus');
+  const btn = document.getElementById('btnSaveSubmit');
+  if (!url) { status.textContent = 'URL requise.'; status.className = 'fetch-status err'; return; }
+  btn.disabled = true;
+  btn.textContent = 'Envoi...';
+  status.textContent = '';
+  status.className = 'fetch-status';
+  try {
+    const res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url, description, contact }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      submitModal.classList.remove('open');
+      ['sUrl', 'sDesc', 'sContact'].forEach(id => document.getElementById(id).value = '');
+      showToast('Proposition envoyée, merci !');
+    } else {
+      status.textContent = data.error || 'Erreur lors de l\'envoi.';
+      status.className = 'fetch-status err';
+    }
+  } catch {
+    status.textContent = 'Erreur réseau.';
+    status.className = 'fetch-status err';
+  }
+  btn.disabled = false;
+  btn.textContent = 'Envoyer';
+});
 document.getElementById('btnCancelAdd').addEventListener('click', closeAddModal);
 function closeAddModal() {
   addModal.classList.remove('open');

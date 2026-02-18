@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
-    "@upstash/redis": "^1.36.2"
+    "@upstash/redis": "^1.36.2",
+    "resend": "^6.9.2"
   }
 }
