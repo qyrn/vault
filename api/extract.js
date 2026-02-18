@@ -1,21 +1,31 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const { Redis } = require("@upstash/redis");
+const crypto = require("crypto");
 
-const RATE_LIMIT = 15;
-const WINDOW_SECONDS = 3600;
+function parseCookies(cookieHeader) {
+  const cookies = {};
+  if (!cookieHeader) return cookies;
+  cookieHeader.split(";").forEach(cookie => {
+    const [name, ...rest] = cookie.split("=");
+    cookies[name.trim()] = rest.join("=").trim();
+  });
+  return cookies;
+}
 
-const redis = new Redis({
-  url: process.env.KV_REST_API_URL,
-  token: process.env.KV_REST_API_TOKEN,
-});
-
-async function checkRateLimit(ip) {
-  const key = `rate:extract:${ip}`;
-  const count = await redis.incr(key);
-  if (count === 1) {
-    await redis.expire(key, WINDOW_SECONDS);
+function isAdmin(req) {
+  const cookies = parseCookies(req.headers.cookie);
+  const token = cookies.session;
+  if (!token) return false;
+  try {
+    const decoded = Buffer.from(token, "base64").toString();
+    const [userId, timestamp, hmac] = decoded.split(":");
+    const data = `${userId}:${timestamp}`;
+    const expected = crypto.createHmac("sha256", process.env.SESSION_SECRET).update(data).digest("hex");
+    if (hmac !== expected) return false;
+    if (Date.now() - parseInt(timestamp, 10) >= 7 * 24 * 60 * 60 * 1000) return false;
+    return userId === process.env.ADMIN_GITHUB_ID;
+  } catch {
+    return false;
   }
-  return count;
 }
 
 const ALLOWED_TAGS = [
@@ -60,17 +70,8 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   try {
-    const ip =
-      req.headers["x-forwarded-for"]?.split(",")[0]?.trim() ||
-      req.headers["x-real-ip"] ||
-      "unknown";
-
-    try {
-      const count = await checkRateLimit(ip);
-      if (count > RATE_LIMIT) {
-        return res.status(429).json({ error: "Trop de requêtes. Réessaie dans une heure." });
-      }
-    } catch {
+    if (!isAdmin(req)) {
+      return res.status(403).json({ error: "Non autorisé" });
     }
 
     const { url } = req.query;
