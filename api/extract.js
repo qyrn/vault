@@ -1,4 +1,22 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { Redis } = require("@upstash/redis");
+
+const RATE_LIMIT = 15;
+const WINDOW_SECONDS = 3600;
+
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL,
+  token: process.env.KV_REST_API_TOKEN,
+});
+
+async function checkRateLimit(ip) {
+  const key = `rate:extract:${ip}`;
+  const count = await redis.incr(key);
+  if (count === 1) {
+    await redis.expire(key, WINDOW_SECONDS);
+  }
+  return count;
+}
 
 const ALLOWED_TAGS = [
   "Outil", "CTF", "Blog", "Formation", "Cheatsheet", "OSINT",
@@ -42,6 +60,19 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   try {
+    const ip =
+      req.headers["x-forwarded-for"]?.split(",")[0]?.trim() ||
+      req.headers["x-real-ip"] ||
+      "unknown";
+
+    try {
+      const count = await checkRateLimit(ip);
+      if (count > RATE_LIMIT) {
+        return res.status(429).json({ error: "Trop de requêtes. Réessaie dans une heure." });
+      }
+    } catch {
+    }
+
     const { url } = req.query;
     if (!url) return res.status(400).json({ error: "Paramètre ?url= requis" });
 
