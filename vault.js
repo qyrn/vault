@@ -471,7 +471,7 @@ fCategory.addEventListener('change', () => {
   }
 });
 function isValidUrl(str) {
-  if (str.startsWith('#')) return true;
+  if (str.startsWith('#') || str.startsWith('/')) return true;
   try {
     const u = new URL(str);
     return ['http:', 'https:'].includes(u.protocol);
@@ -481,7 +481,7 @@ function isValidUrl(str) {
 document.getElementById('btnSaveAdd').addEventListener('click', () => {
   const name = document.getElementById('fName').value.trim();
   let url = document.getElementById('fUrl').value.trim();
-  if (url && !url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('#')) {
+  if (url && !url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('#') && !url.startsWith('/')) {
     url = 'https://' + url;
   }
   const tag = document.getElementById('fTag').value.trim() || 'Autre';
@@ -511,7 +511,7 @@ document.getElementById('btnSaveAdd').addEventListener('click', () => {
 });
 document.getElementById('btnFetch').addEventListener('click', async () => {
   let url = document.getElementById('fUrl').value.trim();
-  if (url && !url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('#')) {
+  if (url && !url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('#') && !url.startsWith('/')) {
     url = 'https://' + url;
     document.getElementById('fUrl').value = url;
   }
