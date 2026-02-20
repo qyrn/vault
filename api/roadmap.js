@@ -73,8 +73,16 @@ module.exports = async function handler(req, res) {
 
     if (submitted === pin) {
       res.setHeader('Set-Cookie', `roadmap_access=${expectedToken}; HttpOnly; Secure; SameSite=Strict; Path=/api/roadmap; Max-Age=${7 * 24 * 60 * 60}`);
-      res.setHeader('Location', '/api/roadmap');
-      return res.status(302).end();
+      try {
+        const roadmapPath = path.join(process.cwd(), 'private', 'roadmap.html');
+        const html = fs.readFileSync(roadmapPath, 'utf-8');
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.setHeader('Cache-Control', 'private, no-cache');
+        return res.status(200).send(html);
+      } catch {
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        return res.status(500).send('<h1>500</h1><p>Fichier roadmap introuvable.</p>');
+      }
     }
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
