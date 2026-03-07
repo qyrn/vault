@@ -152,7 +152,6 @@ export const BUILTIN: Category[] = [
     category: 'Ma Progression', icon: 'compass', color: '#8b5cf6',
     items: [
       { name: 'Échelon', url: 'https://echelon.qyrn.dev', desc: 'Mon outil de veille cybersec hebdomadaire (chaque dimanche)', tag: 'Perso', difficulty: null },
-      { name: 'ChatGPT', url: 'https://chatgpt.com', desc: 'Assistant IA — usage perso', tag: 'Outil', difficulty: null, adminOnly: true, isPrivate: true },
       { name: 'Roadmap 2026', url: '/api/roadmap', desc: 'Ma roadmap cybersec personnelle avec objectifs et progression', tag: 'Privé', difficulty: null, adminOnly: true, isPrivate: true },
     ],
   },
