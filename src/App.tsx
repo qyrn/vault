@@ -386,6 +386,7 @@ export default function App() {
         </div>
 
         <AddModal
+          key={editState.mode ? `edit-${editState.originalName}-${editState.originalUrl}` : 'new'}
           isOpen={addModalOpen}
           editMode={editState.mode}
           categories={getAllCategories()}
