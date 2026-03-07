@@ -30,16 +30,10 @@ export default function ResourceCard({ item, color, isFav, isAdmin, onFavToggle,
 
   const cardContent = (
     <>
-      {isFav && (
-        <span className="absolute top-2.5 right-2.5 pointer-events-none" style={{ color: 'var(--yellow)' }}>
-          <Star size={12} fill="currentColor" />
-        </span>
-      )}
-      {item.isPrivate && (
-        <span className="absolute top-2.5 right-7 pointer-events-none" style={{ color: '#a78bfa' }}>
-          <Lock size={11} />
-        </span>
-      )}
+      <div className="absolute top-2.5 right-2.5 flex items-center gap-1 pointer-events-none">
+        {item.isPrivate && <Lock size={11} style={{ color: '#a78bfa' }} />}
+        {isFav && <Star size={12} fill="currentColor" style={{ color: 'var(--yellow)' }} />}
+      </div>
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center gap-1.5 w-full">
           <span className="card-name font-semibold text-sm" style={{ color: 'rgba(255,255,255,0.85)', transition: 'color 0.2s' }}>
