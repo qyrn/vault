@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -8,7 +8,7 @@
 <meta name="keywords" content="cybersécurité, hacking, CTF, pentest, sécurité informatique, ressources, outils, formation, bug bounty">
 <meta name="author" content="Qyrn">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#08080d">
+<meta name="theme-color" content="#0a0a0f">
 <link rel="canonical" href="https://vault.qyrn.dev/">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="opengraph-image.png">
@@ -27,9 +27,7 @@
 <meta name="twitter:image" content="https://vault.qyrn.dev/opengraph-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vault.css">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,122 +44,7 @@
 </script>
 </head>
 <body>
-<div class="grid-bg"></div>
-<div class="glow-tl"></div>
-<div class="glow-br"></div>
-<div class="container">
-  <header>
-    <div class="header-left">
-      <div class="label">// cybersecurity resource hub</div>
-      <div class="header-title"><a id="vaultTitle" href="#"><h1>Vault</h1></a></div>
-      <div class="header-stats">
-        <span class="stat"><strong id="totalCount">0</strong> ressources</span>
-        <span class="stat"><strong id="catCount">0</strong> catégories</span>
-      </div>
-    </div>
-    <div class="header-right">
-      <div class="auth-zone" id="authZone"></div>
-      <div class="clock">
-        <div class="clock-time" id="clockTime"></div>
-        <div class="clock-date" id="clockDate"></div>
-      </div>
-    </div>
-  </header>
-  <div class="toolbar">
-    <div class="search-bar">
-      <span class="search-icon"><i data-lucide="search"></i></span>
-      <input type="text" id="search" placeholder="Rechercher une ressource, un tag..." autocomplete="off">
-      <span class="search-hint">/</span>
-    </div>
-    <div class="toolbar-btns">
-      <button class="btn-tool" id="btnRandom"><i data-lucide="shuffle"></i> Random</button>
-      <button class="btn-tool btn-submit" id="btnSubmit" style="display:none"><i data-lucide="send"></i> Proposer</button>
-      <button class="btn-tool btn-add admin-only" id="btnAdd" style="display:none">+ Ajouter</button>
-    </div>
-  </div>
-  <div class="filter-bar" id="filterBar"></div>
-  <div id="content"></div>
-  <div class="empty" id="empty"><div class="icon"><i data-lucide="search"></i></div><span id="emptyQuery"></span></div>
-</div>
-<div class="modal-overlay" id="submitModal">
-  <div class="modal">
-    <h3><i data-lucide="send"></i> Proposer une ressource</h3>
-    <label>URL <span style="color:#ff6b6b">*</span></label>
-    <input type="text" id="sUrl" placeholder="https://...">
-    <label>Description <span style="color:#555;font-size:10px">(optionnel)</span></label>
-    <textarea id="sDesc" placeholder="Pourquoi tu recommandes cette ressource ?"></textarea>
-    <label>Ton contact <span style="color:#555;font-size:10px">(optionnel — Discord, X...)</span></label>
-    <input type="text" id="sContact" placeholder="@pseudo">
-    <div class="fetch-status" id="submitStatus"></div>
-    <div class="modal-actions">
-      <button class="btn-cancel" id="btnCancelSubmit">Annuler</button>
-      <button class="btn-save" id="btnSaveSubmit">Envoyer</button>
-    </div>
-  </div>
-</div>
-<div class="modal-overlay" id="addModal">
-  <div class="modal">
-    <h3>+ Nouvelle ressource</h3>
-    <label>Nom</label>
-    <input type="text" id="fName" placeholder="Ex: HackTricks">
-    <label>URL</label>
-    <input type="text" id="fUrl" placeholder="https://...">
-    <button class="btn-fetch" id="btnFetch"><i data-lucide="loader"></i> Analyser avec l'IA</button>
-    <div class="fetch-status" id="fetchStatus"></div>
-    <label>Catégorie</label>
-    <select id="fCategory"></select>
-    <label>Tag</label>
-    <input type="text" id="fTag" placeholder="Ex: Outil, CTF, Blog...">
-    <label>Difficulté</label>
-    <select id="fDifficulty">
-      <option value="">Aucune</option>
-      <option value="Débutant">Débutant</option>
-      <option value="Intermédiaire">Intermédiaire</option>
-      <option value="Avancé">Avancé</option>
-    </select>
-    <label>Description</label>
-    <textarea id="fDesc" placeholder="Description de la ressource..."></textarea>
-    <label class="checkbox-label">
-      <input type="checkbox" id="fPrivate">
-      <span>Ressource privée (visible uniquement par moi)</span>
-    </label>
-    <div class="modal-actions">
-      <button class="btn-cancel" id="btnCancelAdd">Annuler</button>
-      <button class="btn-save" id="btnSaveAdd">Ajouter</button>
-    </div>
-  </div>
-</div>
-<div class="img-modal" id="imgModal">
-  <button class="img-close" id="imgClose"><i data-lucide="x"></i></button>
-  <img src="https://i.imgur.com/iPY8RJF.png" alt="Cyber Security Acronyms">
-</div>
-<div class="ctx-menu" id="ctxMenu">
-  <button data-action="edit">Éditer</button>
-  <button data-action="delete">Supprimer</button>
-  <button data-action="copy">Copier URL</button>
-</div>
-<div class="modal-overlay" id="confirmModal">
-  <div class="modal modal-confirm">
-    <h3>Confirmer la suppression</h3>
-    <p id="confirmMsg">Supprimer cette ressource ?</p>
-    <div class="modal-actions">
-      <button class="btn-cancel" id="btnCancelConfirm">Annuler</button>
-      <button class="btn-delete" id="btnConfirmDelete">Supprimer</button>
-    </div>
-  </div>
-</div>
-<div class="modal-overlay" id="randomModal">
-  <div class="modal modal-random">
-    <h3><i data-lucide="shuffle"></i> Random Challenge</h3>
-    <div id="randomContent"></div>
-    <div class="modal-actions">
-      <button class="btn-cancel" id="btnRandomClose">Fermer</button>
-      <button class="btn-tool" id="btnRandomAgain"><i data-lucide="shuffle"></i> Autre</button>
-      <a class="btn-save" id="btnRandomOpen" href="#" target="_blank" rel="noopener noreferrer">Ouvrir</a>
-    </div>
-  </div>
-</div>
-<div class="toast" id="toast"></div>
-<script src="vault.js"></script>
+<div id="root"></div>
+<script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
