@@ -57,6 +57,8 @@
         .task input[type="checkbox"]:checked { background:var(--green); border-color:var(--green); }
         .task input[type="checkbox"]:checked::after { content:'✓'; position:absolute; color:white; font-size:10px; left:2px; top:-1px; }
         .task.done span { text-decoration:line-through; color:var(--dim); }
+        .task span { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+        .task span > code { flex-shrink:0; }
         .info-box { border-radius:6px; padding:12px; margin:10px 0; font-size:0.85rem; }
         .info-box.cyan { background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3); }
         .info-box.red { background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); }
@@ -218,27 +220,27 @@
 
         <div class="section-title pink">Piliers transversaux</div>
         <div class="card">
-            <div class="card-title">🛡️ Web Security (cœur)</div>
+            <div class="card-header"><div class="card-title">🛡️ Web Security (cœur)</div></div>
             <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">PortSwigger Academy — SQLi, XSS, IDOR, SSRF, Upload, API, Auth, JWT. 40+ labs sur 8 semaines.</p>
         </div>
         <div class="card">
-            <div class="card-title">🤖 AI Offense/Defense</div>
+            <div class="card-header"><div class="card-title">🤖 AI Offense/Defense</div></div>
             <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">Gandalf (S3), OWASP LLM Top 10 (S5), 2 projets Python (S7), crossover OSINT × LLM (S8).</p>
         </div>
         <div class="card">
-            <div class="card-title">🔍 OSINT / GEOINT</div>
+            <div class="card-header"><div class="card-title">🔍 OSINT / GEOINT</div></div>
             <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">1 défi/semaine. Sector035 Sunday Quiz, OSINT Dojo Ninja, Trace Labs CTF. Persona qyrn uniquement, VPN systématique.</p>
         </div>
         <div class="card">
-            <div class="card-title">🏋️ Sport (5×/sem)</div>
+            <div class="card-header"><div class="card-title">🏋️ Sport (5×/sem)</div></div>
             <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">1h/jour à 9h, mix muscu/cardio. Objectif Bullseye / Daredevil — lean ~10-12% body fat.</p>
         </div>
         <div class="card">
-            <div class="card-title">📺 Création de contenu (à partir de S4)</div>
+            <div class="card-header"><div class="card-title">📺 Création de contenu (à partir de S4)</div></div>
             <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">2 streams Twitch/sem (qyrnsec) en doublon des labs + 1 TikTok cyber/sem. YouTube optionnel quand un sujet me parle.</p>
         </div>
         <div class="card">
-            <div class="card-title">👥 Communauté</div>
+            <div class="card-header"><div class="card-title">👥 Communauté</div></div>
             <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">1 meetup attendu + 1 hackathon inscrit + 3 DM cyber pros pendant la phase.</p>
         </div>
 
@@ -259,7 +261,7 @@
         </div>
 
         <div class="card">
-            <div class="card-title">🛠️ Setup technique</div>
+            <div class="card-header"><div class="card-title">🛠️ Setup technique</div></div>
             <div class="tasks">
                 <label class="task" data-phase="0"><input type="checkbox" data-id="s0-vm"><span>VM Kali boot OK, Burp s'ouvre sans erreur</span></label>
                 <label class="task" data-phase="0"><input type="checkbox" data-id="s0-foxy"><span>FoxyProxy installé sur Firefox + config Burp 127.0.0.1:8080</span></label>
@@ -272,7 +274,7 @@
         </div>
 
         <div class="card">
-            <div class="card-title">🌐 Comptes &amp; bookmarks</div>
+            <div class="card-header"><div class="card-title">🌐 Comptes &amp; bookmarks</div></div>
             <div class="tasks">
                 <label class="task" data-phase="0"><input type="checkbox" data-id="s0-portswigger"><span>Compte PortSwigger Academy créé (gratuit)</span></label>
                 <label class="task" data-phase="0"><input type="checkbox" data-id="s0-thm"><span>TryHackMe encore loggé</span></label>
@@ -286,16 +288,16 @@
         </div>
 
         <div class="card">
-            <div class="card-title">📺 YouTube subs</div>
+            <div class="card-header"><div class="card-title">📺 YouTube subs</div></div>
             <div class="tasks">
                 <label class="task" data-phase="0"><input type="checkbox" data-id="s0-yt-fr"><span>FR : FransOsint, Defend Intelligence, Micode, Underscore_, Hackerf0x, Waked XY, Michel Kartner, Parlons Cyber, OSINT-FR</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-yt-en"><span>EN : IppSec (notif all), John Hammond, LiveOverflow, PinkDraconian</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-yt-en"><span>EN : IppSec , John Hammond, LiveOverflow, PinkDraconian <code>~notifall</code></span></label>
                 <label class="task" data-phase="0"><input type="checkbox" data-id="s0-podcast"><span>Darknet Diaries dans l'app podcast (Spotify/Apple/etc.)</span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🏠 Espace de travail</div>
+            <div class="card-header"><div class="card-title">🏠 Espace de travail</div></div>
             <div class="tasks">
                 <label class="task" data-phase="0"><input type="checkbox" data-id="s0-desk"><span>Bureau fixe identifié (PAS le lit, JAMAIS le lit)</span></label>
                 <label class="task" data-phase="0"><input type="checkbox" data-id="s0-phone"><span>Endroit pour téléphone hors de la chambre la nuit</span></label>
@@ -324,40 +326,40 @@
         </div>
 
         <div class="card">
-            <div class="card-title">📚 Cyber — cœur de semaine</div>
+            <div class="card-header"><div class="card-title">📚 Cyber — cœur de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-bandit"><span>(45 min — overthewire.org) Bandit niveaux 20-25, chrono, noter les blocages</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-nmap"><span>(30 min — nmap.org) Relecture Nmap : flags qui m'ont posé problème en P1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-http"><span>(45 min — portswigger.net) HTTP : GET/POST, headers, status codes, cookies, sessions</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-auth"><span>(30 min — portswigger.net) Auth basics : cookies de session, structure JWT décodée</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-js"><span>(45 min — javascript.info) JS pour la sécu : DOM, document.cookie, fetch, encodings</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-burp"><span>(1h — portswigger.net) Burp : Repeater + Intercept maîtrisés</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-psbasics"><span>(1h — portswigger.net) Web Security Basics + Your first challenge</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-bandit"><span>Bandit niveaux 20-25, chrono, noter les blocages <code>~45min</code><span class="tag tag-soc">OTW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-nmap"><span>Relecture Nmap : flags qui m'ont posé problème en P1 <code>~30min</code><span class="tag tag-soc">Nmap</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-http"><span>HTTP : GET/POST, headers, status codes, cookies, sessions <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-auth"><span>Auth basics : cookies de session, structure JWT décodée <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-js"><span>JS pour la sécu : DOM, document.cookie, fetch, encodings <code>~45min</code><span class="tag tag-ai">JS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-burp"><span>Burp : Repeater + Intercept maîtrisés <code>~1h</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-psbasics"><span>Web Security Basics + Your first challenge <code>~1h</code><span class="tag tag-pentest">PS</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🪞 Méta-tâches obligatoires</div>
+            <div class="card-header"><div class="card-title">🪞 Méta-tâches obligatoires</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-relecture"><span>(45 min — blog perso) Relecture critique des 6 articles : passages à défendre en entretien</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-anki"><span>(30 min — ankiweb.net) Anki : créer 30-50 cartes de base sur P1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-relecture"><span>Relecture critique des 6 articles : passages à défendre en entretien <code>~45min</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-anki"><span>Anki : créer 30-50 cartes de base sur P1 <code>~30min</code><span class="tag tag-soc">Anki</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🔍 OSINT / contenu passif</div>
+            <div class="card-header"><div class="card-title">🔍 OSINT / contenu passif</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-sector"><span>(30 min — sector035.com) 1er Sector035 Sunday Quiz (dim 04/05)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-passif"><span>(30 min/jour — youtube.com) Contenu passif : IppSec / Defend Intelligence / FransOsint</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-sector"><span>1er Sector035 Sunday Quiz (dim 04/05) <code>~30min</code><span class="tag tag-osint">OSINT</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-passif"><span>Contenu passif : IppSec / Defend Intelligence / FransOsint <code>~30min/jour</code><span class="tag tag-blog">YT</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-deck"><span>(— ankiweb.net) Deck Anki nourri (50+ cartes actives)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-notes"><span>(—) Notes critiques sur les 6 articles existants</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-loghebdo"><span>(15 min) Logbook hebdo dimanche 18h</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-deck"><span>Deck Anki nourri (50+ cartes actives)<span class="tag tag-soc">Anki</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-notes"><span>Notes critiques sur les 6 articles existants</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-loghebdo"><span>Logbook hebdo dimanche 18h <code>~15min</code></span></label>
             </div>
         </div>
 
@@ -440,52 +442,52 @@
         </div>
 
         <div class="card">
-            <div class="card-title">📚 Labs PortSwigger</div>
+            <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union1"><span>(30 min — portswigger.net) UNION-based SQLi — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union2"><span>(30 min — portswigger.net) UNION-based SQLi — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union3"><span>(30 min — portswigger.net) UNION-based SQLi — lab 3</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind1"><span>(45 min — portswigger.net) Blind SQLi boolean — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind2"><span>(45 min — portswigger.net) Blind SQLi boolean — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time1"><span>(45 min — portswigger.net) Blind SQLi time-based — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time2"><span>(45 min — portswigger.net) Blind SQLi time-based — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass1"><span>(30 min — portswigger.net) SQLi via filter bypass — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass2"><span>(30 min — portswigger.net) SQLi via filter bypass — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-pract"><span>(1h — portswigger.net) Lab Practitioner SQLi (bonus si temps)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union1"><span>UNION-based SQLi — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union2"><span>UNION-based SQLi — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union3"><span>UNION-based SQLi — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind1"><span>Blind SQLi boolean — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind2"><span>Blind SQLi boolean — lab 2 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time1"><span>Blind SQLi time-based — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time2"><span>Blind SQLi time-based — lab 2 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass1"><span>SQLi via filter bypass — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass2"><span>SQLi via filter bypass — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-pract"><span>Lab Practitioner SQLi (bonus si temps) <code>~1h</code><span class="tag tag-pentest">PS</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🔧 Outils introduits</div>
+            <div class="card-header"><div class="card-title">🔧 Outils introduits</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-intruder"><span>(30 min — portswigger.net) Burp Intruder : brute-force payloads SQLi</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-sqlmap"><span>(30 min — sqlmap.org) sqlmap sur 1 cas concret (pas d'automatisation aveugle)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-intruder"><span>Burp Intruder : brute-force payloads SQLi <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-sqlmap"><span>sqlmap sur 1 cas concret (pas d'automatisation aveugle) <code>~30min</code><span class="tag tag-pentest">sqlmap</span></span></label>
             </div>
         </div>
 
         <div class="card project-card">
-            <div class="card-title">🛠️ Mini-scanner v0.1 <span class="tag tag-project">PROJET</span></div>
+            <div class="card-header"><div class="card-title">🛠️ Mini-scanner v0.1</div><span class="tag tag-project">PROJET</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-scan-init"><span>(20 min — github.com) Init repo GitHub qyrnsec/web-scanner</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-scan-struct"><span>(45 min) Structure Python : fetcher, parser, reporter</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-scan-headers"><span>(45 min) Checks headers sécu : X-Frame-Options, CSP, HSTS, X-Content-Type-Options</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-scan-init"><span>Init repo GitHub qyrnsec/web-scanner <code>~20min</code><span class="tag tag-project">GH</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-scan-struct"><span>Structure Python : fetcher, parser, reporter <code>~45min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-scan-headers"><span>Checks headers sécu : X-Frame-Options, CSP, HSTS, X-Content-Type-Options <code>~45min</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🔍 OSINT</div>
+            <div class="card-header"><div class="card-title">🔍 OSINT</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-osint-dojo"><span>(45 min — osintdojo.com) 1 challenge OSINT Dojo Ninja</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-sector"><span>(30 min — sector035.com) Sector035 Sunday Quiz dimanche</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-osint-dojo"><span>1 challenge OSINT Dojo Ninja <code>~45min</code><span class="tag tag-osint">OSINT</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-sector"><span>Sector035 Sunday Quiz dimanche <code>~30min</code><span class="tag tag-osint">OSINT</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-writeup"><span>📌 (2h — blog perso) Write-up SQLi publié (obligatoire #1) — sam rédaction, dim publication</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-anki"><span>(20 min — ankiweb.net) Anki : cartes SQLi (UNION, payloads, syntaxe blind)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-loghebdo"><span>(15 min) Loghebdo dimanche 18h</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-writeup"><span>📌 Write-up SQLi publié (obligatoire #1) — sam rédaction, dim publication <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-anki"><span>Anki : cartes SQLi (UNION, payloads, syntaxe blind) <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-loghebdo"><span>Loghebdo dimanche 18h <code>~15min</code></span></label>
             </div>
         </div>
 
@@ -565,53 +567,53 @@
         </div>
 
         <div class="card">
-            <div class="card-title">📚 Labs PortSwigger</div>
+            <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl1"><span>(30 min — portswigger.net) Reflected XSS — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl2"><span>(30 min — portswigger.net) Reflected XSS — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl3"><span>(30 min — portswigger.net) Reflected XSS — lab 3</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored1"><span>(30 min — portswigger.net) Stored XSS — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored2"><span>(30 min — portswigger.net) Stored XSS — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom1"><span>(30 min — portswigger.net) DOM-based XSS — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom2"><span>(30 min — portswigger.net) DOM-based XSS — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom3"><span>(30 min — portswigger.net) DOM-based XSS — lab 3</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp1"><span>(45 min — portswigger.net) CSP bypass — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp2"><span>(45 min — portswigger.net) CSP bypass — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-pract"><span>(1h — portswigger.net) Lab Practitioner XSS (bonus si temps)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl1"><span>Reflected XSS — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl2"><span>Reflected XSS — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl3"><span>Reflected XSS — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored1"><span>Stored XSS — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored2"><span>Stored XSS — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom1"><span>DOM-based XSS — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom2"><span>DOM-based XSS — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom3"><span>DOM-based XSS — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp1"><span>CSP bypass — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp2"><span>CSP bypass — lab 2 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-pract"><span>Lab Practitioner XSS (bonus si temps) <code>~1h</code><span class="tag tag-pentest">PS</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🤖 IA — premier contact <span class="tag tag-ai">AI</span></div>
+            <div class="card-header"><div class="card-title">🤖 IA — premier contact</div><span class="tag tag-ai">AI</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-gandalf1"><span>(45 min — gandalf.lakera.ai) Gandalf — niveaux 1 à 4</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-gandalf2"><span>(1h — gandalf.lakera.ai) Gandalf — niveaux 5 à 8</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-gandalf-notes"><span>(20 min) Notes sur les techniques de prompt injection découvertes</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-gandalf1"><span>Gandalf — niveaux 1 à 4 <code>~45min</code><span class="tag tag-ai">Gandalf</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-gandalf2"><span>Gandalf — niveaux 5 à 8 <code>~1h</code><span class="tag tag-ai">Gandalf</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-gandalf-notes"><span>Notes sur les techniques de prompt injection découvertes <code>~20min</code></span></label>
             </div>
         </div>
 
         <div class="card project-card">
-            <div class="card-title">🛠️ Mini-scanner v0.2 <span class="tag tag-project">PROJET</span></div>
+            <div class="card-header"><div class="card-title">🛠️ Mini-scanner v0.2</div><span class="tag tag-project">PROJET</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-scan-xss"><span>(1h) Ajout détection XSS reflected basique (payloads + vérif réflexion)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-scan-xss"><span>Ajout détection XSS reflected basique (payloads + vérif réflexion) <code>~1h</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🔍 OSINT</div>
+            <div class="card-header"><div class="card-title">🔍 OSINT</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-osint"><span>(45 min — cybersecurite.forge.apps.education.fr) Challenge OSINT — défi Roxane</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-sector"><span>(30 min — sector035.com) Sector035 Sunday Quiz dimanche</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-osint"><span>Challenge OSINT — défi Roxane <code>~45min</code><span class="tag tag-soc">Forge</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-sector"><span>Sector035 Sunday Quiz dimanche <code>~30min</code><span class="tag tag-osint">OSINT</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-writeup"><span>📌 (2h — blog perso) Write-up XSS publié (obligatoire #2)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-writeup-bonus"><span>(1h30 — blog perso) Write-up Gandalf (bonus)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-anki"><span>(20 min — ankiweb.net) Anki : cartes XSS + DOM + Gandalf</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-loghebdo"><span>(15 min) Loghebdo dimanche</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-writeup"><span>📌 Write-up XSS publié (obligatoire #2) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-writeup-bonus"><span>Write-up Gandalf (bonus) <code>~1h30</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-anki"><span>Anki : cartes XSS + DOM + Gandalf <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
             </div>
         </div>
 
@@ -691,58 +693,58 @@
         </div>
 
         <div class="card">
-            <div class="card-title">📚 Labs PortSwigger</div>
+            <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor1"><span>(30 min — portswigger.net) IDOR — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor2"><span>(30 min — portswigger.net) IDOR — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor3"><span>(30 min — portswigger.net) IDOR — lab 3</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv1"><span>(30 min — portswigger.net) Privilege escalation horizontal — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv2"><span>(30 min — portswigger.net) Privilege escalation vertical — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl1"><span>(45 min — portswigger.net) Business logic — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl2"><span>(45 min — portswigger.net) Business logic — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-mass"><span>(30 min — portswigger.net) Mass assignment — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor1"><span>IDOR — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor2"><span>IDOR — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor3"><span>IDOR — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv1"><span>Privilege escalation horizontal — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv2"><span>Privilege escalation vertical — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl1"><span>Business logic — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl2"><span>Business logic — lab 2 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-mass"><span>Mass assignment — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📺 Démarrage contenu <span class="tag tag-stream">STREAM</span></div>
+            <div class="card-header"><div class="card-title">📺 Démarrage contenu</div><span class="tag tag-stream">STREAM</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream1"><span>(1h30 — twitch.tv) 1er stream Twitch qyrnsec — mardi 20/05 (labs en cours)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream2"><span>(1h30 — twitch.tv) 2e stream — samedi 24/05</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-tiktok"><span>(1h — tiktok.com) 1er TikTok cyber — "C'est quoi un IDOR en 60s" (dim 25/05)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream1"><span>1er stream Twitch qyrnsec — mardi 20/05 (labs en cours) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream2"><span>2e stream — samedi 24/05 <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-tiktok"><span>1er TikTok cyber — "C'est quoi un IDOR en 60s" (dim 25/05) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
             </div>
         </div>
 
         <div class="card project-card">
-            <div class="card-title">🛠️ Mini-scanner v0.3 <span class="tag tag-project">PROJET</span></div>
+            <div class="card-header"><div class="card-title">🛠️ Mini-scanner v0.3</div><span class="tag tag-project">PROJET</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-scan-idor"><span>(1h) Ajout détection IDOR pattern-based (même endpoint, deux user IDs)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-scan-idor"><span>Ajout détection IDOR pattern-based (même endpoint, deux user IDs) <code>~1h</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🔍 OSINT</div>
+            <div class="card-header"><div class="card-title">🔍 OSINT</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-osint"><span>(45 min — osintdojo.com) OSINT Dojo Ninja Challenges (suite progressive)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-sector"><span>(30 min — sector035.com) Sector035 Sunday Quiz dimanche</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-osint"><span>OSINT Dojo Ninja Challenges (suite progressive) <code>~45min</code><span class="tag tag-osint">OSINT</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-sector"><span>Sector035 Sunday Quiz dimanche <code>~30min</code><span class="tag tag-osint">OSINT</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">👥 Communauté</div>
+            <div class="card-header"><div class="card-title">👥 Communauté</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-meetup"><span>(30 min — owasp.org) Rechercher meetups OWASP Lorraine / Grand Est ou Paris mai-juin</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-hackathon"><span>(20 min) Identifier 1 hackathon à inscrire</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-meetup"><span>Rechercher meetups OWASP Lorraine / Grand Est ou Paris mai-juin <code>~30min</code><span class="tag tag-pentest">OWASP</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-hackathon"><span>Identifier 1 hackathon à inscrire <code>~20min</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-writeup"><span>📌 (2h — blog perso) Write-up IDOR publié (obligatoire #3)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-writeup-osint"><span>(1h30 — blog perso) Write-up OSINT séparé (bonus #1)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-anki"><span>(20 min — ankiweb.net) Anki : cartes Access Control / IDOR</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-loghebdo"><span>(15 min) Loghebdo dimanche</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-writeup"><span>📌 Write-up IDOR publié (obligatoire #3) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-writeup-osint"><span>Write-up OSINT séparé (bonus #1) <code>~1h30</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-anki"><span>Anki : cartes Access Control / IDOR <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
             </div>
         </div>
 
@@ -822,59 +824,59 @@
         </div>
 
         <div class="card">
-            <div class="card-title">📚 Labs PortSwigger</div>
+            <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf1"><span>(30 min — portswigger.net) SSRF basic — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf2"><span>(30 min — portswigger.net) SSRF basic — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf3"><span>(45 min — portswigger.net) SSRF filter bypass — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up1"><span>(30 min — portswigger.net) File Upload — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up2"><span>(30 min — portswigger.net) File Upload — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up3"><span>(45 min — portswigger.net) File Upload bypass — lab 3</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe1"><span>(30 min — portswigger.net) XXE injection — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe2"><span>(30 min — portswigger.net) XXE injection — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-rest"><span>(30 min — portswigger.net) API REST IDOR — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-gql"><span>(30 min — portswigger.net) GraphQL basics — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf1"><span>SSRF basic — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf2"><span>SSRF basic — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf3"><span>SSRF filter bypass — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up1"><span>File Upload — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up2"><span>File Upload — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up3"><span>File Upload bypass — lab 3 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe1"><span>XXE injection — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe2"><span>XXE injection — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-rest"><span>API REST IDOR — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-gql"><span>GraphQL basics — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🤖 IA — théorie <span class="tag tag-ai">AI</span></div>
+            <div class="card-header"><div class="card-title">🤖 IA — théorie</div><span class="tag tag-ai">AI</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-owasp"><span>(45 min — owasp.org) Lecture OWASP LLM Top 10 + prise de notes FR</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-hackaprompt"><span>(1h — hackaprompt.com) HackAPrompt walkthrough (bonus si temps)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-owasp"><span>Lecture OWASP LLM Top 10 + prise de notes FR <code>~45min</code><span class="tag tag-pentest">OWASP</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-hackaprompt"><span>HackAPrompt walkthrough (bonus si temps) <code>~1h</code><span class="tag tag-ai">HackPrompt</span></span></label>
             </div>
         </div>
 
         <div class="card project-card">
-            <div class="card-title">🛠️ Mini-scanner v0.4 <span class="tag tag-project">PROJET</span></div>
+            <div class="card-header"><div class="card-title">🛠️ Mini-scanner v0.4</div><span class="tag tag-project">PROJET</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-scan-ssrf"><span>(1h) Ajout SSRF basique + détection upload non sécurisé au mini-scanner</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-scan-ssrf"><span>Ajout SSRF basique + détection upload non sécurisé au mini-scanner <code>~1h</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📺 Contenu <span class="tag tag-stream">STREAM</span></div>
+            <div class="card-header"><div class="card-title">📺 Contenu</div><span class="tag tag-stream">STREAM</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-stream1"><span>(1h30 — twitch.tv) Stream Twitch mardi</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-stream2"><span>(1h30 — twitch.tv) Stream Twitch samedi</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-tiktok"><span>(1h — tiktok.com) TikTok cyber (sujet : SSRF ou file upload)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-stream1"><span>Stream Twitch mardi <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-stream2"><span>Stream Twitch samedi <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-tiktok"><span>TikTok cyber (sujet : SSRF ou file upload) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🔍 OSINT</div>
+            <div class="card-header"><div class="card-title">🔍 OSINT</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-osint"><span>(45 min — osintdojo.com) 1 challenge OSINT</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-sector"><span>(30 min — sector035.com) Sector035 Sunday Quiz</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-osint"><span>1 challenge OSINT <code>~45min</code><span class="tag tag-osint">OSINT</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-sector"><span>Sector035 Sunday Quiz <code>~30min</code><span class="tag tag-osint">OSINT</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-writeup"><span>📌 (2h — blog perso) Write-up SSRF / Upload / API publié (obligatoire #4)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-anki"><span>(20 min — ankiweb.net) Anki : cartes SSRF / Upload / API / OWASP LLM</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-loghebdo"><span>(15 min) Loghebdo dimanche</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-writeup"><span>📌 Write-up SSRF / Upload / API publié (obligatoire #4) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-anki"><span>Anki : cartes SSRF / Upload / API / OWASP LLM <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
             </div>
         </div>
 
@@ -954,27 +956,27 @@
         </div>
 
         <div class="card">
-            <div class="card-title">📚 Labs PortSwigger</div>
+            <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth1"><span>(30 min — portswigger.net) Authentication vulnerabilities — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth2"><span>(30 min — portswigger.net) Authentication vulnerabilities — lab 2</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth3"><span>(30 min — portswigger.net) Authentication vulnerabilities — lab 3</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt1"><span>(30 min — portswigger.net) JWT none algorithm — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt2"><span>(45 min — portswigger.net) JWT weak signing — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt3"><span>(45 min — portswigger.net) JWT alg confusion — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth1"><span>(30 min — portswigger.net) OAuth basics — lab 1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth2"><span>(30 min — portswigger.net) OAuth basics — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth1"><span>Authentication vulnerabilities — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth2"><span>Authentication vulnerabilities — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth3"><span>Authentication vulnerabilities — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt1"><span>JWT none algorithm — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt2"><span>JWT weak signing — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt3"><span>JWT alg confusion — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth1"><span>OAuth basics — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth2"><span>OAuth basics — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📦 Box HTB <span class="tag tag-thm">HTB</span></div>
+            <div class="card-header"><div class="card-title">📦 Box HTB</div><span class="tag tag-thm">HTB</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-pick"><span>(20 min — hackthebox.com) Choisir 1 box HTB Easy retired à thème web (ex : Cap, Soccer)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-recon"><span>(1h — hackthebox.com) Recon complet documenté (Nmap, gobuster, etc.)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-foothold"><span>(1h30 — hackthebox.com) Foothold obtenu</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-priv"><span>(1h — hackthebox.com) Privesc obtenu (root/SYSTEM)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-flag"><span>(— hackthebox.com) User + root flag récupérés</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-pick"><span>Choisir 1 box HTB Easy retired à thème web (ex : Cap, Soccer) <code>~20min</code><span class="tag tag-thm">HTB</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-recon"><span>Recon complet documenté (Nmap, gobuster, etc.) <code>~1h</code><span class="tag tag-thm">HTB</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-foothold"><span>Foothold obtenu <code>~1h30</code><span class="tag tag-thm">HTB</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-priv"><span>Privesc obtenu (root/SYSTEM) <code>~1h</code><span class="tag tag-thm">HTB</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-flag"><span>User + root flag récupérés<span class="tag tag-thm">HTB</span></span></label>
             </div>
             <div class="info-box yellow" style="margin-top:8px">
                 <strong>Règle :</strong> walkthrough IppSec autorisé seulement si bloqué &gt; 1h sur une étape. But = méthode et workflow, pas l'exploit pur.
@@ -982,44 +984,44 @@
         </div>
 
         <div class="card">
-            <div class="card-title">🔧 Outils introduits</div>
+            <div class="card-header"><div class="card-title">🔧 Outils introduits</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-macros"><span>(30 min — portswigger.net) Burp Macros : auth chains, login automation</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt-tool"><span>(20 min — jwt.io) jwt_tool / jwt.io pour analyse et forge de tokens</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-macros"><span>Burp Macros : auth chains, login automation <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt-tool"><span>jwt_tool / jwt.io pour analyse et forge de tokens <code>~20min</code><span class="tag tag-soc">JWT</span></span></label>
             </div>
         </div>
 
         <div class="card project-card">
-            <div class="card-title">🛠️ Mini-scanner v0.5 <span class="tag tag-project">PROJET</span></div>
+            <div class="card-header"><div class="card-title">🛠️ Mini-scanner v0.5</div><span class="tag tag-project">PROJET</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-scan-auth"><span>(45 min) Check basic auth weakness au mini-scanner (cookies sans Secure/HttpOnly, JWT weak alg)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-scan-auth"><span>Check basic auth weakness au mini-scanner (cookies sans Secure/HttpOnly, JWT weak alg) <code>~45min</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📺 Contenu</div>
+            <div class="card-header"><div class="card-title">📺 Contenu</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-stream1"><span>(1h30 — twitch.tv) Stream Twitch mardi</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-stream2"><span>(1h30 — twitch.tv) Stream Twitch samedi (live box HTB)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-tiktok"><span>(1h — tiktok.com) TikTok cyber (sujet : JWT none algorithm en 60s)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-stream1"><span>Stream Twitch mardi <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-stream2"><span>Stream Twitch samedi (live box HTB) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-tiktok"><span>TikTok cyber (sujet : JWT none algorithm en 60s) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">👥 Communauté</div>
+            <div class="card-header"><div class="card-title">👥 Communauté</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-meetup"><span>(— owasp.org) Aller au meetup repéré en S4 (si dispo)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-dm1"><span>(15 min — linkedin.com) 1er DM cyber pro (LinkedIn ou Discord)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-meetup"><span>Aller au meetup repéré en S4 (si dispo)<span class="tag tag-pentest">OWASP</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-dm1"><span>1er DM cyber pro (LinkedIn ou Discord) <code>~15min</code><span class="tag tag-soc">LinkedIn</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-writeup"><span>📌 (2h — blog perso) Write-up Auth/JWT publié (obligatoire #5)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-writeup-htb"><span>(2h — blog perso) Write-up box HTB S6 (bonus #2)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-anki"><span>(20 min — ankiweb.net) Anki : cartes Auth/JWT/OAuth</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-loghebdo"><span>(15 min) Loghebdo dimanche</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-writeup"><span>📌 Write-up Auth/JWT publié (obligatoire #5) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-writeup-htb"><span>Write-up box HTB S6 (bonus #2) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-anki"><span>Anki : cartes Auth/JWT/OAuth <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
             </div>
         </div>
 
@@ -1099,71 +1101,71 @@
         </div>
 
         <div class="card project-card">
-            <div class="card-title">🤖 Projet 1 — Auto-pentest avec LLM <span class="tag tag-ai">OFFENSIVE</span></div>
+            <div class="card-header"><div class="card-title">🤖 Projet 1 — Auto-pentest avec LLM</div><span class="tag tag-ai">OFFENSIVE</span></div>
             <p style="font-size:0.85rem;color:var(--dim);margin:6px 0">Script Python qui prend une sortie Nmap, l'envoie à Claude via API, récupère des suggestions d'attaque priorisées. Pipeline simple : nmap → parsing → prompt structuré → réponse → output formaté.</p>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-init"><span>(20 min — github.com) Init repo qyrnsec/llm-pentest-helper</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-nmap"><span>(1h) Parser Nmap (XML output → dict structuré)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-prompt"><span>(45 min) Prompt template structuré (rôle, contexte, contraintes, format de sortie)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-api"><span>(1h — anthropic.com) Appel API Claude + gestion erreurs/limits</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-output"><span>(45 min) Output formaté : markdown report avec suggestions priorisées</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-test"><span>(1h) Test sur scan local (HTB box ou VM perso)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-readme"><span>(30 min) README.md détaillé avec exemples</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-init"><span>Init repo qyrnsec/llm-pentest-helper <code>~20min</code><span class="tag tag-project">GH</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-nmap"><span>Parser Nmap (XML output → dict structuré) <code>~1h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-prompt"><span>Prompt template structuré (rôle, contexte, contraintes, format de sortie) <code>~45min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-api"><span>Appel API Claude + gestion erreurs/limits <code>~1h</code><span class="tag tag-ai">Claude</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-output"><span>Output formaté : markdown report avec suggestions priorisées <code>~45min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-test"><span>Test sur scan local (HTB box ou VM perso) <code>~1h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-readme"><span>README.md détaillé avec exemples <code>~30min</code></span></label>
             </div>
         </div>
 
         <div class="card project-card">
-            <div class="card-title">🛡️ Projet 2 — Détecteur prompt injection <span class="tag tag-ai">DEFENSIVE</span></div>
+            <div class="card-header"><div class="card-title">🛡️ Projet 2 — Détecteur prompt injection</div><span class="tag tag-ai">DEFENSIVE</span></div>
             <p style="font-size:0.85rem;color:var(--dim);margin:6px 0">Script Python qui analyse un prompt utilisateur et flag les patterns OWASP LLM Top 10. Pas de LLM dans le code, c'est du regex/pattern matching.</p>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-init"><span>(20 min — github.com) Init repo qyrnsec/prompt-injection-detector</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-patterns"><span>(45 min — owasp.org) Catalogue de patterns d'injection (LLM01, LLM02, etc.)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-rules"><span>(1h) Engine de détection (regex + heuristiques)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-score"><span>(45 min) Score de risque (low/medium/high/critical)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-test"><span>(30 min) Test sur dataset Gandalf (notes S3)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-readme"><span>(30 min) README.md avec exemples détectés</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-init"><span>Init repo qyrnsec/prompt-injection-detector <code>~20min</code><span class="tag tag-project">GH</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-patterns"><span>Catalogue de patterns d'injection (LLM01, LLM02, etc.) <code>~45min</code><span class="tag tag-pentest">OWASP</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-rules"><span>Engine de détection (regex + heuristiques) <code>~1h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-score"><span>Score de risque (low/medium/high/critical) <code>~45min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-test"><span>Test sur dataset Gandalf (notes S3) <code>~30min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-readme"><span>README.md avec exemples détectés <code>~30min</code></span></label>
             </div>
         </div>
 
         <div class="card project-card">
-            <div class="card-title">✨ Bonus — LLM layer sur mini-scanner <span class="tag tag-project">BONUS</span></div>
+            <div class="card-header"><div class="card-title">✨ Bonus — LLM layer sur mini-scanner</div><span class="tag tag-project">BONUS</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-bonus"><span>(1h) LLM layer au mini-scanner : interprétation des résultats + mini-rapport (bonus)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-bonus"><span>LLM layer au mini-scanner : interprétation des résultats + mini-rapport (bonus) <code>~1h</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📺 Contenu</div>
+            <div class="card-header"><div class="card-title">📺 Contenu</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-stream1"><span>(1h30 — twitch.tv) Stream Twitch mardi (live coding projet 1)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-stream2"><span>(1h30 — twitch.tv) Stream Twitch samedi (live coding projet 2)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-tiktok"><span>(1h — tiktok.com) TikTok cyber (sujet : prompt injection illustrée)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-stream1"><span>Stream Twitch mardi (live coding projet 1) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-stream2"><span>Stream Twitch samedi (live coding projet 2) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-tiktok"><span>TikTok cyber (sujet : prompt injection illustrée) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">🔍 OSINT</div>
+            <div class="card-header"><div class="card-title">🔍 OSINT</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-osint"><span>(45 min — osintdojo.com) 1 challenge OSINT</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-sector"><span>(30 min — sector035.com) Sector035 Sunday Quiz</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-osint"><span>1 challenge OSINT <code>~45min</code><span class="tag tag-osint">OSINT</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-sector"><span>Sector035 Sunday Quiz <code>~30min</code><span class="tag tag-osint">OSINT</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">👥 Communauté</div>
+            <div class="card-header"><div class="card-title">👥 Communauté</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-dm2"><span>(15 min — linkedin.com) 2e DM cyber pro</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-hackathon"><span>(20 min) Inscription à 1 hackathon (même si pas dispo)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-dm2"><span>2e DM cyber pro <code>~15min</code><span class="tag tag-soc">LinkedIn</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-hackathon"><span>Inscription à 1 hackathon (même si pas dispo) <code>~20min</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-writeup"><span>(2h — blog perso) Write-up Focus IA publié (bonus #3) — couvre les 2 projets</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-github"><span>(— github.com) 2 projets Python publiés sur GitHub qyrnsec</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-anki"><span>(20 min — ankiweb.net) Anki : cartes IA / LLM / prompt injection</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-loghebdo"><span>(15 min) Loghebdo dimanche</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-writeup"><span>Write-up Focus IA publié (bonus #3) — couvre les 2 projets <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-github"><span>2 projets Python publiés sur GitHub qyrnsec<span class="tag tag-project">GH</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-anki"><span>Anki : cartes IA / LLM / prompt injection <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
             </div>
         </div>
 
@@ -1246,59 +1248,59 @@
             <p><strong>Règle :</strong> 1 box HTB Easy <strong>active</strong> (pas retired) à thème web. Zéro walkthrough autorisé pendant <strong>6h</strong>, après seulement si vraiment bloqué.</p>
             <p style="margin-top:6px"><strong>Write-up à publier avant que la box soit retirée.</strong></p>
             <div class="tasks" style="margin-top:8px">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-pick"><span>(20 min — hackthebox.com) Choisir 1 box HTB Easy active à thème web</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-recon"><span>(1h — hackthebox.com) Recon complet documenté</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-foothold"><span>(2h — hackthebox.com) Foothold obtenu</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-priv"><span>(1h30 — hackthebox.com) Privesc obtenu</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-flag"><span>(— hackthebox.com) User + root flag récupérés</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-pick"><span>Choisir 1 box HTB Easy active à thème web <code>~20min</code><span class="tag tag-thm">HTB</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-recon"><span>Recon complet documenté <code>~1h</code><span class="tag tag-thm">HTB</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-foothold"><span>Foothold obtenu <code>~2h</code><span class="tag tag-thm">HTB</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-priv"><span>Privesc obtenu <code>~1h30</code><span class="tag tag-thm">HTB</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-flag"><span>User + root flag récupérés<span class="tag tag-thm">HTB</span></span></label>
             </div>
         </div>
 
         <div class="card project-card">
-            <div class="card-title">🔍🤖 Crossover OSINT × LLM <span class="tag tag-osint">OSINT</span> <span class="tag tag-ai">AI</span></div>
+            <div class="card-header"><div class="card-title">🔍🤖 Crossover OSINT × LLM</div><div style="display:flex;gap:4px"><span class="tag tag-osint">OSINT</span><span class="tag tag-ai">AI</span></div></div>
             <p style="font-size:0.85rem;color:var(--dim);margin:6px 0">Script Python : input = pseudo public → Sherlock pour découverte → Claude pour synthèse en mini-rapport. Cible = persona test sandboxé créé pour l'occasion (jamais qyrn ni autre identité réelle).</p>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-init"><span>(20 min — github.com) Init repo qyrnsec/osint-llm-recon</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-persona"><span>(30 min) Créer persona test sandboxé sur 5-6 plateformes</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-sherlock"><span>(1h — github.com/sherlock-project) Intégration Sherlock (input pseudo → liste comptes)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-llm"><span>(1h — anthropic.com) Pipeline Claude pour synthèse en mini-rapport</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-test"><span>(45 min) Test complet sur le persona sandboxé</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-readme"><span>(30 min) README.md + démo</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-init"><span>Init repo qyrnsec/osint-llm-recon <code>~20min</code><span class="tag tag-project">GH</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-persona"><span>Créer persona test sandboxé sur 5-6 plateformes <code>~30min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-sherlock"><span>Intégration Sherlock (input pseudo → liste comptes) <code>~1h</code><span class="tag tag-project">Sherlock</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-llm"><span>Pipeline Claude pour synthèse en mini-rapport <code>~1h</code><span class="tag tag-ai">Claude</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-test"><span>Test complet sur le persona sandboxé <code>~45min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-readme"><span>README.md + démo <code>~30min</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📊 Review de phase</div>
+            <div class="card-header"><div class="card-title">📊 Review de phase</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-quiz"><span>(1h30) Quiz final auto-administré (50 questions, viser ≥80%)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-self"><span>(45 min) Self-assessment : sujets maîtrisés vs à renforcer pour BTL1</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-trous"><span>(30 min) Liste des trous à combler en Phase 3 (BTL1 prep)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-quiz"><span>Quiz final auto-administré (50 questions, viser ≥80%) <code>~1h30</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-self"><span>Self-assessment : sujets maîtrisés vs à renforcer pour BTL1 <code>~45min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-trous"><span>Liste des trous à combler en Phase 3 (BTL1 prep) <code>~30min</code></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📺 Contenu final</div>
+            <div class="card-header"><div class="card-title">📺 Contenu final</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-stream1"><span>(1h30 — twitch.tv) Stream final mardi</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-stream2"><span>(1h30 — twitch.tv) Stream samedi (live box HTB)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-tiktok"><span>(1h — tiktok.com) TikTok bilan : "8 semaines de web sec, ce que j'ai appris"</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-stream1"><span>Stream final mardi <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-stream2"><span>Stream samedi (live box HTB) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-tiktok"><span>TikTok bilan : "8 semaines de web sec, ce que j'ai appris" <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">👥 Communauté</div>
+            <div class="card-header"><div class="card-title">👥 Communauté</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-dm3"><span>(15 min — linkedin.com) 3e DM cyber pro</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-dm3"><span>3e DM cyber pro <code>~15min</code><span class="tag tag-soc">LinkedIn</span></span></label>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-title">📝 Livrables fin de phase</div>
+            <div class="card-header"><div class="card-title">📝 Livrables fin de phase</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-writeup-htb"><span>(2h30 — blog perso) Write-up box HTB S8 (bonus #4)</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-bilan"><span>(2h — blog perso) Article blog "Phase 2 — Bilan" écrit à la main FR, traduit après</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-publish"><span>(— github.com) Crossover OSINT × LLM publié sur GitHub</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-loghebdo"><span>(15 min) Loghebdo final + tableau de progression complet</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-writeup-htb"><span>Write-up box HTB S8 (bonus #4) <code>~2h30</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-bilan"><span>Article blog "Phase 2 — Bilan" écrit à la main FR, traduit après <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-publish"><span>Crossover OSINT × LLM publié sur GitHub<span class="tag tag-project">GH</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-loghebdo"><span>Loghebdo final + tableau de progression complet <code>~15min</code></span></label>
             </div>
         </div>
 
@@ -1495,7 +1497,7 @@
             <div class="tasks" style="margin-top:8px">
                 <label class="task" data-phase="2"><input type="checkbox" data-id="proj-scanner-repo"><span>Repo qyrnsec/web-scanner créé et public</span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="proj-scanner-v01"><span>Version v0.1 fonctionnelle publiée</span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-scanner-done"><span>Version finale (v0.5+) livrée avec README</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-scanner-done"><span>Version finale livrée avec README <code>~v0.5+</code></span></label>
             </div>
         </div>
 
@@ -1643,7 +1645,7 @@ Rédaction samedi, publication dimanche.</div>
         </div>
 
         <div class="card">
-            <div class="card-title">Lun-Ven — jour type</div>
+            <div class="card-header"><div class="card-title">Lun-Ven — jour type</div></div>
             <table>
                 <tr><th>Heure</th><th>Activité</th></tr>
                 <tr><td>09:00</td><td>Sport (1h, mix muscu/cardio)</td></tr>
@@ -1658,7 +1660,7 @@ Rédaction samedi, publication dimanche.</div>
         </div>
 
         <div class="card">
-            <div class="card-title">Mardi &amp; Samedi (à partir de S4) — soirées stream</div>
+            <div class="card-header"><div class="card-title">Mardi &amp; Samedi (à partir de S4) — soirées stream</div></div>
             <table>
                 <tr><th>Heure</th><th>Activité</th></tr>
                 <tr><td>19:00</td><td>Setup OBS, scène, alertes</td></tr>
@@ -1668,7 +1670,7 @@ Rédaction samedi, publication dimanche.</div>
         </div>
 
         <div class="card">
-            <div class="card-title">Samedi en plus — write-up</div>
+            <div class="card-header"><div class="card-title">Samedi en plus — write-up</div></div>
             <table>
                 <tr><th>Heure</th><th>Activité</th></tr>
                 <tr><td>14:00</td><td>Rédaction write-up draft FR (1h30-2h)</td></tr>
@@ -1678,7 +1680,7 @@ Rédaction samedi, publication dimanche.</div>
         </div>
 
         <div class="card">
-            <div class="card-title">Dimanche — jour structuré allégé</div>
+            <div class="card-header"><div class="card-title">Dimanche — jour structuré allégé</div></div>
             <table>
                 <tr><th>Heure</th><th>Activité</th></tr>
                 <tr><td>09:00</td><td>Sport (5e séance) ou off complet</td></tr>
