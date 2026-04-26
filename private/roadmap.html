@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadmap Cyber 2026 — qyrn</title>
+    <title>Roadmap Phase 2 — qyrn</title>
     <link rel="icon" type="image/png" href="https://qyrn.dev/pfp.png">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -14,11 +14,10 @@
         header { text-align:center; padding:30px 16px; border-bottom:1px solid var(--border); }
         .title { font-family:'JetBrains Mono',monospace; font-size:1.8rem; font-weight:700; }
         .subtitle { color:var(--dim); font-size:0.9rem; }
-        .stoic { background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(59,130,246,0.1)); border:1px solid rgba(168,85,247,0.3); border-radius:8px; padding:12px; margin:16px auto; max-width:600px; font-style:italic; font-size:0.85rem; text-align:center; }
-        .stoic cite { display:block; margin-top:6px; color:var(--dim); font-style:normal; font-size:0.75rem; }
         .badge { display:inline-block; padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:600; margin:12px 4px 0; }
         .badge-soc { background:rgba(6,182,212,0.2); color:var(--cyan); }
         .badge-pentest { background:rgba(239,68,68,0.2); color:var(--red); }
+        .badge-ai { background:rgba(168,85,247,0.2); color:var(--purple); }
         .progress-box { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:12px; margin:16px auto; max-width:500px; }
         .progress-header { display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px; }
         .progress-bar { height:8px; background:#1a1a1a; border-radius:4px; overflow:hidden; }
@@ -37,6 +36,7 @@
         .section-title.orange { border-color:var(--orange); }
         .section-title.yellow { border-color:var(--yellow); }
         .section-title.pink { border-color:var(--pink); }
+        .section-title.blue { border-color:var(--blue); }
         .card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:14px; margin-bottom:10px; }
         .card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; flex-wrap:wrap; gap:6px; }
         .card-title { font-weight:700; font-size:0.95rem; }
@@ -47,6 +47,9 @@
         .tag-thm { background:rgba(34,197,94,0.2); color:var(--green); }
         .tag-project { background:rgba(236,72,153,0.2); color:var(--pink); }
         .tag-blog { background:rgba(249,115,22,0.2); color:var(--orange); }
+        .tag-ai { background:rgba(168,85,247,0.2); color:var(--purple); }
+        .tag-osint { background:rgba(234,179,8,0.2); color:var(--yellow); }
+        .tag-stream { background:rgba(145,71,255,0.2); color:#a78bfa; }
         .tasks { display:flex; flex-direction:column; gap:1px; }
         .task { display:flex; align-items:flex-start; gap:8px; padding:6px 8px; border-radius:4px; cursor:pointer; font-size:0.85rem; }
         .task:hover { background:#1a1a1a; }
@@ -60,6 +63,8 @@
         .info-box.green { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); }
         .info-box.orange { background:rgba(249,115,22,0.1); border:1px solid rgba(249,115,22,0.3); }
         .info-box.purple { background:rgba(168,85,247,0.1); border:1px solid rgba(168,85,247,0.3); }
+        .info-box.yellow { background:rgba(234,179,8,0.1); border:1px solid rgba(234,179,8,0.3); }
+        .info-box.pink { background:rgba(236,72,153,0.1); border:1px solid rgba(236,72,153,0.3); }
         .info-title { font-weight:700; margin-bottom:4px; }
         table { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.8rem; }
         th,td { border:1px solid var(--border); padding:8px; text-align:left; }
@@ -85,28 +90,30 @@
         .blocking-gate h4 { color:var(--red); margin-bottom:8px; }
         .week-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
         .week-dates { color:var(--dim); font-size:0.85rem; }
-        .resource-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; }
+        .resource-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:8px; }
         .resource-item { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:10px; }
         .resource-item h4 { font-size:0.85rem; margin-bottom:4px; }
         .resource-item p { font-size:0.75rem; color:var(--dim); }
+        .resource-item a { color:var(--cyan); text-decoration:none; font-size:0.75rem; }
+        .resource-item a:hover { text-decoration:underline; }
         .challenge-card { background:linear-gradient(135deg,rgba(234,179,8,0.08),rgba(249,115,22,0.08)); border:1px solid rgba(234,179,8,0.3); border-radius:8px; padding:14px; margin:8px 0; }
         .challenge-week { font-size:0.7rem; color:var(--yellow); font-weight:600; text-transform:uppercase; margin-bottom:4px; }
         .challenge-title { font-weight:700; font-size:0.95rem; margin-bottom:6px; }
         .challenge-desc { font-size:0.8rem; color:var(--dim); }
-        .secret-input { position:fixed; bottom:10px; right:10px; width:100px; padding:6px; background:transparent; border:1px solid transparent; border-radius:4px; color:transparent; font-size:0.7rem; outline:none; }
-        .secret-input:focus { background:var(--card); border-color:var(--border); color:var(--text); }
-        #berlin-tab { display:none; }
-        #berlin-tab.unlocked { display:block; }
-        .berlin-section { background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(168,85,247,0.08)); border:1px solid rgba(236,72,153,0.3); border-radius:8px; padding:16px; margin:12px 0; }
+        .min-viable-banner { background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(34,197,94,0.05)); border:2px solid var(--green); border-radius:8px; padding:14px; margin:16px 0; }
+        .min-viable-banner h4 { color:var(--green); margin-bottom:6px; }
+        .pause-banner { background:rgba(168,85,247,0.05); border:1px dashed var(--dim); border-radius:6px; padding:12px; margin:12px 0; font-size:0.82rem; color:var(--dim); }
+        .pause-banner strong { color:var(--text); }
     </style>
 </head>
 <body>
 <div class="container">
     <header>
-        <h1 class="title">ROADMAP CYBER 2026</h1>
-        <p class="subtitle">qyrn.dev — 11 mois • Mode Strict • Début 18 Février</p>
-        <span class="badge badge-soc">🛡️ SOC (2027)</span>
-        <span class="badge badge-pentest">🔴 Pentest (2028+)</span>
+        <h1 class="title">PHASE 2 — WEB SEC &amp; AI</h1>
+        <p class="subtitle">qyrn.dev — 8 semaines • 27 avril → 22 juin 2026</p>
+        <span class="badge badge-soc">🛡️ SOC Paris (2027)</span>
+        <span class="badge badge-pentest">🔴 Pentest Berlin (2028+)</span>
+        <span class="badge badge-ai">🤖 AI offense/defense</span>
         <div class="progress-box">
             <div class="progress-header"><span id="progressText">0%</span><span id="taskCount">0/0</span></div>
             <div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
@@ -119,6 +126,7 @@
 
     <nav>
         <button class="nav-btn active" onclick="showTab('overview')">Accueil</button>
+        <button class="nav-btn" onclick="showTab('s0')">Setup</button>
         <button class="nav-btn" onclick="showTab('s1')">S1</button>
         <button class="nav-btn" onclick="showTab('s2')">S2</button>
         <button class="nav-btn" onclick="showTab('s3')">S3</button>
@@ -130,631 +138,1346 @@
         <button class="nav-btn" onclick="showTab('challenges')">Défis</button>
         <button class="nav-btn" onclick="showTab('projects')">Projets</button>
         <button class="nav-btn" onclick="showTab('logbook')">Logbook</button>
-        <button class="nav-btn" onclick="showTab('job')">Emploi</button>
+        <button class="nav-btn" onclick="showTab('rules')">Règles</button>
         <button class="nav-btn" onclick="showTab('resources')">Ressources</button>
     </nav>
 
     <!-- OVERVIEW -->
     <div id="overview" class="tab active">
-        <div class="section-title purple">Mindset : Stoïcisme & Action</div>
-        <div class="info-box purple">
-            <div class="info-title">⚡ Règle #1 : Arrête l'analysis paralysis</div>
-            <p>Foncer. Peu importe les échecs. Essayer en boucle jusqu'à réussir. Ne pas perfectionner pour procrastiner.</p>
+
+        <div class="min-viable-banner">
+            <h4>✓ Minimum viable — la ligne rouge</h4>
+            <p><strong>1h labs/jour, 5j/7. 5h/sem.</strong> Si je tiens ça toutes les semaines, la phase est réussie. Tout le reste — write-ups, streams, projets IA, OSINT — c'est en plus.</p>
         </div>
 
-        <div class="section-title cyan">Timeline 2026-2028</div>
-        <table>
-            <tr><th>Période</th><th>Focus</th><th>Certification</th><th>Coût</th></tr>
-            <tr><td>Fév-Avr 2026</td><td>Phase 1 : Fondations</td><td>—</td><td>THM ~12€/mois</td></tr>
-            <tr><td>Avr-Juin 2026</td><td>Phase 2 : Web Security</td><td>—</td><td>—</td></tr>
-            <tr><td>Août 2026</td><td>Blue Team</td><td style="color:var(--cyan)">BTL1</td><td>~500€</td></tr>
-            <tr><td>Oct 2026</td><td>Pentest basics</td><td style="color:var(--red)">eJPT</td><td>~250€</td></tr>
-            <tr><td>Nov-Déc 2026</td><td>Job Hunt Lyon</td><td>—</td><td>—</td></tr>
-            <tr><td style="background:#151515">Jan 2027</td><td style="background:#151515">🎯 Début SOC Lyon</td><td style="background:#151515">—</td><td style="background:#151515">—</td></tr>
-            <tr><td>Mars 2027</td><td>Web avancé</td><td style="color:var(--orange)">BSCP</td><td>~100€</td></tr>
-            <tr><td>Sept 2027</td><td>Network pentest</td><td style="color:var(--purple)">PNPT</td><td>~500€</td></tr>
-            <tr><td>Oct 2027</td><td>Job Hunt Berlin</td><td>—</td><td>—</td></tr>
-            <tr><td style="background:#151515">Jan 2028</td><td style="background:#151515">🇩🇪 Berlin</td><td style="background:#151515">—</td><td style="background:#151515">—</td></tr>
-            <tr><td>Juin 2028</td><td>HTB avancé</td><td style="color:var(--green)">CPTS</td><td>~300€</td></tr>
-            <tr><td>Déc 2028</td><td>Gold standard</td><td style="color:var(--yellow)">OSCP</td><td>~1750€</td></tr>
-        </table>
-
-        <div class="section-title red">Règles strictes</div>
-        <div class="info-box red">
-            <div class="info-title">⛔ Phases bloquantes</div>
-            <p>Tu ne passes PAS à la phase suivante sans :</p>
-            <ul style="margin-left:16px;margin-top:6px;">
-                <li>Quiz validé (≥70%)</li>
-                <li>Projet clé terminé + publié GitHub</li>
-                <li>Write-up publié sur blog</li>
-            </ul>
+        <div class="blocking-gate">
+            <h4>🔥 Engagement — conséquence si drop</h4>
+            <p>Si une semaine fait <strong>moins de 5h labs</strong>, pas de stream Twitch la semaine suivante. La conséquence vient du projet, pas d'une punition externe.</p>
         </div>
 
-        <div class="section-title green">Plateformes (MAX 3 par phase)</div>
+        <div class="section-title cyan">Calendrier Phase 2</div>
         <table>
-            <tr><th>Phase</th><th>Plateformes</th><th>Bonus</th></tr>
-            <tr><td>Phase 1</td><td>TryHackMe, OverTheWire, Root Me</td><td>1-2 vidéos/semaine</td></tr>
-            <tr><td>Phase 2</td><td>PortSwigger, TryHackMe, HackTheBox</td><td>IppSec</td></tr>
-            <tr><td>Phase 3</td><td>LetsDefend, CyberDefenders, TryHackMe</td><td>Darknet Diaries</td></tr>
-            <tr><td>Phase 4</td><td>HackTheBox, Proving Grounds, PortSwigger</td><td>TCM YouTube</td></tr>
+            <tr><th>Sem</th><th>Dates</th><th>Thème</th><th>Livrable</th></tr>
+            <tr><td>S1</td><td>27.04 → 04.05</td><td>Fondations HTTP/JS/Auth + revue P1</td><td>50 cartes Anki + relecture blog</td></tr>
+            <tr><td>S2</td><td>05.05 → 11.05</td><td>SQL Injection</td><td>Write-up SQLi + scanner v0.1</td></tr>
+            <tr><td>S3</td><td>12.05 → 18.05</td><td>XSS + Gandalf (premier contact IA)</td><td>Write-up XSS + scanner v0.2</td></tr>
+            <tr><td>S4</td><td>19.05 → 25.05</td><td>Access Control / IDOR + démarrage contenu</td><td>Write-up + 1er stream + 1er TikTok</td></tr>
+            <tr><td>S5</td><td>26.05 → 01.06</td><td>SSRF + Upload + API + OWASP LLM</td><td>Write-up + scanner v0.4</td></tr>
+            <tr><td>S6</td><td>02.06 → 08.06</td><td>Auth/JWT + box HTB Easy retired</td><td>Write-up Auth/JWT + box solved</td></tr>
+            <tr><td>S7</td><td>09.06 → 15.06</td><td>Focus IA pure — projets Python × LLM</td><td>2 projets GitHub + write-up IA</td></tr>
+            <tr><td>S8</td><td>16.06 → 22.06</td><td>Box HTB solo + crossover OSINT × LLM + review</td><td>Write-up box + bilan phase</td></tr>
         </table>
+
+        <div class="section-title green">Objectifs mesurables fin de phase</div>
+        <table>
+            <tr><th>Cible</th><th>Métrique</th></tr>
+            <tr><td>40+</td><td>Labs PortSwigger complétés (dont 8+ Practitioner)</td></tr>
+            <tr><td>5+4</td><td>Write-ups (5 obligatoires + 4 bonus)</td></tr>
+            <tr><td>2</td><td>Box HTB résolues (1 retired S6 + 1 active solo S8)</td></tr>
+            <tr><td>1</td><td>Mini-scanner web v0.1 → v0.5 sur GitHub</td></tr>
+            <tr><td>2</td><td>Projets cyber × IA (auto-pentest LLM + détecteur prompt injection)</td></tr>
+            <tr><td>1</td><td>Crossover OSINT × LLM publié</td></tr>
+            <tr><td>5+</td><td>TikToks cyber (à partir de S4)</td></tr>
+            <tr><td>10</td><td>Streams Twitch (S4-S8, 2/sem)</td></tr>
+            <tr><td>1</td><td>Meetup cyber attendu en personne</td></tr>
+            <tr><td>3</td><td>DM cyber pros envoyés</td></tr>
+            <tr><td>≥80%</td><td>Quiz final auto-administré</td></tr>
+            <tr><td>40</td><td>Séances de sport (5/sem × 8)</td></tr>
+        </table>
+
+        <div class="section-title orange">Charge horaire</div>
+        <div class="info-box orange">
+            <p><strong>Cible :</strong> 18h cyber/sem (3h × 6j, dimanche cyber off) + 5h sport/sem (1h × 5j).</p>
+            <p style="margin-top:6px"><strong>3h cyber actives par jour :</strong> 100% labs/projets/write-up. Anki et contenu passif sont en bonus sur le reste de la journée, hors des 3h.</p>
+            <p style="margin-top:6px"><strong>Minimum viable :</strong> 5h/sem (1h × 5j), labs uniquement, write-ups bonus.</p>
+        </div>
+
+        <div class="section-title pink">Piliers transversaux</div>
+        <div class="card">
+            <div class="card-title">🛡️ Web Security (cœur)</div>
+            <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">PortSwigger Academy — SQLi, XSS, IDOR, SSRF, Upload, API, Auth, JWT. 40+ labs sur 8 semaines.</p>
+        </div>
+        <div class="card">
+            <div class="card-title">🤖 AI Offense/Defense</div>
+            <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">Gandalf (S3), OWASP LLM Top 10 (S5), 2 projets Python (S7), crossover OSINT × LLM (S8).</p>
+        </div>
+        <div class="card">
+            <div class="card-title">🔍 OSINT / GEOINT</div>
+            <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">1 défi/semaine. Sector035 Sunday Quiz, OSINT Dojo Ninja, Trace Labs CTF. Persona qyrn uniquement, VPN systématique.</p>
+        </div>
+        <div class="card">
+            <div class="card-title">🏋️ Sport (5×/sem)</div>
+            <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">1h/jour à 9h, mix muscu/cardio. Objectif Bullseye / Daredevil — lean ~10-12% body fat.</p>
+        </div>
+        <div class="card">
+            <div class="card-title">📺 Création de contenu (à partir de S4)</div>
+            <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">2 streams Twitch/sem (qyrnsec) en doublon des labs + 1 TikTok cyber/sem. YouTube optionnel quand un sujet me parle.</p>
+        </div>
+        <div class="card">
+            <div class="card-title">👥 Communauté</div>
+            <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">1 meetup attendu + 1 hackathon inscrit + 3 DM cyber pros pendant la phase.</p>
+        </div>
+
+    </div>
+
+    <!-- S0 SETUP -->
+    <div id="s0" class="tab">
+        <div class="week-header">
+            <div>
+                <div class="section-title green">Setup pré-démarrage</div>
+                <div class="week-dates">Dimanche 26.04.2026 — avant le lundi 27</div>
+            </div>
+        </div>
+
+        <div class="info-box green">
+            <div class="info-title">🟢 Objectif S0</div>
+            <p>Tout setuper le dimanche pour que lundi 18h on ouvre Burp et on attaque, pas qu'on perde une heure à créer des comptes.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🛠️ Setup technique</div>
+            <div class="tasks">
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-vm"><span>VM Kali boot OK, Burp s'ouvre sans erreur</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-foxy"><span>FoxyProxy installé sur Firefox + config Burp 127.0.0.1:8080</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-cert"><span>Certificat Burp CA importé dans Firefox (HTTPS lisible)</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-anki-pc"><span>Anki Desktop installé sur PC</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-anki-web"><span>Compte AnkiWeb créé + sync activé</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-anki-mobile"><span>AnkiDroid installé + synced</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-deck"><span>Deck "qyrn cyber" créé + 30-50 cartes de base sur Phase 1</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🌐 Comptes &amp; bookmarks</div>
+            <div class="tasks">
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-portswigger"><span>Compte PortSwigger Academy créé (gratuit)</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-thm"><span>TryHackMe encore loggé</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-htb"><span>HackTheBox encore loggé</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-tracelabs"><span>Compte Trace Labs créé (CTF mensuel)</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-osintdojo"><span>OSINT Dojo bookmarké (challenges Ninja)</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-sector"><span>Sector035 Sunday Quiz bookmarké</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-gandalf"><span>Gandalf Lakera bookmarké</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-vpn"><span>ProtonVPN free installé (pour OSINT)</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📺 YouTube subs</div>
+            <div class="tasks">
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-yt-fr"><span>FR : FransOsint, Defend Intelligence, Micode, Underscore_, Hackerf0x, Waked XY, Michel Kartner, Parlons Cyber, OSINT-FR</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-yt-en"><span>EN : IppSec (notif all), John Hammond, LiveOverflow, PinkDraconian</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-podcast"><span>Darknet Diaries dans l'app podcast (Spotify/Apple/etc.)</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🏠 Espace de travail</div>
+            <div class="tasks">
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-desk"><span>Bureau fixe identifié (PAS le lit, JAMAIS le lit)</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-phone"><span>Endroit pour téléphone hors de la chambre la nuit</span></label>
+                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-pomo"><span>Timer Pomodoro choisi (app PC ou web)</span></label>
+            </div>
+        </div>
     </div>
 
     <!-- S1 -->
     <div id="s1" class="tab">
         <div class="week-header">
-            <div class="section-title red">Semaine 1 : Linux Fondamentaux</div>
-            <span class="week-dates">📅 18-22 Février 2026</span>
+            <div>
+                <div class="section-title cyan">S1 — Fondations</div>
+                <div class="week-dates">Lun 27.04 → Dim 04.05</div>
+            </div>
+            <span class="tag tag-soc">Consolidation</span>
         </div>
+
+        <div class="info-box cyan">
+            <div class="info-title">🎯 Objectif S1</div>
+            <p>Reposer les fondations HTTP/JS/Auth qui me manquent + revue Phase 1 honnête. Pas d'attaque cette semaine. Semaine de prérequis.</p>
+        </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="card-title">📚 Cyber — cœur de semaine</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Linux Fundamentals Part 1 <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Linux Fundamentals Part 2 <code>~45min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Linux Fundamentals Part 3 <code>~1h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-bandit"><span>Bandit niveaux 20-25 sans aide ni Google, chrono, noter où je bloque</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-nmap"><span>Re-read Nmap propre (les flags qui m'ont posé problème en P1)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-http"><span>HTTP fondamental : GET/POST, headers, status codes, cookies, sessions</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-auth"><span>Auth basics (lecture seule) : cookies de session, structure JWT décodée</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-js"><span>JS pour la sécu : DOM, événements, document.cookie, fetch, encoding (URL/HTML/base64)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-burp"><span>Burp : Repeater + Intercept maîtrisés (pas Intruder ni Macros)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-psbasics"><span>PortSwigger "Web Security Basics" + "Your first challenge" complétés</span></label>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">⚡ OverTheWire Bandit</div></div></div>
+            <div class="card-title">🪞 Méta-tâches obligatoires</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Bandit Level 0 → 5 <code>~1h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Bandit Level 5 → 10 <code>~1h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Bandit Level 10 → 15 <code>~1h30</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-relecture"><span>Relecture critique des 6 articles blog : noter les passages que je peux pas défendre en entretien</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-anki"><span>Anki : importer/créer 30-50 cartes de base sur P1</span></label>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="card-title">🔍 OSINT / contenu passif</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Log par session</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>📝 Article blog : un truc appris cette semaine</span><span class="tag tag-blog">BLOG</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-sector"><span>1er Sector035 Sunday Quiz (dim 04/05)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-passif"><span>30 min/jour contenu passif (IppSec / Defend Intelligence / FransOsint)</span></label>
             </div>
         </div>
-        <div class="info-box purple" style="margin-top:12px">
-            <div class="info-title">🆘 Si blocage</div>
-            <p><a href="https://www.youtube.com/results?search_query=tryhackme+linux+fundamentals" target="_blank" style="color:var(--cyan)">YouTube: THM Linux Fundamentals</a> · <a href="https://linuxjourney.com/" target="_blank" style="color:var(--cyan)">linuxjourney.com</a></p>
+
+        <div class="card">
+            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-deck"><span>Deck Anki nourri (50+ cartes actives)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-notes"><span>Notes critiques sur les 6 articles existants</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-loghebdo"><span>Loghebdo dimanche 18h (15 min)</span></label>
+            </div>
         </div>
-        <div class="quiz-section">
-            <div class="info-title" style="color:var(--orange)">🧠 Quiz S1 — 5 questions</div>
-            <div class="quiz-item"><label>Q1: Commande pour afficher les 10 dernières lignes ?</label><input type="text" class="quiz-input" id="q1-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-1',['tail'])">Vérifier</button><div class="quiz-answer" id="q1-1-answer"><code>tail fichier.txt</code></div><div class="quiz-result" id="q1-1-result"></div></div>
-            <div class="quiz-item"><label>Q2: Permission 755 signifie ?</label><input type="text" class="quiz-input" id="q1-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-2',['rwx','r-x'])">Vérifier</button><div class="quiz-answer" id="q1-2-answer">rwxr-xr-x (owner full, group+others read+exec)</div><div class="quiz-result" id="q1-2-result"></div></div>
-            <div class="quiz-item"><label>Q3: Chercher "error" dans un fichier ?</label><input type="text" class="quiz-input" id="q1-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-3',['grep'])">Vérifier</button><div class="quiz-answer" id="q1-3-answer"><code>grep "error" fichier</code></div><div class="quiz-result" id="q1-3-result"></div></div>
-            <div class="quiz-item"><label>Q4: Créer listener netcat port 4444 ?</label><input type="text" class="quiz-input" id="q1-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-4',['nc -l','nc -lvnp'])">Vérifier</button><div class="quiz-answer" id="q1-4-answer"><code>nc -lvnp 4444</code></div><div class="quiz-result" id="q1-4-result"></div></div>
-            <div class="quiz-item"><label>Q5: Décoder base64 ?</label><input type="text" class="quiz-input" id="q1-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q1-5',['base64 -d'])">Vérifier</button><div class="quiz-answer" id="q1-5-answer"><code>base64 -d fichier</code></div><div class="quiz-result" id="q1-5-result"></div></div>
+
+        <div class="info-box yellow">
+            <div class="info-title">⚠️ Pas cette semaine</div>
+            <p>Pas de write-up (semaine de fondations). Pas de stream (démarrage S4). Pas d'attaque (consolidation seulement).</p>
         </div>
     </div>
 
     <!-- S2 -->
     <div id="s2" class="tab">
         <div class="week-header">
-            <div class="section-title red">Semaine 2 : Linux Avancé + Bash</div>
-            <span class="week-dates">📅 23 Fév - 1 Mars 2026</span>
+            <div>
+                <div class="section-title red">S2 — SQL Injection</div>
+                <div class="week-dates">Lun 05.05 → Dim 11.05</div>
+            </div>
+            <span class="tag tag-pentest">Attaque #1</span>
         </div>
+
+        <div class="info-box red">
+            <div class="info-title">🎯 Objectif S2</div>
+            <p>Première vraie attaque web. Comprendre l'injection en profondeur, pas juste copier des payloads. Démarrer le mini-scanner.</p>
+        </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="card-title">📚 Labs PortSwigger</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Bash Scripting <code>~1h30</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Linux Shells <code>~1h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union1"><span>UNION-based SQLi — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union2"><span>UNION-based SQLi — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union3"><span>UNION-based SQLi — lab 3</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind1"><span>Blind SQLi boolean — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind2"><span>Blind SQLi boolean — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time1"><span>Blind SQLi time-based — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time2"><span>Blind SQLi time-based — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass1"><span>SQLi via filter bypass — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass2"><span>SQLi via filter bypass — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-pract"><span>1 lab Practitioner SQLi (bonus si temps)</span></label>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">🇫🇷 Root Me</div></div></div>
+            <div class="card-title">🔧 Outils introduits</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>5 challenges App Script <code>~2h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-intruder"><span>Burp Intruder maîtrisé (cas d'usage : brute-force payloads SQLi)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-sqlmap"><span>sqlmap — 1 cas concret (pas d'automatisation aveugle)</span></label>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">⚡ Bandit suite</div></div></div>
+
+        <div class="card project-card">
+            <div class="card-title">🛠️ Mini-scanner v0.1 <span class="tag tag-project">PROJET</span></div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Bandit 15 → 20 <code>~1h30</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Bandit 20 → 25 <code>~2h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-scan-init"><span>Init repo GitHub qyrnsec/web-scanner</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-scan-struct"><span>Structure Python : fetcher, parser, reporter</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-scan-headers"><span>Checks headers de sécu : X-Frame-Options, CSP, HSTS, X-Content-Type-Options</span></label>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">🛠️ Mini-Lab Scripts</div></div></div>
+            <div class="card-title">🔍 OSINT</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Script backup automatique <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Script vérifier service <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Script parser logs <code>~45min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-osint-dojo"><span>1 challenge OSINT Dojo Ninja</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-sector"><span>Sector035 Sunday Quiz dimanche</span></label>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="card-title">📝 Livrables fin de semaine</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Scripts sur GitHub</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>📝 Article blog (optionnel)</span><span class="tag tag-blog">BLOG</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-writeup"><span>📌 Write-up SQLi publié (obligatoire #1) — sam rédaction, dim publication</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-anki"><span>Anki : ajout cartes SQLi (UNION, payloads, syntaxe blind)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-loghebdo"><span>Loghebdo dimanche 18h</span></label>
             </div>
-        </div>
-        <div class="info-box purple" style="margin-top:12px">
-            <div class="info-title">🆘 Si blocage</div>
-            <p><a href="https://www.youtube.com/results?search_query=bash+scripting+tutorial" target="_blank" style="color:var(--cyan)">YouTube: Bash Scripting</a> · <a href="https://devhints.io/bash" target="_blank" style="color:var(--cyan)">devhints.io/bash</a></p>
-        </div>
-        <div class="quiz-section">
-            <div class="info-title" style="color:var(--orange)">🧠 Quiz S2 — 5 questions</div>
-            <div class="quiz-item"><label>Q1: Syntaxe boucle for 1 à 10 en bash ?</label><input type="text" class="quiz-input" id="q2-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-1',['for i in','for (('])">Vérifier</button><div class="quiz-answer" id="q2-1-answer"><code>for i in {1..10}; do echo $i; done</code></div><div class="quiz-result" id="q2-1-result"></div></div>
-            <div class="quiz-item"><label>Q2: Accéder au 2ème argument d'un script ?</label><input type="text" class="quiz-input" id="q2-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-2',['$2'])">Vérifier</button><div class="quiz-answer" id="q2-2-answer"><code>$2</code></div><div class="quiz-result" id="q2-2-result"></div></div>
-            <div class="quiz-item"><label>Q3: Que fait */5 * * * * en cron ?</label><input type="text" class="quiz-input" id="q2-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-3',['5 min','toutes les 5','every 5'])">Vérifier</button><div class="quiz-answer" id="q2-3-answer">Exécute toutes les 5 minutes</div><div class="quiz-result" id="q2-3-result"></div></div>
-            <div class="quiz-item"><label>Q4: Lister fichiers SUID ?</label><input type="text" class="quiz-input" id="q2-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-4',['find','perm','-4000'])">Vérifier</button><div class="quiz-answer" id="q2-4-answer"><code>find / -perm -4000 2>/dev/null</code></div><div class="quiz-result" id="q2-4-result"></div></div>
-            <div class="quiz-item"><label>Q5: Rediriger stderr vers stdout ?</label><input type="text" class="quiz-input" id="q2-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q2-5',['2>&1'])">Vérifier</button><div class="quiz-answer" id="q2-5-answer"><code>2>&1</code></div><div class="quiz-result" id="q2-5-result"></div></div>
         </div>
     </div>
 
     <!-- S3 -->
     <div id="s3" class="tab">
         <div class="week-header">
-            <div class="section-title red">Semaine 3 : Réseau Fondamentaux</div>
-            <span class="week-dates">📅 2-8 Mars 2026</span>
+            <div>
+                <div class="section-title red">S3 — XSS &amp; premier contact IA</div>
+                <div class="week-dates">Lun 12.05 → Dim 18.05</div>
+            </div>
+            <span class="tag tag-pentest">Attaque #2</span>
+            <span class="tag tag-ai">LLM Intro</span>
         </div>
+
+        <div class="info-box red">
+            <div class="info-title">🎯 Objectif S3</div>
+            <p>XSS sous toutes ses formes (Reflected, Stored, DOM, CSP bypass). Premier contact ludique avec la sécurité IA via Gandalf.</p>
+        </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="card-title">📚 Labs PortSwigger</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Intro to Networking <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Introductory Networking <code>~1h30</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Wireshark: The Basics <code>~1h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl1"><span>Reflected XSS — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl2"><span>Reflected XSS — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl3"><span>Reflected XSS — lab 3</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored1"><span>Stored XSS — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored2"><span>Stored XSS — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom1"><span>DOM-based XSS — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom2"><span>DOM-based XSS — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom3"><span>DOM-based XSS — lab 3</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp1"><span>CSP bypass — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp2"><span>CSP bypass — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-pract"><span>1 lab Practitioner XSS (bonus si temps)</span></label>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">⚡ Pratique Wireshark</div></div></div>
+            <div class="card-title">🤖 IA — premier contact <span class="tag tag-ai">AI</span></div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Capturer TCP handshake <code>~20min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Capturer DNS <code>~20min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Capturer HTTP <code>~20min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-gandalf1"><span>Gandalf Lakera — niveaux 1 à 4</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-gandalf2"><span>Gandalf Lakera — niveaux 5 à 8</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-gandalf-notes"><span>Notes au fil sur les techniques de prompt injection découvertes</span></label>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+
+        <div class="card project-card">
+            <div class="card-title">🛠️ Mini-scanner v0.2 <span class="tag tag-project">PROJET</span></div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Cheatsheet networking.md</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>📝 Article blog</span><span class="tag tag-blog">BLOG</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-scan-xss"><span>Ajout détection XSS reflected basique (envoi payloads + vérif réflexion)</span></label>
             </div>
         </div>
-        <div class="info-box purple" style="margin-top:12px">
-            <div class="info-title">🆘 Si blocage</div>
-            <p><a href="https://www.youtube.com/watch?v=3QhU9jd03a0" target="_blank" style="color:var(--cyan)">NetworkChuck: Networking</a> · <a href="https://www.wireshark.org/docs/" target="_blank" style="color:var(--cyan)">Wireshark Docs</a></p>
+
+        <div class="card">
+            <div class="card-title">🔍 OSINT</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-osint"><span>1 challenge OSINT (cybersecurite.forge.apps.education.fr — défi Roxane)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-sector"><span>Sector035 Sunday Quiz dimanche</span></label>
+            </div>
         </div>
-        <div class="quiz-section">
-            <div class="info-title" style="color:var(--orange)">🧠 Quiz S3 — 5 questions</div>
-            <div class="quiz-item"><label>Q1: 3 étapes TCP handshake ?</label><input type="text" class="quiz-input" id="q3-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-1',['syn','ack'])">Vérifier</button><div class="quiz-answer" id="q3-1-answer">SYN → SYN-ACK → ACK</div><div class="quiz-result" id="q3-1-result"></div></div>
-            <div class="quiz-item"><label>Q2: Différence TCP vs UDP ?</label><input type="text" class="quiz-input" id="q3-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-2',['connection','fiable','reliable'])">Vérifier</button><div class="quiz-answer" id="q3-2-answer">TCP=connection-oriented, fiable. UDP=connectionless, rapide.</div><div class="quiz-result" id="q3-2-result"></div></div>
-            <div class="quiz-item"><label>Q3: Ports SSH, HTTP, HTTPS, DNS ?</label><input type="text" class="quiz-input" id="q3-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-3',['22','80','443','53'])">Vérifier</button><div class="quiz-answer" id="q3-3-answer">SSH:22, HTTP:80, HTTPS:443, DNS:53</div><div class="quiz-result" id="q3-3-result"></div></div>
-            <div class="quiz-item"><label>Q4: Voir connexions actives ?</label><input type="text" class="quiz-input" id="q3-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-4',['netstat','ss'])">Vérifier</button><div class="quiz-answer" id="q3-4-answer"><code>netstat -tulpn</code> ou <code>ss -tulpn</code></div><div class="quiz-result" id="q3-4-result"></div></div>
-            <div class="quiz-item"><label>Q5: Que signifie /24 ?</label><input type="text" class="quiz-input" id="q3-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q3-5',['255.255.255.0','256','254'])">Vérifier</button><div class="quiz-answer" id="q3-5-answer">Masque 255.255.255.0 = 256 adresses</div><div class="quiz-result" id="q3-5-result"></div></div>
+
+        <div class="card">
+            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-writeup"><span>📌 Write-up XSS publié (obligatoire #2)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-writeup-bonus"><span>Write-up Gandalf (bonus si je veux capitaliser)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-anki"><span>Anki : ajout cartes XSS + DOM + Gandalf</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-loghebdo"><span>Loghebdo dimanche</span></label>
+            </div>
         </div>
     </div>
 
     <!-- S4 -->
     <div id="s4" class="tab">
         <div class="week-header">
-            <div class="section-title red">Semaine 4 : Nmap & Recon</div>
-            <span class="week-dates">📅 9-15 Mars 2026</span>
+            <div>
+                <div class="section-title pink">S4 — Access Control + démarrage contenu</div>
+                <div class="week-dates">Lun 19.05 → Dim 25.05</div>
+            </div>
+            <span class="tag tag-pentest">Mid-phase</span>
+            <span class="tag tag-stream">Streams ON</span>
         </div>
+
+        <div class="info-box pink">
+            <div class="info-title">🎯 Objectif S4 — virage</div>
+            <p>IDOR / business logic. Et surtout : démarrage de la création de contenu (streams, TikTok). C'est maintenant que le brand qyrnsec démarre publiquement.</p>
+        </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="card-title">📚 Labs PortSwigger</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Nmap <code>~2h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Passive Reconnaissance <code>~1h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Active Reconnaissance <code>~1h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Linux PrivEsc <code>~3h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor1"><span>IDOR — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor2"><span>IDOR — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor3"><span>IDOR — lab 3</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv1"><span>Privilege escalation horizontal — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv2"><span>Privilege escalation vertical — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl1"><span>Business logic — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl2"><span>Business logic — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-mass"><span>Mass assignment — lab 1</span></label>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">⚡ Pratique</div></div></div>
+            <div class="card-title">📺 Démarrage contenu <span class="tag tag-stream">STREAM</span></div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Scan réseau local <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Scan scanme.nmap.org <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Utiliser Shodan et crt.sh <code>~30min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream1"><span>1er stream Twitch qyrnsec — mardi 20/05, 1h30 (labs en cours)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream2"><span>2e stream — samedi 24/05, 1h30</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-tiktok"><span>1er TikTok cyber — "C'est quoi un IDOR en 60s" (publié dim 25/05)</span></label>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+
+        <div class="card project-card">
+            <div class="card-title">🛠️ Mini-scanner v0.3 <span class="tag tag-project">PROJET</span></div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Cheatsheet nmap.md</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>📝 Article blog (optionnel)</span><span class="tag tag-blog">BLOG</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-scan-idor"><span>Ajout détection IDOR pattern-based (même endpoint, deux user IDs, comparaison)</span></label>
             </div>
         </div>
-        <div class="info-box purple" style="margin-top:12px">
-            <div class="info-title">🆘 Si blocage</div>
-            <p><a href="https://www.youtube.com/results?search_query=nmap+tutorial" target="_blank" style="color:var(--cyan)">YouTube: Nmap</a> · <a href="https://gtfobins.github.io/" target="_blank" style="color:var(--cyan)">GTFOBins</a> · <a href="https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html" target="_blank" style="color:var(--cyan)">HackTricks PrivEsc</a></p>
+
+        <div class="card">
+            <div class="card-title">🔍 OSINT</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-osint"><span>OSINT Dojo Ninja Challenges (suite progressive)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-sector"><span>Sector035 Sunday Quiz dimanche</span></label>
+            </div>
         </div>
-        <div class="quiz-section">
-            <div class="info-title" style="color:var(--orange)">🧠 Quiz S4 — 5 questions</div>
-            <div class="quiz-item"><label>Q1: Scan SYN stealth + versions + scripts par défaut ?</label><input type="text" class="quiz-input" id="q4-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-1',['-sS','-sV','-sC'])">Vérifier</button><div class="quiz-answer" id="q4-1-answer"><code>nmap -sS -sV -sC target</code> ou <code>nmap -A target</code></div><div class="quiz-result" id="q4-1-result"></div></div>
-            <div class="quiz-item"><label>Q2: À quoi sert crt.sh ?</label><input type="text" class="quiz-input" id="q4-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-2',['subdomain','certificat','ssl'])">Vérifier</button><div class="quiz-answer" id="q4-2-answer">Trouver sous-domaines via certificats SSL</div><div class="quiz-result" id="q4-2-result"></div></div>
-            <div class="quiz-item"><label>Q3: Lister les binaires SUID sur un système ?</label><input type="text" class="quiz-input" id="q4-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-3',['find','-perm','-4000','u+s'])">Vérifier</button><div class="quiz-answer" id="q4-3-answer"><code>find / -perm -4000 2>/dev/null</code></div><div class="quiz-result" id="q4-3-result"></div></div>
-            <div class="quiz-item"><label>Q4: Première commande à lancer pour PrivEsc Linux ?</label><input type="text" class="quiz-input" id="q4-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-4',['sudo -l','id','whoami'])">Vérifier</button><div class="quiz-answer" id="q4-4-answer"><code>sudo -l</code> (voir ce qu'on peut exécuter en root)</div><div class="quiz-result" id="q4-4-result"></div></div>
-            <div class="quiz-item"><label>Q5: Site pour trouver exploits GTFOBins ?</label><input type="text" class="quiz-input" id="q4-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q4-5',['gtfobins'])">Vérifier</button><div class="quiz-answer" id="q4-5-answer"><code>gtfobins.github.io</code> — exploits binaires Linux</div><div class="quiz-result" id="q4-5-result"></div></div>
+
+        <div class="card">
+            <div class="card-title">👥 Communauté</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-meetup"><span>Rechercher meetups OWASP Lorraine / Grand Est ou Paris pour mai-juin</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-hackathon"><span>Identifier 1 hackathon à inscrire</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-writeup"><span>📌 Write-up IDOR publié (obligatoire #3)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-writeup-osint"><span>Write-up OSINT séparé (bonus #1 sur les 4)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-anki"><span>Anki : ajout cartes Access Control / IDOR</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-loghebdo"><span>Loghebdo dimanche</span></label>
+            </div>
         </div>
     </div>
 
     <!-- S5 -->
     <div id="s5" class="tab">
         <div class="week-header">
-            <div class="section-title red">Semaine 5 : Python pour Pentest</div>
-            <span class="week-dates">📅 16-22 Mars 2026</span>
+            <div>
+                <div class="section-title orange">S5 — SSRF / Upload / API + LLM theory</div>
+                <div class="week-dates">Lun 26.05 → Dim 01.06</div>
+            </div>
+            <span class="tag tag-pentest">Server-side</span>
+            <span class="tag tag-ai">LLM lecture</span>
         </div>
+
+        <div class="info-box orange">
+            <div class="info-title">🎯 Objectif S5</div>
+            <p>Vulnérabilités côté serveur : SSRF, Upload, XXE, API. En parallèle, lecture théorie OWASP LLM Top 10 pour préparer S7.</p>
+        </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="card-title">📚 Labs PortSwigger</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Python Basics <code>~1h30</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Python for Pentesters <code>~2h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf1"><span>SSRF basic — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf2"><span>SSRF basic — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf3"><span>SSRF filter bypass — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up1"><span>File Upload — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up2"><span>File Upload — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up3"><span>File Upload bypass — lab 3</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe1"><span>XXE injection — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe2"><span>XXE injection — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-rest"><span>API REST IDOR — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-gql"><span>GraphQL basics — lab 1</span></label>
             </div>
         </div>
+
+        <div class="card">
+            <div class="card-title">🤖 IA — théorie <span class="tag tag-ai">AI</span></div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-owasp"><span>Lecture OWASP LLM Top 10 (30-45 min) + prise de notes FR</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-hackaprompt"><span>HackAPrompt walkthrough (bonus si temps)</span></label>
+            </div>
+        </div>
+
         <div class="card project-card">
-            <div class="card-header"><div><div class="card-title">🛠️ PROJET CV : Port Scanner</div></div><span class="tag tag-project">CV</span></div>
+            <div class="card-title">🛠️ Mini-scanner v0.4 <span class="tag tag-project">PROJET</span></div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Scanner avec socket <code>~1h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Multi-threading <code>~1h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>CLI argparse <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Banner grabbing <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>README + GitHub <code>~30min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-scan-ssrf"><span>Ajout SSRF basique + détection upload non sécurisé</span></label>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="card-title">📺 Contenu <span class="tag tag-stream">STREAM</span></div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Port Scanner publié</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>📝 Article blog</span><span class="tag tag-blog">BLOG</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-stream1"><span>Stream Twitch mardi</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-stream2"><span>Stream Twitch samedi</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-tiktok"><span>1 TikTok cyber (sujet : SSRF ou file upload)</span></label>
             </div>
         </div>
-        <div class="info-box purple" style="margin-top:12px">
-            <div class="info-title">🆘 Si blocage</div>
-            <p><a href="https://www.youtube.com/results?search_query=python+port+scanner" target="_blank" style="color:var(--cyan)">YouTube: Python Port Scanner</a> · <a href="https://realpython.com/python-sockets/" target="_blank" style="color:var(--cyan)">RealPython Sockets</a></p>
+
+        <div class="card">
+            <div class="card-title">🔍 OSINT</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-osint"><span>1 challenge OSINT</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-sector"><span>Sector035 Sunday Quiz</span></label>
+            </div>
         </div>
-        <div class="quiz-section">
-            <div class="info-title" style="color:var(--orange)">🧠 Quiz S5 — 5 questions</div>
-            <div class="quiz-item"><label>Q1: Créer socket TCP ?</label><input type="text" class="quiz-input" id="q5-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-1',['socket.socket','AF_INET','SOCK_STREAM'])">Vérifier</button><div class="quiz-answer" id="q5-1-answer"><code>socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="quiz-result" id="q5-1-result"></div></div>
-            <div class="quiz-item"><label>Q2: Module pour requêtes HTTP ?</label><input type="text" class="quiz-input" id="q5-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-2',['requests'])">Vérifier</button><div class="quiz-answer" id="q5-2-answer"><code>import requests</code></div><div class="quiz-result" id="q5-2-result"></div></div>
-            <div class="quiz-item"><label>Q3: Arguments CLI en Python ?</label><input type="text" class="quiz-input" id="q5-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-3',['argparse','sys.argv'])">Vérifier</button><div class="quiz-answer" id="q5-3-answer"><code>argparse</code> ou <code>sys.argv</code></div><div class="quiz-result" id="q5-3-result"></div></div>
-            <div class="quiz-item"><label>Q4: Multi-threading module ?</label><input type="text" class="quiz-input" id="q5-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-4',['threading','concurrent'])">Vérifier</button><div class="quiz-answer" id="q5-4-answer"><code>import threading</code></div><div class="quiz-result" id="q5-4-result"></div></div>
-            <div class="quiz-item"><label>Q5: Qu'est-ce que banner grabbing ?</label><input type="text" class="quiz-input" id="q5-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q5-5',['service','version','info'])">Vérifier</button><div class="quiz-answer" id="q5-5-answer">Récupérer infos/version d'un service via sa bannière</div><div class="quiz-result" id="q5-5-result"></div></div>
+
+        <div class="card">
+            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-writeup"><span>📌 Write-up SSRF / Upload / API publié (obligatoire #4)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-anki"><span>Anki : ajout cartes SSRF / Upload / API / OWASP LLM</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-loghebdo"><span>Loghebdo dimanche</span></label>
+            </div>
         </div>
     </div>
 
     <!-- S6 -->
     <div id="s6" class="tab">
         <div class="week-header">
-            <div class="section-title red">Semaine 6 : Burp Suite & HTTP</div>
-            <span class="week-dates">📅 23-29 Mars 2026</span>
+            <div>
+                <div class="section-title yellow">S6 — Auth/JWT + box HTB</div>
+                <div class="week-dates">Lun 02.06 → Dim 08.06</div>
+            </div>
+            <span class="tag tag-pentest">Premier assemblage</span>
+            <span class="tag tag-thm">HTB</span>
         </div>
+
+        <div class="info-box yellow">
+            <div class="info-title">🎯 Objectif S6</div>
+            <p>Auth/JWT à fond. Première box HTB Easy retired pour assembler ce que j'ai appris. Walkthrough autorisé après 1h de blocage — but = workflow, pas exploit pur.</p>
+        </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
+            <div class="card-title">📚 Labs PortSwigger</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Burp Suite: The Basics <code>~1h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Burp Suite: Repeater <code>~45min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>OWASP Top 10 <code>~2h</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth1"><span>Authentication vulnerabilities — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth2"><span>Authentication vulnerabilities — lab 2</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth3"><span>Authentication vulnerabilities — lab 3</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt1"><span>JWT none algorithm — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt2"><span>JWT weak signing — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt3"><span>JWT alg confusion — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth1"><span>OAuth basics — lab 1</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth2"><span>OAuth basics — lab 2</span></label>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">📚 PortSwigger (début)</div></div></div>
+            <div class="card-title">📦 Box HTB <span class="tag tag-thm">HTB</span></div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Lab: Unprotected admin <code>~15min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Lab: User ID parameter <code>~15min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Lab: Information disclosure <code>~20min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-pick"><span>Choisir 1 box HTB Easy retired à thème web (ex : Cap, Photobomb, Soccer)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-recon"><span>Recon complet documenté (Nmap, gobuster, etc.)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-foothold"><span>Foothold obtenu</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-priv"><span>Privesc obtenu (root/SYSTEM)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-htb-flag"><span>User + root flag récupérés</span></label>
+            </div>
+            <div class="info-box yellow" style="margin-top:8px">
+                <strong>Règle :</strong> walkthrough IppSec autorisé seulement si bloqué &gt; 1h sur une étape. But = méthode et workflow, pas l'exploit pur.
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="card-title">🔧 Outils introduits</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Cheatsheet burp.md</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>📝 Write-up PortSwigger (optionnel)</span><span class="tag tag-blog">BLOG</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-macros"><span>Burp Macros (cas d'usage : auth chains, login automation)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt-tool"><span>jwt_tool ou jwt.io pour analyse de tokens</span></label>
             </div>
         </div>
-        <div class="info-box purple" style="margin-top:12px">
-            <div class="info-title">🆘 Si blocage</div>
-            <p><a href="https://www.youtube.com/results?search_query=burp+suite+tutorial" target="_blank" style="color:var(--cyan)">YouTube: Burp Suite</a> · <a href="https://portswigger.net/web-security" target="_blank" style="color:var(--cyan)">PortSwigger Academy</a></p>
+
+        <div class="card project-card">
+            <div class="card-title">🛠️ Mini-scanner v0.5 <span class="tag tag-project">PROJET</span></div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-scan-auth"><span>Check basic auth weakness (cookies sans Secure/HttpOnly, JWT weak alg)</span></label>
+            </div>
         </div>
-        <div class="quiz-section">
-            <div class="info-title" style="color:var(--orange)">🧠 Quiz S6 — 5 questions</div>
-            <div class="quiz-item"><label>Q1: Différence GET vs POST ?</label><input type="text" class="quiz-input" id="q6-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-1',['url','body','visible'])">Vérifier</button><div class="quiz-answer" id="q6-1-answer">GET=params URL visible. POST=params body caché.</div><div class="quiz-result" id="q6-1-result"></div></div>
-            <div class="quiz-item"><label>Q2: Onglet Burp pour modifier/rejouer ?</label><input type="text" class="quiz-input" id="q6-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-2',['repeater'])">Vérifier</button><div class="quiz-answer" id="q6-2-answer">Repeater</div><div class="quiz-result" id="q6-2-result"></div></div>
-            <div class="quiz-item"><label>Q3: OWASP Top 10 #1 (2021) ?</label><input type="text" class="quiz-input" id="q6-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-3',['broken access','access control'])">Vérifier</button><div class="quiz-answer" id="q6-3-answer">Broken Access Control</div><div class="quiz-result" id="q6-3-result"></div></div>
-            <div class="quiz-item"><label>Q4: Qu'est-ce qu'un IDOR ?</label><input type="text" class="quiz-input" id="q6-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-4',['insecure','direct','object','reference'])">Vérifier</button><div class="quiz-answer" id="q6-4-answer">Insecure Direct Object Reference - accéder objets autres users</div><div class="quiz-result" id="q6-4-result"></div></div>
-            <div class="quiz-item"><label>Q5: Code HTTP "Not Found" ?</label><input type="text" class="quiz-input" id="q6-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q6-5',['404'])">Vérifier</button><div class="quiz-answer" id="q6-5-answer">404</div><div class="quiz-result" id="q6-5-result"></div></div>
+
+        <div class="card">
+            <div class="card-title">📺 Contenu</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-stream1"><span>Stream Twitch mardi</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-stream2"><span>Stream Twitch samedi (live de la box HTB)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-tiktok"><span>1 TikTok cyber (sujet : JWT none algorithm en 60s)</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">👥 Communauté</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-meetup"><span>Aller au meetup repéré en S4 (si dispo dans la fenêtre)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-dm1"><span>1er DM cyber pro (LinkedIn ou Discord)</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-writeup"><span>📌 Write-up Auth/JWT publié (obligatoire #5)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-writeup-htb"><span>Write-up box HTB S6 (bonus #2)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-anki"><span>Anki : ajout cartes Auth/JWT/OAuth</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-loghebdo"><span>Loghebdo dimanche</span></label>
+            </div>
         </div>
     </div>
 
     <!-- S7 -->
     <div id="s7" class="tab">
         <div class="week-header">
-            <div class="section-title orange">Semaine 7 : BUFFER + Projet OSINT</div>
-            <span class="week-dates">📅 30 Mars - 5 Avril 2026</span>
+            <div>
+                <div class="section-title purple">S7 — Focus IA pure</div>
+                <div class="week-dates">Lun 09.06 → Dim 15.06</div>
+            </div>
+            <span class="tag tag-ai">AI offensive/defensive</span>
+            <span class="tag tag-project">2 projets</span>
         </div>
-        <div class="info-box orange"><div class="info-title">⚡ Semaine de consolidation</div><p>Rattraper, réviser, terminer projet OSINT.</p></div>
+
+        <div class="info-box purple">
+            <div class="info-title">🎯 Objectif S7</div>
+            <p>Semaine dédiée IA. Construire 2 outils Python qui matérialisent ma compréhension : un offensif (LLM en pipeline pentest) et un défensif (détecteur d'attaques contre LLM).</p>
+        </div>
+
         <div class="card project-card">
-            <div class="card-header"><div><div class="card-title">🛠️ PROJET CV : Outil OSINT</div></div><span class="tag tag-project">CV</span></div>
+            <div class="card-title">🤖 Projet 1 — Auto-pentest avec LLM <span class="tag tag-ai">OFFENSIVE</span></div>
+            <p style="font-size:0.85rem;color:var(--dim);margin:6px 0">Script Python qui prend une sortie Nmap, l'envoie à Claude via API, récupère des suggestions d'attaque priorisées. Pipeline simple : nmap → parsing → prompt structuré → réponse → output formaté.</p>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Script domaine input <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>WHOIS <code>~45min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Subdomains crt.sh <code>~45min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>DNS records <code>~45min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Rapport Markdown <code>~30min</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>README + GitHub <code>~30min</code></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-init"><span>Init repo qyrnsec/llm-pentest-helper</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-nmap"><span>Parser Nmap (input : XML output → dict structuré)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-prompt"><span>Prompt template structuré (rôle, contexte, contraintes, format de sortie)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-api"><span>Appel API Claude + gestion erreurs/limits</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-output"><span>Output formaté (markdown report avec suggestions priorisées)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-test"><span>Test sur scan local (HTB box ou VM perso)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p1-readme"><span>README.md détaillé avec exemples</span></label>
             </div>
         </div>
+
+        <div class="card project-card">
+            <div class="card-title">🛡️ Projet 2 — Détecteur prompt injection <span class="tag tag-ai">DEFENSIVE</span></div>
+            <p style="font-size:0.85rem;color:var(--dim);margin:6px 0">Script Python qui analyse un prompt utilisateur et flag les patterns OWASP LLM Top 10. Pas de LLM dans le code, c'est du regex/pattern matching.</p>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-init"><span>Init repo qyrnsec/prompt-injection-detector</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-patterns"><span>Catalogue de patterns d'injection (LLM01, LLM02, etc.)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-rules"><span>Engine de détection (regex + heuristiques)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-score"><span>Score de risque (low/medium/high/critical)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-test"><span>Test sur dataset Gandalf (mes notes S3)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-p2-readme"><span>README.md avec exemples détectés</span></label>
+            </div>
+        </div>
+
+        <div class="card project-card">
+            <div class="card-title">✨ Bonus — LLM layer sur mini-scanner <span class="tag tag-project">BONUS</span></div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-bonus"><span>Ajouter une couche LLM au mini-scanner pour interpréter les résultats et écrire un mini-rapport</span></label>
+            </div>
+        </div>
+
         <div class="card">
-            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
+            <div class="card-title">📺 Contenu</div>
             <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Outil OSINT publié</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>📝 Article blog</span><span class="tag tag-blog">BLOG</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-stream1"><span>Stream Twitch mardi (live coding projet 1)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-stream2"><span>Stream Twitch samedi (live coding projet 2)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-tiktok"><span>1 TikTok cyber (sujet : prompt injection illustrée)</span></label>
             </div>
         </div>
-        <div class="quiz-section">
-            <div class="info-title" style="color:var(--orange)">🧠 Quiz S7 — Questions situationnelles</div>
-            <div class="quiz-item"><label>Q1: Tu trouves port 445 ouvert, quelle est ta prochaine étape ?</label><input type="text" class="quiz-input" id="q7-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-1',['smb','enum4linux','smbclient','crackmapexec','null session'])">Vérifier</button><div class="quiz-answer" id="q7-1-answer">Énumérer SMB : smbclient, enum4linux, crackmapexec. Chercher shares accessibles, null session.</div><div class="quiz-result" id="q7-1-result"></div></div>
-            <div class="quiz-item"><label>Q2: Tu as un shell user, cite 3 vecteurs PrivEsc à vérifier</label><input type="text" class="quiz-input" id="q7-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-2',['suid','sudo','cron','kernel','path','capabilities'])">Vérifier</button><div class="quiz-answer" id="q7-2-answer">SUID binaries, sudo -l, cron jobs, kernel exploits, PATH hijacking, capabilities</div><div class="quiz-result" id="q7-2-result"></div></div>
-            <div class="quiz-item"><label>Q3: Tu vois du trafic DNS suspect dans Wireshark, que cherches-tu ?</label><input type="text" class="quiz-input" id="q7-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-3',['exfil','tunnel','txt','subdomain','encoded','base64'])">Vérifier</button><div class="quiz-answer" id="q7-3-answer">DNS tunneling/exfiltration : requêtes TXT inhabituelles, subdomains encodés, fréquence anormale, données base64.</div><div class="quiz-result" id="q7-3-result"></div></div>
-            <div class="quiz-item"><label>Q4: Ton scan nmap montre un service inconnu sur port 8080, comment investiguer ?</label><input type="text" class="quiz-input" id="q7-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-4',['-sV','banner','curl','browser','script','nse'])">Vérifier</button><div class="quiz-answer" id="q7-4-answer">nmap -sV -sC pour version/scripts, curl/browser pour voir la réponse, rechercher le service identifié.</div><div class="quiz-result" id="q7-4-result"></div></div>
-            <div class="quiz-item"><label>Q5: Tu dois documenter une vulnérabilité trouvée, que mets-tu dans ton rapport ?</label><input type="text" class="quiz-input" id="q7-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q7-5',['description','impact','poc','remediation','cvss','proof'])">Vérifier</button><div class="quiz-answer" id="q7-5-answer">Description, impact/sévérité, PoC/preuves, étapes reproduction, recommandations/remédiation.</div><div class="quiz-result" id="q7-5-result"></div></div>
+
+        <div class="card">
+            <div class="card-title">🔍 OSINT</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-osint"><span>1 challenge OSINT</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-sector"><span>Sector035 Sunday Quiz</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">👥 Communauté</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-dm2"><span>2e DM cyber pro</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-hackathon"><span>Inscription à 1 hackathon (même si pas dispo)</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📝 Livrables fin de semaine</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-writeup"><span>Write-up Focus IA publié (bonus #3) — couvre les 2 projets</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-github"><span>2 projets Python publiés sur GitHub qyrnsec</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-anki"><span>Anki : ajout cartes IA / LLM / prompt injection</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-loghebdo"><span>Loghebdo dimanche</span></label>
+            </div>
         </div>
     </div>
 
     <!-- S8 -->
     <div id="s8" class="tab">
         <div class="week-header">
-            <div class="section-title red">Semaine 8 : Web Vulns Intro</div>
-            <span class="week-dates">📅 6-12 Avril 2026</span>
-        </div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">🎓 TryHackMe</div></div><span class="tag tag-thm">THM</span></div>
-            <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>SQL Injection <code>~2h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Walking An Application <code>~1h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Content Discovery <code>~1h</code></span></label>
+            <div>
+                <div class="section-title red">S8 — Autonomie + crossover + review</div>
+                <div class="week-dates">Lun 16.06 → Dim 22.06</div>
             </div>
+            <span class="tag tag-pentest">Final boss</span>
         </div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">🇫🇷 Root Me</div></div></div>
-            <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>5 challenges Web Client <code>~2h</code></span></label>
-            </div>
+
+        <div class="info-box red">
+            <div class="info-title">🎯 Objectif S8 — final</div>
+            <p>Box HTB Easy active solo (zéro walkthrough 6h). Crossover OSINT × LLM. Review complète de la phase.</p>
         </div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">📚 PortSwigger Labs</div></div></div>
-            <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>3 labs Access Control <code>~1h</code></span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>2 labs Authentication <code>~45min</code></span></label>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">📝 Livrables</div></div></div>
-            <div class="tasks">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Log par session</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>📝 Write-up labs PortSwigger</span><span class="tag tag-blog">BLOG</span></label>
-            </div>
-        </div>
-        <div class="info-box purple" style="margin-top:12px">
-            <div class="info-title">🆘 Si blocage</div>
-            <p><a href="https://www.youtube.com/results?search_query=sql+injection+tutorial" target="_blank" style="color:var(--cyan)">YouTube: SQLi</a> · <a href="https://owasp.org/www-community/attacks/xss/" target="_blank" style="color:var(--cyan)">OWASP XSS</a></p>
-        </div>
-        <div class="quiz-section">
-            <div class="info-title" style="color:var(--orange)">🧠 Quiz S8 — 5 questions</div>
-            <div class="quiz-item"><label>Q1: Payload SQLi basique ?</label><input type="text" class="quiz-input" id="q8-1" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-1',[\"' or\",\"1=1\",\"--\"])">Vérifier</button><div class="quiz-answer" id="q8-1-answer"><code>' OR 1=1--</code></div><div class="quiz-result" id="q8-1-result"></div></div>
-            <div class="quiz-item"><label>Q2: XSS pour popup alert ?</label><input type="text" class="quiz-input" id="q8-2" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-2',['<script>','alert'])">Vérifier</button><div class="quiz-answer" id="q8-2-answer"><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></div><div class="quiz-result" id="q8-2-result"></div></div>
-            <div class="quiz-item"><label>Q3: Différence XSS Reflected vs Stored ?</label><input type="text" class="quiz-input" id="q8-3" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-3',['database','stocké','url','persistant'])">Vérifier</button><div class="quiz-answer" id="q8-3-answer">Reflected=via URL. Stored=persistant en BDD.</div><div class="quiz-result" id="q8-3-result"></div></div>
-            <div class="quiz-item"><label>Q4: Qu'est-ce que LFI ?</label><input type="text" class="quiz-input" id="q8-4" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-4',['local file','inclusion','../'])">Vérifier</button><div class="quiz-answer" id="q8-4-answer">Local File Inclusion - lire fichiers locaux serveur</div><div class="quiz-result" id="q8-4-result"></div></div>
-            <div class="quiz-item"><label>Q5: Fichier Linux intéressant en LFI ?</label><input type="text" class="quiz-input" id="q8-5" placeholder="Ta réponse..."><button class="quiz-btn" onclick="checkQuiz('q8-5',['/etc/passwd','/etc/shadow'])">Vérifier</button><div class="quiz-answer" id="q8-5-answer"><code>/etc/passwd</code>, <code>/etc/shadow</code></div><div class="quiz-result" id="q8-5-result"></div></div>
-        </div>
+
         <div class="blocking-gate">
-            <h4>⛔ PORTE BLOQUANTE — Fin Phase 1</h4>
+            <h4>🔒 Box HTB en autonomie totale</h4>
+            <p><strong>Règle :</strong> 1 box HTB Easy <strong>active</strong> (pas retired) à thème web. Zéro walkthrough autorisé pendant <strong>6h</strong>, après seulement si vraiment bloqué.</p>
+            <p style="margin-top:6px"><strong>Write-up à publier avant que la box soit retirée.</strong></p>
             <div class="tasks" style="margin-top:8px">
-                <label class="task" data-phase="1"><input type="checkbox"><span>Quiz S8 validé (≥70%)</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Port Scanner publié GitHub</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>Outil OSINT publié GitHub</span></label>
-                <label class="task" data-phase="1"><input type="checkbox"><span>≥3 articles publiés blog</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-pick"><span>Choisir 1 box HTB Easy active à thème web</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-recon"><span>Recon complet documenté</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-foothold"><span>Foothold obtenu</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-priv"><span>Privesc obtenu</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-flag"><span>User + root flag récupérés</span></label>
+            </div>
+        </div>
+
+        <div class="card project-card">
+            <div class="card-title">🔍🤖 Crossover OSINT × LLM <span class="tag tag-osint">OSINT</span> <span class="tag tag-ai">AI</span></div>
+            <p style="font-size:0.85rem;color:var(--dim);margin:6px 0">Script Python : input = pseudo public → Sherlock pour découverte → Claude pour synthèse en mini-rapport. Cible = persona test sandboxé créé pour l'occasion (jamais qyrn ni autre identité réelle).</p>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-init"><span>Init repo qyrnsec/osint-llm-recon</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-persona"><span>Créer persona test sandboxé (test_qyrn_osint_2026 sur 5-6 plateformes)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-sherlock"><span>Intégration Sherlock (input pseudo → liste comptes)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-llm"><span>Pipeline Claude pour synthèse en mini-rapport</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-test"><span>Test complet sur le persona sandboxé</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-readme"><span>README.md + démo</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📊 Review de phase</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-quiz"><span>Quiz final auto-administré (50 questions, viser ≥80%)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-self"><span>Self-assessment : qu'est-ce que je sais expliquer en entretien sans hésiter ?</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-trous"><span>Liste des trous à combler en Phase 3 (BTL1 prep)</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📺 Contenu final</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-stream1"><span>Stream final mardi</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-stream2"><span>Stream samedi (live de la box HTB)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-tiktok"><span>1 TikTok bilan : "8 semaines de web sec, ce que j'ai appris"</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">👥 Communauté</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-dm3"><span>3e DM cyber pro</span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📝 Livrables fin de phase</div>
+            <div class="tasks">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-writeup-htb"><span>Write-up box HTB S8 (bonus #4)</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-bilan"><span>Article blog "Phase 2 — Bilan" écrit à la main FR, traduit après</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-publish"><span>Crossover OSINT × LLM publié sur GitHub</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-loghebdo"><span>Loghebdo final + tableau de progression complet</span></label>
             </div>
         </div>
     </div>
 
     <!-- CHALLENGES -->
     <div id="challenges" class="tab">
-        <div class="section-title yellow">Défis Hebdomadaires</div>
-        <p style="color:var(--dim);margin-bottom:16px;font-size:0.85rem">Un défi technique principal par semaine. Max 1 défi social.</p>
-        <div class="challenge-card"><div class="challenge-week">S1</div><div class="challenge-title">🎯 Finir Bandit 0-15</div><div class="challenge-desc">Sans write-up.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
-        <div class="challenge-card"><div class="challenge-week">S2</div><div class="challenge-title">🎯 Finir Bandit 15-25</div><div class="challenge-desc">Focus techniques avancées.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
-        <div class="challenge-card"><div class="challenge-week">S3</div><div class="challenge-title">🎯 3 captures Wireshark</div><div class="challenge-desc">TCP, DNS, HTTP. Screenshots blog.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
-        <div class="challenge-card"><div class="challenge-week">S4</div><div class="challenge-title">🎯 Scan complet scanme.nmap.org</div><div class="challenge-desc">Documenter chaque flag.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
-        <div class="challenge-card"><div class="challenge-week">S5</div><div class="challenge-title">🎯 Port Scanner &lt;30sec 1000 ports</div><div class="challenge-desc">Multi-threading fonctionnel.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
-        <div class="challenge-card"><div class="challenge-week">S6</div><div class="challenge-title">🎯 5 labs PortSwigger sans solution</div><div class="challenge-desc">Max 30 min par lab.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
-        <div class="challenge-card"><div class="challenge-week">S7</div><div class="challenge-title">🎯 Outil OSINT complet</div><div class="challenge-desc">WHOIS + subdomains + DNS + rapport.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
-        <div class="challenge-card"><div class="challenge-week">S8</div><div class="challenge-title">🎯 1 lab PortSwigger "Practitioner" sans solution</div><div class="challenge-desc">Niveau intermédiaire, max 45 min.</div><label class="task" style="margin-top:8px"><input type="checkbox"><span>Complété</span></label></div>
+        <div class="section-title yellow">Défis transversaux</div>
+
+        <div class="info-box yellow">
+            <p>Tous les défis sont à coupler avec la pratique régulière. Le vrai apprentissage vient de la répétition, pas de l'événementiel.</p>
+        </div>
+
+        <div class="challenge-card">
+            <div class="challenge-week">Toute la phase — hebdomadaire</div>
+            <div class="challenge-title">🌍 Sector035 Sunday Quiz</div>
+            <div class="challenge-desc">Défi GEOINT chaque dimanche soir. 30-45 min. Photo réelle à géolocaliser. Solutions le lendemain.</div>
+        </div>
+
+        <div class="challenge-card">
+            <div class="challenge-week">S2-S8 — 1/sem</div>
+            <div class="challenge-title">🥷 OSINT Dojo Ninja Challenges</div>
+            <div class="challenge-desc">Challenges progressifs gratuits, sandbox total. Un par semaine, suite progressive.</div>
+        </div>
+
+        <div class="challenge-card">
+            <div class="challenge-week">Une fois dans la phase</div>
+            <div class="challenge-title">🔎 Trace Labs CTF</div>
+            <div class="challenge-desc">CTF mensuel de recherche de personnes disparues. Inscription gratuite, encadré, légal. Mention sur le CV.</div>
+        </div>
+
+        <div class="challenge-card">
+            <div class="challenge-week">S3</div>
+            <div class="challenge-title">🧙 Gandalf Lakera</div>
+            <div class="challenge-desc">8 niveaux de prompt injection en ~2-3h. Premier contact ludique avec la sécurité IA.</div>
+        </div>
+
+        <div class="challenge-card">
+            <div class="challenge-week">S5</div>
+            <div class="challenge-title">📖 OWASP LLM Top 10 — lecture</div>
+            <div class="challenge-desc">30-45 min de lecture + prise de notes FR. Préparation théorique pour les projets de S7.</div>
+        </div>
+
+        <div class="challenge-card">
+            <div class="challenge-week">S6</div>
+            <div class="challenge-title">📦 Box HTB Easy retired</div>
+            <div class="challenge-desc">Premier vrai assemblage. Walkthrough autorisé après 1h bloqué. But = workflow méthode.</div>
+        </div>
+
+        <div class="challenge-card">
+            <div class="challenge-week">S8</div>
+            <div class="challenge-title">🏔️ Box HTB Easy active SOLO</div>
+            <div class="challenge-desc">Zéro walkthrough pendant 6h. Write-up à publier avant que la box soit retirée. Vrai test d'autonomie.</div>
+        </div>
+
+        <div class="section-title pink">Quiz de mi-phase (S4) — auto-test</div>
+        <div class="quiz-section">
+            <div class="quiz-item">
+                <label>Q1. Différence entre Reflected XSS et Stored XSS ?</label>
+                <input type="text" class="quiz-input" id="q1">
+                <button class="quiz-btn" onclick="checkQuiz('q1',['stocké','base','réfléchi','immédiat','persistant'])">Vérifier</button>
+                <div class="quiz-answer" id="q1-answer">Reflected = payload renvoyé immédiatement dans la réponse (URL, formulaire). Stored = payload stocké en base et exécuté à chaque visite. <div class="quiz-result" id="q1-result"></div></div>
+            </div>
+            <div class="quiz-item">
+                <label>Q2. Payload SQLi UNION pour récupérer la version MySQL ?</label>
+                <input type="text" class="quiz-input" id="q2">
+                <button class="quiz-btn" onclick="checkQuiz('q2',['version()','@@version','union select'])">Vérifier</button>
+                <div class="quiz-answer" id="q2-answer"><code>' UNION SELECT version(),null--</code> ou <code>' UNION SELECT @@version,null--</code><div class="quiz-result" id="q2-result"></div></div>
+            </div>
+            <div class="quiz-item">
+                <label>Q3. C'est quoi un IDOR ?</label>
+                <input type="text" class="quiz-input" id="q3">
+                <button class="quiz-btn" onclick="checkQuiz('q3',['insecure direct object','référence directe','accès non autorisé','manipulation id'])">Vérifier</button>
+                <div class="quiz-answer" id="q3-answer">Insecure Direct Object Reference — accéder à des objets/ressources d'autres utilisateurs en manipulant les identifiants (ex: /user/123 → /user/124).<div class="quiz-result" id="q3-result"></div></div>
+            </div>
+        </div>
+
+        <div class="section-title cyan">Quiz fin de phase (S8) — auto-test</div>
+        <div class="quiz-section">
+            <div class="quiz-item">
+                <label>Q4. Comment exploiter un JWT avec algorithme "none" ?</label>
+                <input type="text" class="quiz-input" id="q4">
+                <button class="quiz-btn" onclick="checkQuiz('q4',['alg none','signature','header','aucune signature'])">Vérifier</button>
+                <div class="quiz-answer" id="q4-answer">Modifier le header pour mettre <code>alg: none</code>, retirer la signature après le 2e point, modifier le payload (ex: role:admin) et envoyer.<div class="quiz-result" id="q4-result"></div></div>
+            </div>
+            <div class="quiz-item">
+                <label>Q5. Différence entre SSRF et CSRF ?</label>
+                <input type="text" class="quiz-input" id="q5">
+                <button class="quiz-btn" onclick="checkQuiz('q5',['serveur','client','victime','requête'])">Vérifier</button>
+                <div class="quiz-answer" id="q5-answer">SSRF = le serveur fait une requête vers une URL contrôlée par l'attaquant. CSRF = la victime authentifiée fait une requête malveillante à son insu vers un service.<div class="quiz-result" id="q5-result"></div></div>
+            </div>
+            <div class="quiz-item">
+                <label>Q6. Cite 3 catégories de l'OWASP LLM Top 10.</label>
+                <input type="text" class="quiz-input" id="q6">
+                <button class="quiz-btn" onclick="checkQuiz('q6',['prompt injection','data leak','training data','model dos','supply chain','output handling'])">Vérifier</button>
+                <div class="quiz-answer" id="q6-answer">Prompt Injection (LLM01), Insecure Output Handling (LLM02), Training Data Poisoning (LLM03), Model DoS (LLM04), Supply Chain (LLM05), Sensitive Info Disclosure (LLM06)...<div class="quiz-result" id="q6-result"></div></div>
+            </div>
+        </div>
     </div>
 
     <!-- PROJECTS -->
     <div id="projects" class="tab">
-        <div class="section-title pink">Projets Portfolio</div>
-        <div class="section-title green" style="font-size:1rem">Projets CV (obligatoires)</div>
+        <div class="section-title pink">Projets de la phase</div>
+
         <div class="card project-card">
-            <div class="card-header"><div><div class="card-title">1. Port Scanner Python</div><div class="card-sub">S5 • Obligatoire</div></div><span class="tag tag-project">CV</span></div>
-            <div class="project-meta">
-                <div><strong>OBJECTIF</strong>Scanner multi-thread + banner</div>
-                <div><strong>COMPÉTENCES</strong>Python, socket, threading</div>
-                <div><strong>DIFFICULTÉ</strong>⭐⭐⭐☆☆</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-title">🛠️ Mini-scanner web (S2-S6)</div>
+                    <div class="card-sub">Évolution v0.1 → v0.5 au fil de l'apprentissage</div>
+                </div>
+                <span class="tag tag-project">PROJET</span>
             </div>
-            <label class="task" style="margin-top:10px"><input type="checkbox"><span>Terminé et publié</span></label>
+            <p style="font-size:0.85rem;color:var(--dim)">Outil Python en CLI qui scanne une URL et détecte des vulnérabilités web basiques. Construit incrémentalement en suivant ce que j'apprends chaque semaine.</p>
+            <div class="project-meta">
+                <div><strong>S2 — v0.1</strong>Headers de sécu (CSP, HSTS, etc.)</div>
+                <div><strong>S3 — v0.2</strong>+ XSS reflected basique</div>
+                <div><strong>S4 — v0.3</strong>+ IDOR pattern-based</div>
+                <div><strong>S5 — v0.4</strong>+ SSRF + Upload checks</div>
+                <div><strong>S6 — v0.5</strong>+ Auth weakness</div>
+                <div><strong>S7 — bonus</strong>+ couche LLM rapport</div>
+            </div>
+            <p style="font-size:0.8rem;margin-top:8px"><strong>Repo :</strong> <code>github.com/qyrnsec/web-scanner</code></p>
+            <div class="tasks" style="margin-top:8px">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-scanner-repo"><span>Repo qyrnsec/web-scanner créé et public</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-scanner-v01"><span>Version v0.1 fonctionnelle publiée</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-scanner-done"><span>Version finale (v0.5+) livrée avec README</span></label>
+            </div>
         </div>
+
         <div class="card project-card">
-            <div class="card-header"><div><div class="card-title">2. Outil OSINT</div><div class="card-sub">S7 • Obligatoire</div></div><span class="tag tag-project">CV</span></div>
-            <div class="project-meta">
-                <div><strong>OBJECTIF</strong>Recon auto domaine</div>
-                <div><strong>COMPÉTENCES</strong>Python, APIs, OSINT</div>
-                <div><strong>DIFFICULTÉ</strong>⭐⭐⭐☆☆</div>
+            <div class="card-header">
+                <div>
+                    <div class="card-title">🤖 Auto-pentest LLM (S7)</div>
+                    <div class="card-sub">Pipeline cyber × IA offensive</div>
+                </div>
+                <span class="tag tag-ai">AI</span>
             </div>
-            <label class="task" style="margin-top:10px"><input type="checkbox"><span>Terminé et publié</span></label>
+            <p style="font-size:0.85rem;color:var(--dim)">Script Python qui prend la sortie d'un Nmap, l'envoie à Claude via API, récupère des suggestions d'attaque priorisées avec contexte. Apprend à utiliser un LLM comme outil dans un workflow cyber.</p>
+            <p style="font-size:0.8rem;margin-top:8px"><strong>Repo :</strong> <code>github.com/qyrnsec/llm-pentest-helper</code></p>
+            <div class="tasks" style="margin-top:8px">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-llm-repo"><span>Repo qyrnsec/llm-pentest-helper créé et public</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-llm-done"><span>Script fonctionnel testé sur scan local</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-llm-readme"><span>README avec exemples publié</span></label>
+            </div>
         </div>
-        <div class="section-title orange" style="font-size:1rem">Projets bonus (non obligatoires)</div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">3. Bot Discord CVE</div><div class="card-sub">Bonus SOC</div></div><span class="tag tag-soc">SOC</span></div>
-            <div class="project-meta"><div><strong>OBJECTIF</strong>Alertes CVE via NVD API</div><div><strong>DIFFICULTÉ</strong>⭐⭐☆☆☆</div></div>
+
+        <div class="card project-card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">🛡️ Détecteur prompt injection (S7)</div>
+                    <div class="card-sub">Outil cyber × IA défensif</div>
+                </div>
+                <span class="tag tag-ai">AI</span>
+            </div>
+            <p style="font-size:0.85rem;color:var(--dim)">Script Python qui analyse un prompt utilisateur et flag les patterns OWASP LLM Top 10. Pas de LLM dans le code, c'est du regex/pattern matching. Concept = défense.</p>
+            <p style="font-size:0.8rem;margin-top:8px"><strong>Repo :</strong> <code>github.com/qyrnsec/prompt-injection-detector</code></p>
+            <div class="tasks" style="margin-top:8px">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-inj-repo"><span>Repo qyrnsec/prompt-injection-detector créé et public</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-inj-done"><span>Moteur de détection testé sur dataset Gandalf</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-inj-readme"><span>README avec exemples de détection publié</span></label>
+            </div>
         </div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">4. Honeypot SSH</div><div class="card-sub">Bonus SOC</div></div><span class="tag tag-soc">SOC</span></div>
-            <div class="project-meta"><div><strong>OBJECTIF</strong>Logger connexions SSH</div><div><strong>DIFFICULTÉ</strong>⭐⭐⭐☆☆</div></div>
+
+        <div class="card project-card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">🔍🤖 Crossover OSINT × LLM (S8)</div>
+                    <div class="card-sub">Pipeline Sherlock + Claude pour synthèse</div>
+                </div>
+                <span class="tag tag-osint">OSINT</span>
+                <span class="tag tag-ai">AI</span>
+            </div>
+            <p style="font-size:0.85rem;color:var(--dim)">Script Python qui prend un pseudo, passe par Sherlock pour découvrir les comptes liés sur 400+ plateformes, envoie l'agrégat à Claude pour synthèse en mini-rapport. Testé sur persona sandboxé créé pour l'occasion.</p>
+            <p style="font-size:0.8rem;margin-top:8px"><strong>Repo :</strong> <code>github.com/qyrnsec/osint-llm-recon</code></p>
+            <div class="tasks" style="margin-top:8px">
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-osint-repo"><span>Repo qyrnsec/osint-llm-recon créé et public</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-osint-test"><span>Pipeline testé sur persona sandboxé</span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="proj-osint-done"><span>README + démo publiés</span></label>
+            </div>
         </div>
-        <div class="card">
-            <div class="card-header"><div><div class="card-title">5. Analyseur de logs</div><div class="card-sub">Bonus SOC</div></div><span class="tag tag-soc">SOC</span></div>
-            <div class="project-meta"><div><strong>OBJECTIF</strong>Détecter brute force</div><div><strong>DIFFICULTÉ</strong>⭐⭐⭐☆☆</div></div>
-        </div>
+
+        <div class="section-title orange">Write-ups (5 obligatoires + 4 bonus)</div>
+        <table>
+            <tr><th>Sem</th><th>Sujet</th><th>Type</th><th>Publié</th></tr>
+            <tr><td>S2</td><td>SQL Injection</td><td><span class="tag tag-blog">OBLIGATOIRE #1</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s2-sqli"><span></span></label></td></tr>
+            <tr><td>S3</td><td>XSS</td><td><span class="tag tag-blog">OBLIGATOIRE #2</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s3-xss"><span></span></label></td></tr>
+            <tr><td>S3</td><td>Gandalf / prompt injection</td><td><span class="tag tag-ai">BONUS</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s3-gandalf"><span></span></label></td></tr>
+            <tr><td>S4</td><td>IDOR / Access Control</td><td><span class="tag tag-blog">OBLIGATOIRE #3</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s4-idor"><span></span></label></td></tr>
+            <tr><td>S4</td><td>OSINT (Dojo Ninja series)</td><td><span class="tag tag-osint">BONUS #1</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s4-osint"><span></span></label></td></tr>
+            <tr><td>S5</td><td>SSRF / Upload / API</td><td><span class="tag tag-blog">OBLIGATOIRE #4</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s5-ssrf"><span></span></label></td></tr>
+            <tr><td>S6</td><td>Auth / JWT</td><td><span class="tag tag-blog">OBLIGATOIRE #5</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s6-auth"><span></span></label></td></tr>
+            <tr><td>S6</td><td>Box HTB S6</td><td><span class="tag tag-thm">BONUS #2</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s6-htb"><span></span></label></td></tr>
+            <tr><td>S7</td><td>Focus IA — projets Python</td><td><span class="tag tag-ai">BONUS #3</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s7-ia"><span></span></label></td></tr>
+            <tr><td>S8</td><td>Box HTB S8 + Bilan phase</td><td><span class="tag tag-thm">BONUS #4</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s8-bilan"><span></span></label></td></tr>
+        </table>
     </div>
 
     <!-- LOGBOOK -->
     <div id="logbook" class="tab">
-        <div class="section-title cyan">Logbook — Traçabilité</div>
-        <div class="info-box cyan"><div class="info-title">📓 Obligation</div><p>3-5 lignes/session. Revue hebdo dimanche.</p></div>
-        <div class="section-title green" style="font-size:1rem">Template par session</div>
-        <div class="logbook">## 📅 [DATE] — Session [X]
+        <div class="section-title green">Templates logbook</div>
 
-**Durée:** [X] min
-**Focus:** [Thème]
+        <div class="info-box green">
+            <p><strong>Règle d'or :</strong> jamais de copier-coller depuis THM/PortSwigger/Claude vers le logbook. Notes en français, à la main. Si je n'arrive pas à écrire 2-3 phrases sur ce que j'ai fait, c'est que je n'ai pas compris.</p>
+        </div>
 
-### Ce que j'ai fait
-- [Tâche]
+        <div class="section-title cyan">Logbook quotidien (2 min)</div>
+        <div class="logbook">## Day X — [date]
+- Time: [X min]
+- Did: [une ligne, en français]
+- Learned: [une chose concrète, en français]
+- Blocked on: [ou "rien"]
+- Tomorrow: [une ligne]</div>
+        <p style="font-size:0.8rem;color:var(--dim);margin-top:6px">Si une journée a 20 min de boulot et zéro compris, je l'écris : c'est ce qui est le plus utile pour identifier les patterns.</p>
 
-### Ce que j'ai appris
-- [Concept]
+        <div class="section-title orange">Write-up (template 6 sections)</div>
+        <div class="logbook">1. Context (3-4 phrases) — C'est quoi le lab/la faille ? Pourquoi c'est un problème ?
+2. Mon approche (5-8 phrases) — Qu'est-ce que j'ai essayé ? Dans quel ordre ?
+3. Où j'ai galéré (3-5 phrases) — Précis. "J'ai pas su X" ou "j'ai essayé Y mais Z bloquait".
+4. Le déclic (3-5 phrases) — Qu'est-ce qui a fait que ça s'est débloqué ?
+5. La commande / payload que je retiens — 1 bloc de code, commenté.
+6. Ce que je me dirais avant de commencer — La leçon en 2 phrases.
 
-### Prochaine session
-- [Priorité]</div>
-        <div class="section-title orange" style="font-size:1rem">Template hebdo</div>
-        <div class="logbook">## 📊 Revue Semaine [X]
+Cible : 500-800 mots. 1h30-2h de travail.
+1 write-up = 1 topic bouclé.
+Rédaction samedi, publication dimanche.</div>
+        <p style="font-size:0.8rem;color:var(--dim);margin-top:6px">À remplir <strong>en français</strong>, à la main d'abord. Claude traduit/corrige <strong>après</strong>. Si une section a moins de 2 phrases écrites par moi, le write-up sort pas.</p>
 
-**Sessions:** [X]
-**Quiz:** [X]/5
+        <div class="section-title pink">Loghebdo dominical (15 min)</div>
+        <div class="logbook">## Semaine X (du JJ au JJ)
+- Heures cyber faites: [X / 18h cible]
+- Labs done: [liste courte]
+- Ce qui a marché: [3 lignes max]
+- Ce qui a bloqué: [3 lignes max]
+- Ajustement semaine d'après: [1 phrase]
+- État général: [/5]</div>
 
-### Accomplissements
-- 
+        <div class="section-title yellow">Tracker hebdomadaire</div>
+        <div class="logbook">## Semaine X — tracker
+- Cyber heures: __ / 18h
+- Labs: __
+- Anki cartes actives: __
+- Sport séances: __ / 5
+- Sommeil moyen ressenti: __ / 5
+- Write-up publié: oui / non
+- TikTok publié: oui / non / NA
+- Streams: __ / 2
+- Défi OSINT: oui / non
+- DM cyber: __
+- État général: __ / 5
+- Note libre: ...</div>
 
-### Article blog
-- [Titre]
-
-### Objectifs S+1
-1. 
-2.</div>
+        <div class="section-title red">Règles IA strictes</div>
+        <table>
+            <tr><th>Claude PEUT</th><th>Claude NE PEUT PAS</th></tr>
+            <tr><td>Expliquer un concept que je n'ai pas compris</td><td>Faire un lab/challenge à ma place</td></tr>
+            <tr><td>Me challenger via un quiz</td><td>Écrire mes notes d'apprentissage</td></tr>
+            <tr><td>Corriger l'anglais d'un write-up rédigé par moi</td><td>Rédiger le fond d'un write-up</td></tr>
+            <tr><td>Relire mon code et indiquer où ça casse</td><td>Coder mes projets à ma place</td></tr>
+            <tr><td>Traduire mes notes FR → EN</td><td>Inventer des sections que je n'ai pas écrites</td></tr>
+            <tr><td>M'orienter quand bloqué &gt; 30 min</td><td>Donner la solution direct sans que j'aie cherché</td></tr>
+        </table>
+        <p style="font-size:0.8rem;color:var(--dim);margin-top:6px">Si je sens que je contourne une règle, je l'avoue dans le logbook du jour. Honnêteté &gt; image.</p>
     </div>
 
-    <!-- JOB -->
-    <div id="job" class="tab">
-        <div class="section-title green">Préparation Emploi</div>
-        <div class="info-box green"><div class="info-title">🎯 CDI SOC Lyon — Jan 2027</div><p>Job hunt Nov-Déc 2026. Berlin 2028.</p></div>
-        <div class="section-title red" style="font-size:1rem">Questions SOC (format quiz)</div>
-        <div class="quiz-section">
-            <div class="quiz-item"><label>Q1: Qu'est-ce qu'un SIEM ?</label><input type="text" class="quiz-input" id="soc-1" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-1',['security information','event management','logs'])">Vérifier</button><div class="quiz-answer" id="soc-1-answer">Security Information and Event Management. Agrège logs, corrèle événements.</div><div class="quiz-result" id="soc-1-result"></div></div>
-            <div class="quiz-item"><label>Q2: Qu'est-ce qu'un IOC ?</label><input type="text" class="quiz-input" id="soc-2" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-2',['indicator','compromise','hash','ip'])">Vérifier</button><div class="quiz-answer" id="soc-2-answer">Indicator of Compromise. Preuve d'intrusion.</div><div class="quiz-result" id="soc-2-result"></div></div>
-            <div class="quiz-item"><label>Q3: IDS vs IPS ?</label><input type="text" class="quiz-input" id="soc-3" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-3',['detect','prevent','block'])">Vérifier</button><div class="quiz-answer" id="soc-3-answer">IDS=détecte. IPS=détecte et bloque.</div><div class="quiz-result" id="soc-3-result"></div></div>
-            <div class="quiz-item"><label>Q4: MITRE ATT&CK ?</label><input type="text" class="quiz-input" id="soc-4" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-4',['framework','tactics','techniques'])">Vérifier</button><div class="quiz-answer" id="soc-4-answer">Framework tactiques/techniques adverses.</div><div class="quiz-result" id="soc-4-result"></div></div>
-            <div class="quiz-item"><label>Q5: Réaction face à une alerte ?</label><input type="text" class="quiz-input" id="soc-5" placeholder="Cherche toi-même..."><button class="quiz-btn" onclick="checkQuiz('soc-5',['valider','investiguer','contenir','documenter'])">Vérifier</button><div class="quiz-answer" id="soc-5-answer">Valider → Investiguer → Contenir → Documenter → Escalader</div><div class="quiz-result" id="soc-5-result"></div></div>
+    <!-- RULES -->
+    <div id="rules" class="tab">
+        <div class="section-title purple">Rythme quotidien type</div>
+
+        <div class="info-box purple">
+            <p>3h cyber composées : 5min Anki début + 2h25 cœur de session + 30min contenu passif. Pomodoro 25/5.</p>
         </div>
-        <div class="section-title purple" style="font-size:1rem">LinkedIn</div>
+
         <div class="card">
-            <div class="tasks">
-                <label class="task"><input type="checkbox"><span>Headline: "Aspirant Analyste SOC"</span></label>
-                <label class="task"><input type="checkbox"><span>Section À propos</span></label>
-                <label class="task"><input type="checkbox"><span>Projets comme Expérience</span></label>
-                <label class="task"><input type="checkbox"><span>Poster 1x/mois</span></label>
-            </div>
+            <div class="card-title">Lun-Ven — jour type</div>
+            <table>
+                <tr><th>Heure</th><th>Activité</th></tr>
+                <tr><td>09:00</td><td>Sport (1h, mix muscu/cardio)</td></tr>
+                <tr><td>10:00</td><td>Douche, petit-déj</td></tr>
+                <tr><td>10:30</td><td>Cyber session 1 — 5min Anki + 1h25 labs</td></tr>
+                <tr><td>12:00</td><td>Déjeuner + 30min contenu passif</td></tr>
+                <tr><td>13:30</td><td>Cyber session 2 — 1h labs ou projet</td></tr>
+                <tr><td>14:30</td><td>Temps libre / vie perso</td></tr>
+                <tr><td>Soir</td><td>Décompression, pas d'écran avant 23h</td></tr>
+                <tr><td>23:00</td><td>Au lit, téléphone dans une autre pièce</td></tr>
+            </table>
         </div>
-        <div class="section-title orange" style="font-size:1rem">Events Lyon/Sainté</div>
+
         <div class="card">
-            <div class="tasks">
-                <label class="task"><input type="checkbox"><span>Meetup Lyon Cybersecurity</span></label>
-                <label class="task"><input type="checkbox"><span>CLUSIR Rhône-Alpes</span></label>
-                <label class="task"><input type="checkbox"><span>CTF locaux</span></label>
-            </div>
+            <div class="card-title">Mardi &amp; Samedi (à partir de S4) — soirées stream</div>
+            <table>
+                <tr><th>Heure</th><th>Activité</th></tr>
+                <tr><td>19:00</td><td>Setup OBS, scène, alertes</td></tr>
+                <tr><td>19:30</td><td>Stream Twitch qyrnsec — 1h30, labs en doublon</td></tr>
+                <tr><td>21:00</td><td>End stream, dîner</td></tr>
+            </table>
         </div>
+
+        <div class="card">
+            <div class="card-title">Samedi en plus — write-up</div>
+            <table>
+                <tr><th>Heure</th><th>Activité</th></tr>
+                <tr><td>14:00</td><td>Rédaction write-up draft FR (1h30-2h)</td></tr>
+                <tr><td>16:00</td><td>Passe Claude pour traduction/correction</td></tr>
+                <tr><td>17:00</td><td>Relecture finale, prêt pour dim</td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Dimanche — jour structuré allégé</div>
+            <table>
+                <tr><th>Heure</th><th>Activité</th></tr>
+                <tr><td>09:00</td><td>Sport (5e séance) ou off complet</td></tr>
+                <tr><td>14:00</td><td>Finalisation et publication write-up</td></tr>
+                <tr><td>15:30</td><td>Enrichissement Anki — 5-10 nouvelles cartes</td></tr>
+                <tr><td>16:30</td><td>Défi OSINT/GEOINT hebdo</td></tr>
+                <tr><td>17:30</td><td>Publication TikTok cyber (à partir de S4)</td></tr>
+                <tr><td>18:00</td><td>Loghebdo 15 min</td></tr>
+                <tr><td>Soir</td><td>Repos total</td></tr>
+            </table>
+        </div>
+
+        <div class="section-title red">Drop protocol — si une semaine pète</div>
+        <div class="blocking-gate">
+            <h4>Si une semaine fait &lt; 5h labs (drop)</h4>
+            <p style="margin-bottom:8px">Pas de culpabilisation. Identifier la cause :</p>
+            <ul style="font-size:0.85rem;padding-left:20px">
+                <li>Cyber-fatigue → on allège la semaine d'après à 10h cible</li>
+                <li>Émotionnel → minimum viable et on attend que ça passe</li>
+                <li>Santé → on récupère, point</li>
+            </ul>
+            <p style="margin-top:8px"><strong>Conséquence :</strong> pas de stream Twitch la semaine suivante.</p>
+        </div>
+
+        <div class="section-title cyan">Discipline quotidienne — règles fixes</div>
+        <ul style="font-size:0.9rem;line-height:1.8;padding-left:20px">
+            <li>Endroit fixe pour bosser (jamais le lit, jamais le canapé)</li>
+            <li>Téléphone dans une autre pièce pendant les sessions cyber</li>
+            <li>Pomodoro 25/5 avec timer visible</li>
+            <li>Rituel d'entrée 2 min : ouvrir logbook, écrire l'objectif du jour</li>
+            <li>Couché 23h max, levé 8h, téléphone hors de la chambre la nuit</li>
+            <li>3 repas/jour minimum, douche le matin</li>
+        </ul>
+
     </div>
 
     <!-- RESOURCES -->
     <div id="resources" class="tab">
-        <div class="section-title purple">Ressources (MAX 3/phase)</div>
-        <div class="section-title red" style="font-size:1rem">Phase 1</div>
+        <div class="section-title cyan">Ressources utilisées Phase 2</div>
+        <p style="font-size:0.85rem;color:var(--dim)">Seulement ce qui sert vraiment pendant ces 8 semaines.</p>
+
+        <div class="section-title cyan">Labs &amp; CTF</div>
         <div class="resource-grid">
-            <div class="resource-item"><h4>🎯 TryHackMe</h4><p>Rooms guidées</p></div>
-            <div class="resource-item"><h4>🏴‍☠️ OverTheWire</h4><p>Bandit</p></div>
-            <div class="resource-item"><h4>🇫🇷 Root Me</h4><p>Score CV</p></div>
+            <div class="resource-item">
+                <h4>PortSwigger Web Security Academy</h4>
+                <p>Labs gratuits illimités sur toutes les vulns web. Cœur de la phase.</p>
+                <a href="https://portswigger.net/web-security" target="_blank">portswigger.net/web-security</a>
+            </div>
+            <div class="resource-item">
+                <h4>HackTheBox</h4>
+                <p>Box Easy retired (S6) puis Easy active (S8). Free tier suffisant.</p>
+                <a href="https://hackthebox.com" target="_blank">hackthebox.com</a>
+            </div>
+            <div class="resource-item">
+                <h4>TryHackMe</h4>
+                <p>Free tier en complément. Premium possible si budget après ML.</p>
+                <a href="https://tryhackme.com" target="_blank">tryhackme.com</a>
+            </div>
+            <div class="resource-item">
+                <h4>OverTheWire — Bandit</h4>
+                <p>Niveaux 20-25 sans aide en S1 pour test mémoire P1.</p>
+                <a href="https://overthewire.org/wargames/bandit/" target="_blank">overthewire.org/bandit</a>
+            </div>
         </div>
-        <div class="section-title blue" style="font-size:1rem">Phase 2</div>
+
+        <div class="section-title purple">IA / LLM security</div>
         <div class="resource-grid">
-            <div class="resource-item"><h4>🎯 PortSwigger</h4><p>Web security</p></div>
-            <div class="resource-item"><h4>📗 TryHackMe</h4><p>Web rooms</p></div>
-            <div class="resource-item"><h4>🔵 HackTheBox</h4><p>Machines</p></div>
+            <div class="resource-item">
+                <h4>Gandalf — Lakera AI</h4>
+                <p>8 niveaux de prompt injection. S3.</p>
+                <a href="https://gandalf.lakera.ai" target="_blank">gandalf.lakera.ai</a>
+            </div>
+            <div class="resource-item">
+                <h4>OWASP LLM Top 10</h4>
+                <p>Document de référence sécu LLM. Lecture S5.</p>
+                <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank">owasp.org</a>
+            </div>
+            <div class="resource-item">
+                <h4>HackAPrompt</h4>
+                <p>Walkthrough bonus S5 si temps.</p>
+                <a href="https://www.hackaprompt.com" target="_blank">hackaprompt.com</a>
+            </div>
+            <div class="resource-item">
+                <h4>Anthropic Claude API</h4>
+                <p>Pour le projet auto-pentest LLM en S7.</p>
+                <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>
+            </div>
         </div>
-        <div class="section-title cyan" style="font-size:1rem">Phase 3 Blue</div>
+
+        <div class="section-title yellow">OSINT / GEOINT</div>
         <div class="resource-grid">
-            <div class="resource-item"><h4>🛡️ LetsDefend</h4><p>Simulateur SOC</p></div>
-            <div class="resource-item"><h4>🔵 CyberDefenders</h4><p>DFIR</p></div>
-            <div class="resource-item"><h4>📗 TryHackMe</h4><p>SOC paths</p></div>
+            <div class="resource-item">
+                <h4>Sector035 Sunday Quiz</h4>
+                <p>Défi GEOINT hebdomadaire. Tous les dimanches.</p>
+                <a href="https://sector035.nl/articles/category/sunday-quiz" target="_blank">sector035.nl</a>
+            </div>
+            <div class="resource-item">
+                <h4>OSINT Dojo Ninja Challenges</h4>
+                <p>Challenges progressifs gratuits. Sandbox total.</p>
+                <a href="https://www.osintdojo.com" target="_blank">osintdojo.com</a>
+            </div>
+            <div class="resource-item">
+                <h4>cybersecurite.forge.apps.education.fr</h4>
+                <p>Challenges OSINT FR pédagogiques (Roxane, randonnée, etc.).</p>
+                <a href="https://cybersecurite.forge.apps.education.fr/cyber/3.Challenges/OSINT/" target="_blank">forge.apps.education.fr</a>
+            </div>
+            <div class="resource-item">
+                <h4>Trace Labs CTF</h4>
+                <p>CTF mensuel personnes disparues. Légal, encadré. 1 fois dans la phase.</p>
+                <a href="https://www.tracelabs.org" target="_blank">tracelabs.org</a>
+            </div>
+            <div class="resource-item">
+                <h4>Sherlock</h4>
+                <p>Outil de recherche de pseudos sur 400+ sites. Crossover S8.</p>
+                <a href="https://github.com/sherlock-project/sherlock" target="_blank">github.com/sherlock</a>
+            </div>
+        </div>
+
+        <div class="section-title red">Outils</div>
+        <div class="resource-grid">
+            <div class="resource-item">
+                <h4>Burp Suite Community</h4>
+                <p>Repeater (S1) → Intruder (S2) → Macros (S6).</p>
+                <a href="https://portswigger.net/burp/communitydownload" target="_blank">portswigger.net/burp</a>
+            </div>
+            <div class="resource-item">
+                <h4>Anki Desktop + AnkiDroid</h4>
+                <p>Spaced repetition. Cartes au fil de l'eau.</p>
+                <a href="https://apps.ankiweb.net" target="_blank">ankiweb.net</a>
+            </div>
+            <div class="resource-item">
+                <h4>FoxyProxy (Firefox)</h4>
+                <p>Switch Burp on/off rapide.</p>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/" target="_blank">FoxyProxy</a>
+            </div>
+            <div class="resource-item">
+                <h4>sqlmap</h4>
+                <p>Complément manuel SQLi en S2.</p>
+                <a href="https://sqlmap.org" target="_blank">sqlmap.org</a>
+            </div>
+            <div class="resource-item">
+                <h4>jwt_tool / jwt.io</h4>
+                <p>Analyse de tokens JWT en S6.</p>
+                <a href="https://jwt.io" target="_blank">jwt.io</a>
+            </div>
+            <div class="resource-item">
+                <h4>ProtonVPN (gratuit)</h4>
+                <p>VPN systématique pour les recherches OSINT.</p>
+                <a href="https://protonvpn.com" target="_blank">protonvpn.com</a>
+            </div>
+        </div>
+
+        <div class="section-title pink">YouTubeurs FR</div>
+        <div class="resource-grid">
+            <div class="resource-item">
+                <h4>FransOsint / FransOsiche</h4>
+                <p>OSINT pur, tutos labs, méthodo. Référence FR.</p>
+            </div>
+            <div class="resource-item">
+                <h4>Defend Intelligence (Anis Ayari)</h4>
+                <p>IA + cyber, pédagogie de qualité. Pile dans le spectre.</p>
+            </div>
+            <div class="resource-item">
+                <h4>Micode</h4>
+                <p>Investigations cyber, vulgarisation premium.</p>
+            </div>
+            <div class="resource-item">
+                <h4>Underscore_</h4>
+                <p>Talk-show Micode. Épisodes IA/cyber très bons.</p>
+            </div>
+            <div class="resource-item">
+                <h4>Hackerf0x</h4>
+                <p>Pentest et CTF, format technique FR.</p>
+            </div>
+            <div class="resource-item">
+                <h4>Waked XY</h4>
+                <p>OSINT + walkthroughs HTB FR.</p>
+            </div>
+            <div class="resource-item">
+                <h4>Michel Kartner / Le Blog du Hacker</h4>
+                <p>Autodidacte → consultant. Parcours similaire.</p>
+            </div>
+            <div class="resource-item">
+                <h4>Parlons Cyber</h4>
+                <p>OSINT + cyber, format court FR.</p>
+            </div>
+            <div class="resource-item">
+                <h4>OSINT-FR (chaîne asso)</h4>
+                <p>Conférences et ateliers OSINT FR.</p>
+            </div>
+        </div>
+
+        <div class="section-title orange">Contenu international</div>
+        <div class="resource-grid">
+            <div class="resource-item">
+                <h4>IppSec</h4>
+                <p>Walkthroughs HTB. Référence absolue. S6 et S8.</p>
+            </div>
+            <div class="resource-item">
+                <h4>John Hammond</h4>
+                <p>Format court CTF + investigations malware.</p>
+            </div>
+            <div class="resource-item">
+                <h4>LiveOverflow</h4>
+                <p>Tutoriels deep tech, parfait pour fondations.</p>
+            </div>
+            <div class="resource-item">
+                <h4>PinkDraconian</h4>
+                <p>Walkthroughs alternative à IppSec.</p>
+            </div>
+            <div class="resource-item">
+                <h4>Darknet Diaries (podcast)</h4>
+                <p>Histoires de hacks racontées. Marche/cuisine.</p>
+            </div>
+        </div>
+
+        <div class="section-title green">Communauté</div>
+        <div class="resource-grid">
+            <div class="resource-item">
+                <h4>OWASP Lyon</h4>
+                <p>Meetups locaux. À vérifier mai-juin.</p>
+                <a href="https://www.meetup.com/fr-FR/owasp-lyon/" target="_blank">meetup.com/owasp-lyon</a>
+            </div>
+            <div class="resource-item">
+                <h4>CLUSIR Grand Est</h4>
+                <p>Cluster cyber régional. Plus proche de Pont-à-Mousson.</p>
+            </div>
+            <div class="resource-item">
+                <h4>HackTheBox Discord</h4>
+                <p>Communauté FR active. Bon pour les DM cyber.</p>
+            </div>
+            <div class="resource-item">
+                <h4>Root-Me</h4>
+                <p>Plateforme FR, challenges + communauté active.</p>
+                <a href="https://www.root-me.org" target="_blank">root-me.org</a>
+            </div>
+        </div>
+
+        <div class="section-title blue">Publication qyrn</div>
+        <div class="resource-grid">
+            <div class="resource-item">
+                <h4>blog.qyrn.dev</h4>
+                <p>Write-ups + bilan de phase. 5 obligatoires + 4 bonus.</p>
+            </div>
+            <div class="resource-item">
+                <h4>github.com/qyrnsec</h4>
+                <p>Mini-scanner, projets IA, crossover OSINT × LLM.</p>
+            </div>
+            <div class="resource-item">
+                <h4>twitch.tv/qyrnsec</h4>
+                <p>Streams en doublon des sessions, à partir de S4.</p>
+            </div>
+            <div class="resource-item">
+                <h4>TikTok @qyrn</h4>
+                <p>1 publication/sem à partir de S4. Format 60s.</p>
+            </div>
         </div>
     </div>
 
-    <!-- BERLIN (hidden) -->
-    <div id="berlin-tab" class="tab">
-        <div class="section-title pink">🇩🇪 Berlin Life</div>
-        <div class="berlin-section">
-            <div class="card-title" style="color:var(--cyan)">Pré-Berlin (2027)</div>
-            <div class="tasks" style="margin-top:10px">
-                <label class="task"><input type="checkbox"><span>Travailler la timidité</span></label>
-                <label class="task"><input type="checkbox"><span>Sortir zone de confort</span></label>
-                <label class="task"><input type="checkbox"><span>Gym consistant</span></label>
-                <label class="task"><input type="checkbox"><span>Bases allemand</span></label>
-            </div>
-        </div>
-        <div class="berlin-section">
-            <div class="card-title" style="color:var(--pink)">Arrivée Berlin (2028)</div>
-            <div class="tasks" style="margin-top:10px">
-                <label class="task"><input type="checkbox"><span>S'inscrire Feeld + FetLife</span></label>
-                <label class="task"><input type="checkbox"><span>Explorer scène sex-positive</span></label>
-                <label class="task"><input type="checkbox"><span>Devenir visage régulier</span></label>
-            </div>
-            <div class="info-box purple" style="margin-top:10px"><p>Pas chercher la perfection : quelqu'un d'ouvert > match parfait Day 1</p></div>
-        </div>
-        <div class="berlin-section">
-            <div class="card-title" style="color:var(--orange)">Installé Berlin (2028+)</div>
-            <div class="tasks" style="margin-top:10px">
-                <label class="task"><input type="checkbox"><span>Voyages: Amsterdam, Prague, Copenhague</span></label>
-            </div>
-            <div class="info-box orange" style="margin-top:10px"><div class="info-title">🎯 Long terme</div><p>Marathon pas sprint. 5-10 ans devant toi.</p></div>
-        </div>
-    </div>
 </div>
 
-<input type="password" class="secret-input" id="secretInput" placeholder="..." onkeyup="checkSecret()">
-
 <script>
-const STORAGE='qyrn_roadmap_v4';
-const SECRET='berlin2028';
+const STORAGE='qyrn_p2_v1';
 
 function showTab(id){
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    document.querySelector('[onclick="showTab(\''+id+'\')"]')?.classList.add('active');
-}
-
-function save(){
-    const cbs=document.querySelectorAll('input[type="checkbox"]');
-    const s=[];cbs.forEach((c,i)=>{if(c.checked)s.push(i)});
-    localStorage.setItem(STORAGE,JSON.stringify(s));
-    update();
+    const tab=document.getElementById(id);
+    if(tab)tab.classList.add('active');
+    if(event&&event.target.classList.contains('nav-btn'))event.target.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function load(){
-    const s=JSON.parse(localStorage.getItem(STORAGE)||'[]');
-    const cbs=document.querySelectorAll('input[type="checkbox"]');
-    cbs.forEach((c,i)=>{
-        if(s.includes(i)){c.checked=true;c.closest('.task')?.classList.add('done');}
-        c.addEventListener('change',function(){
-            this.closest('.task')?.classList.toggle('done',this.checked);
-            save();
+    const saved=JSON.parse(localStorage.getItem(STORAGE)||'[]');
+    document.querySelectorAll('.task input[type="checkbox"]').forEach(cb=>{
+        if(saved.includes(cb.dataset.id)){
+            cb.checked=true;
+            cb.closest('.task').classList.add('done');
+        }
+        cb.addEventListener('change',()=>{
+            const cur=JSON.parse(localStorage.getItem(STORAGE)||'[]');
+            if(cb.checked){
+                if(!cur.includes(cb.dataset.id))cur.push(cb.dataset.id);
+                cb.closest('.task').classList.add('done');
+            }else{
+                const i=cur.indexOf(cb.dataset.id);
+                if(i>-1)cur.splice(i,1);
+                cb.closest('.task').classList.remove('done');
+            }
+            localStorage.setItem(STORAGE,JSON.stringify(cur));
+            update();
         });
     });
     update();
 }
 
 function update(){
-    const phase1=document.querySelectorAll('.task[data-phase="1"] input[type="checkbox"]');
-    const t=phase1.length;
-    const c=document.querySelectorAll('.task[data-phase="1"] input[type="checkbox"]:checked').length;
+    const all=document.querySelectorAll('.task[data-phase="2"] input[type="checkbox"]');
+    const t=all.length;
+    const c=document.querySelectorAll('.task[data-phase="2"] input[type="checkbox"]:checked').length;
     const p=t?Math.round((c/t)*100):0;
     document.getElementById('progressBar').style.width=p+'%';
-    document.getElementById('progressText').textContent=p+'% Phase 1';
+    document.getElementById('progressText').textContent=p+'% Phase 2';
     document.getElementById('taskCount').textContent=c+'/'+t;
 }
 
@@ -762,13 +1485,12 @@ function exportData(){
     const data={
         version:STORAGE,
         date:new Date().toISOString(),
-        tasks:JSON.parse(localStorage.getItem(STORAGE)||'[]'),
-        berlin:localStorage.getItem('berlin_unlocked')
+        tasks:JSON.parse(localStorage.getItem(STORAGE)||'[]')
     };
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
-    a.href=url;a.download='roadmap-backup-'+new Date().toISOString().split('T')[0]+'.json';
+    a.href=url;a.download='roadmap-p2-backup-'+new Date().toISOString().split('T')[0]+'.json';
     a.click();URL.revokeObjectURL(url);
 }
 
@@ -782,7 +1504,6 @@ function importData(){
             try{
                 const data=JSON.parse(ev.target.result);
                 if(data.tasks){localStorage.setItem(STORAGE,JSON.stringify(data.tasks));}
-                if(data.berlin){localStorage.setItem('berlin_unlocked',data.berlin);}
                 location.reload();
             }catch(err){alert('Fichier invalide');}
         };
@@ -802,51 +1523,7 @@ function checkQuiz(id,valid){
     res.className='quiz-result '+(ok?'correct':'incorrect');
 }
 
-function checkSecret(){
-    const inp=document.getElementById('secretInput');
-    if(inp.value===SECRET){
-        const berlinTab=document.getElementById('berlin-tab');
-        const isUnlocked=berlinTab.classList.contains('unlocked');
-        if(isUnlocked){
-            berlinTab.classList.remove('unlocked');
-            const btn=document.querySelector('[data-berlin-btn]');
-            if(btn)btn.remove();
-            localStorage.removeItem('berlin_unlocked');
-            showTab('overview');
-        }else{
-            berlinTab.classList.add('unlocked');
-            const nav=document.querySelector('nav');
-            if(!document.querySelector('[data-berlin-btn]')){
-                const btn=document.createElement('button');
-                btn.className='nav-btn';
-                btn.setAttribute('data-berlin-btn','true');
-                btn.onclick=()=>showTab('berlin-tab');
-                btn.textContent='🔒';
-                btn.style.background='linear-gradient(135deg,rgba(236,72,153,0.3),rgba(168,85,247,0.3))';
-                nav.appendChild(btn);
-            }
-            localStorage.setItem('berlin_unlocked','true');
-            showTab('berlin-tab');
-        }
-        inp.value='';
-    }
-}
-
-function checkBerlin(){
-    if(localStorage.getItem('berlin_unlocked')==='true'){
-        document.getElementById('berlin-tab').classList.add('unlocked');
-        const nav=document.querySelector('nav');
-        const btn=document.createElement('button');
-        btn.className='nav-btn';
-        btn.setAttribute('data-berlin-btn','true');
-        btn.onclick=()=>showTab('berlin-tab');
-        btn.textContent='🔒';
-        btn.style.background='linear-gradient(135deg,rgba(236,72,153,0.3),rgba(168,85,247,0.3))';
-        nav.appendChild(btn);
-    }
-}
-
-document.addEventListener('DOMContentLoaded',()=>{load();checkBerlin();});
+document.addEventListener('DOMContentLoaded',()=>{load();});
 </script>
 </body>
 </html>
