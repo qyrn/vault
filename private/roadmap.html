@@ -330,11 +330,11 @@
             <div class="tasks">
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s1-bandit"><span>Bandit niveaux 20-25, chrono, noter les blocages <code>~45min</code><span class="tag tag-soc">OTW</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s1-nmap"><span>Relecture Nmap : flags qui m'ont posé problème en P1 <code>~30min</code><span class="tag tag-soc">Nmap</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-http"><span>HTTP : GET/POST, headers, status codes, cookies, sessions <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-auth"><span>Auth basics : cookies de session, structure JWT décodée <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-http"><span>HTTP : GET/POST, headers, status codes, cookies, sessions <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-auth"><span>Auth basics : cookies de session, structure JWT décodée <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s1-js"><span>JS pour la sécu : DOM, document.cookie, fetch, encodings <code>~45min</code><span class="tag tag-ai">JS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-burp"><span>Burp : Repeater + Intercept maîtrisés <code>~1h</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-psbasics"><span>Web Security Basics + Your first challenge <code>~1h</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-burp"><span>Burp : Repeater + Intercept maîtrisés <code>~1h</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-psbasics"><span>Web Security Basics + Your first challenge <code>~1h</code><span class="tag tag-pentest">PSW</span></span></label>
             </div>
         </div>
 
@@ -368,7 +368,16 @@
             <p>Pas de write-up (semaine de fondations). Pas de stream (démarrage S4). Pas d'attaque (consolidation seulement).</p>
         </div>
 
-        <div id="s1-quiz-section" class="quiz-week-section">
+                <div class="info-box purple" style="margin-top:12px">
+            <div class="info-title">🆘 Si blocage — S1</div>
+            <p>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview" target="_blank" style="color:var(--cyan)">MDN — HTTP overview</a> ·
+                <a href="https://portswigger.net/web-security/getting-started" target="_blank" style="color:var(--cyan)">PSW — Getting started</a> ·
+                <a href="https://javascript.info/dom-navigation" target="_blank" style="color:var(--cyan)">javascript.info — DOM</a> ·
+                <a href="https://overthewire.org/wargames/bandit/bandit20.html" target="_blank" style="color:var(--cyan)">OTW — Bandit hints</a>
+            </p>
+        </div>
+<div id="s1-quiz-section" class="quiz-week-section">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
                 <span class="quiz-week-title">Quiz S1 — Fondations HTTP/JS/Auth</span>
                 <span class="quiz-badge" id="s1-quiz-badge">Validé</span>
@@ -444,23 +453,23 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union1"><span>UNION-based SQLi — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union2"><span>UNION-based SQLi — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union3"><span>UNION-based SQLi — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind1"><span>Blind SQLi boolean — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind2"><span>Blind SQLi boolean — lab 2 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time1"><span>Blind SQLi time-based — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time2"><span>Blind SQLi time-based — lab 2 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass1"><span>SQLi via filter bypass — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass2"><span>SQLi via filter bypass — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-pract"><span>Lab Practitioner SQLi (bonus si temps) <code>~1h</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union1"><span>UNION-based SQLi — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union2"><span>UNION-based SQLi — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-union3"><span>UNION-based SQLi — lab 3 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind1"><span>Blind SQLi boolean — lab 1 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-blind2"><span>Blind SQLi boolean — lab 2 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time1"><span>Blind SQLi time-based — lab 1 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-time2"><span>Blind SQLi time-based — lab 2 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass1"><span>SQLi via filter bypass — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-bypass2"><span>SQLi via filter bypass — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-pract"><span>Lab Practitioner SQLi (bonus si temps) <code>~1h</code><span class="tag tag-pentest">PSW</span></span></label>
             </div>
         </div>
 
         <div class="card">
             <div class="card-header"><div class="card-title">🔧 Outils introduits</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-intruder"><span>Burp Intruder : brute-force payloads SQLi <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-intruder"><span>Burp Intruder : brute-force payloads SQLi <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s2-sqlmap"><span>sqlmap sur 1 cas concret (pas d'automatisation aveugle) <code>~30min</code><span class="tag tag-pentest">sqlmap</span></span></label>
             </div>
         </div>
@@ -491,7 +500,16 @@
             </div>
         </div>
 
-        <div id="s2-quiz-section" class="quiz-week-section">
+                <div class="info-box purple" style="margin-top:12px">
+            <div class="info-title">🆘 Si blocage — S2 · SQLi</div>
+            <p>
+                <a href="https://portswigger.net/web-security/sql-injection" target="_blank" style="color:var(--cyan)">PSW — SQLi learning path</a> ·
+                <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection" target="_blank" style="color:var(--cyan)">PayloadsAllTheThings — SQLi</a> ·
+                <a href="https://www.hacksplaining.com/exercises/sql-injection" target="_blank" style="color:var(--cyan)">HackSplaining — SQLi interactif</a> ·
+                <a href="https://sqlzoo.net" target="_blank" style="color:var(--cyan)">SQLZoo — rappel SQL</a>
+            </p>
+        </div>
+<div id="s2-quiz-section" class="quiz-week-section">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
                 <span class="quiz-week-title">Quiz S2 — SQL Injection</span>
                 <span class="quiz-badge" id="s2-quiz-badge">Validé</span>
@@ -569,17 +587,17 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl1"><span>Reflected XSS — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl2"><span>Reflected XSS — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl3"><span>Reflected XSS — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored1"><span>Stored XSS — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored2"><span>Stored XSS — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom1"><span>DOM-based XSS — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom2"><span>DOM-based XSS — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom3"><span>DOM-based XSS — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp1"><span>CSP bypass — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp2"><span>CSP bypass — lab 2 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-pract"><span>Lab Practitioner XSS (bonus si temps) <code>~1h</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl1"><span>Reflected XSS — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl2"><span>Reflected XSS — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-refl3"><span>Reflected XSS — lab 3 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored1"><span>Stored XSS — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-stored2"><span>Stored XSS — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom1"><span>DOM-based XSS — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom2"><span>DOM-based XSS — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-dom3"><span>DOM-based XSS — lab 3 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp1"><span>CSP bypass — lab 1 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-csp2"><span>CSP bypass — lab 2 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-pract"><span>Lab Practitioner XSS (bonus si temps) <code>~1h</code><span class="tag tag-pentest">PSW</span></span></label>
             </div>
         </div>
 
@@ -617,7 +635,16 @@
             </div>
         </div>
 
-        <div id="s3-quiz-section" class="quiz-week-section">
+                <div class="info-box purple" style="margin-top:12px">
+            <div class="info-title">🆘 Si blocage — S3 · XSS & IA</div>
+            <p>
+                <a href="https://portswigger.net/web-security/cross-site-scripting" target="_blank" style="color:var(--cyan)">PSW — XSS learning path</a> ·
+                <a href="https://xss-game.appspot.com" target="_blank" style="color:var(--cyan)">XSS Game (Google)</a> ·
+                <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection" target="_blank" style="color:var(--cyan)">PayloadsAllTheThings — XSS</a> ·
+                <a href="https://gandalf.lakera.ai" target="_blank" style="color:var(--cyan)">Gandalf — hint : pense indirect</a>
+            </p>
+        </div>
+<div id="s3-quiz-section" class="quiz-week-section">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
                 <span class="quiz-week-title">Quiz S3 — XSS &amp; prompt injection</span>
                 <span class="quiz-badge" id="s3-quiz-badge">Validé</span>
@@ -695,14 +722,14 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor1"><span>IDOR — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor2"><span>IDOR — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor3"><span>IDOR — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv1"><span>Privilege escalation horizontal — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv2"><span>Privilege escalation vertical — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl1"><span>Business logic — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl2"><span>Business logic — lab 2 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-mass"><span>Mass assignment — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor1"><span>IDOR — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor2"><span>IDOR — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-idor3"><span>IDOR — lab 3 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv1"><span>Privilege escalation horizontal — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-priv2"><span>Privilege escalation vertical — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl1"><span>Business logic — lab 1 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl2"><span>Business logic — lab 2 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-mass"><span>Mass assignment — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
             </div>
         </div>
 
@@ -748,7 +775,16 @@
             </div>
         </div>
 
-        <div id="s4-quiz-section" class="quiz-week-section">
+                <div class="info-box purple" style="margin-top:12px">
+            <div class="info-title">🆘 Si blocage — S4 · Access Control</div>
+            <p>
+                <a href="https://portswigger.net/web-security/access-control" target="_blank" style="color:var(--cyan)">PSW — Access Control path</a> ·
+                <a href="https://portswigger.net/web-security/access-control/idor" target="_blank" style="color:var(--cyan)">PSW — IDOR expliqué</a> ·
+                <a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/" target="_blank" style="color:var(--cyan)">OWASP — Broken Access Control</a> ·
+                <a href="https://www.youtube.com/watch?v=94-SBuEi1bQ" target="_blank" style="color:var(--cyan)">TCM — IDOR pratique (YT)</a>
+            </p>
+        </div>
+<div id="s4-quiz-section" class="quiz-week-section">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
                 <span class="quiz-week-title">Quiz S4 — IDOR / Access Control</span>
                 <span class="quiz-badge" id="s4-quiz-badge">Validé</span>
@@ -826,16 +862,16 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf1"><span>SSRF basic — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf2"><span>SSRF basic — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf3"><span>SSRF filter bypass — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up1"><span>File Upload — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up2"><span>File Upload — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up3"><span>File Upload bypass — lab 3 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe1"><span>XXE injection — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe2"><span>XXE injection — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-rest"><span>API REST IDOR — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-gql"><span>GraphQL basics — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf1"><span>SSRF basic — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf2"><span>SSRF basic — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-ssrf3"><span>SSRF filter bypass — lab 1 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up1"><span>File Upload — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up2"><span>File Upload — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-up3"><span>File Upload bypass — lab 3 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe1"><span>XXE injection — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-xxe2"><span>XXE injection — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-rest"><span>API REST IDOR — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-api-gql"><span>GraphQL basics — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
             </div>
         </div>
 
@@ -880,7 +916,16 @@
             </div>
         </div>
 
-        <div id="s5-quiz-section" class="quiz-week-section">
+                <div class="info-box purple" style="margin-top:12px">
+            <div class="info-title">🆘 Si blocage — S5 · SSRF / Upload / API</div>
+            <p>
+                <a href="https://portswigger.net/web-security/ssrf" target="_blank" style="color:var(--cyan)">PSW — SSRF path</a> ·
+                <a href="https://portswigger.net/web-security/file-upload" target="_blank" style="color:var(--cyan)">PSW — File Upload</a> ·
+                <a href="https://owasp.org/www-project-api-security/" target="_blank" style="color:var(--cyan)">OWASP API Security Top 10</a> ·
+                <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery" target="_blank" style="color:var(--cyan)">PayloadsAllTheThings — SSRF</a>
+            </p>
+        </div>
+<div id="s5-quiz-section" class="quiz-week-section">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
                 <span class="quiz-week-title">Quiz S5 — SSRF / Upload / API + OWASP LLM</span>
                 <span class="quiz-badge" id="s5-quiz-badge">Validé</span>
@@ -958,14 +1003,14 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📚 Labs PortSwigger</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth1"><span>Authentication vulnerabilities — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth2"><span>Authentication vulnerabilities — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth3"><span>Authentication vulnerabilities — lab 3 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt1"><span>JWT none algorithm — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt2"><span>JWT weak signing — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt3"><span>JWT alg confusion — lab 1 <code>~45min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth1"><span>OAuth basics — lab 1 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth2"><span>OAuth basics — lab 2 <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth1"><span>Authentication vulnerabilities — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth2"><span>Authentication vulnerabilities — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-auth3"><span>Authentication vulnerabilities — lab 3 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt1"><span>JWT none algorithm — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt2"><span>JWT weak signing — lab 1 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt3"><span>JWT alg confusion — lab 1 <code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth1"><span>OAuth basics — lab 1 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-oauth2"><span>OAuth basics — lab 2 <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
             </div>
         </div>
 
@@ -986,7 +1031,7 @@
         <div class="card">
             <div class="card-header"><div class="card-title">🔧 Outils introduits</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-macros"><span>Burp Macros : auth chains, login automation <code>~30min</code><span class="tag tag-pentest">PS</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-macros"><span>Burp Macros : auth chains, login automation <code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s6-jwt-tool"><span>jwt_tool / jwt.io pour analyse et forge de tokens <code>~20min</code><span class="tag tag-soc">JWT</span></span></label>
             </div>
         </div>
@@ -1025,7 +1070,17 @@
             </div>
         </div>
 
-        <div id="s6-quiz-section" class="quiz-week-section">
+                <div class="info-box purple" style="margin-top:12px">
+            <div class="info-title">🆘 Si blocage — S6 · Auth / JWT / HTB</div>
+            <p>
+                <a href="https://portswigger.net/web-security/authentication" target="_blank" style="color:var(--cyan)">PSW — Authentication path</a> ·
+                <a href="https://portswigger.net/web-security/jwt" target="_blank" style="color:var(--cyan)">PSW — JWT attacks</a> ·
+                <a href="https://jwt.io" target="_blank" style="color:var(--cyan)">jwt.io — debugger live</a> ·
+                <a href="https://ippsec.rocks" target="_blank" style="color:var(--cyan)">IppSec — recherche par technique</a> ·
+                <a href="https://0xdf.gitlab.io" target="_blank" style="color:var(--cyan)">0xdf — writeups HTB</a>
+            </p>
+        </div>
+<div id="s6-quiz-section" class="quiz-week-section">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
                 <span class="quiz-week-title">Quiz S6 — Auth/JWT + HTB</span>
                 <span class="quiz-badge" id="s6-quiz-badge">Validé</span>
@@ -1169,7 +1224,16 @@
             </div>
         </div>
 
-        <div id="s7-quiz-section" class="quiz-week-section">
+                <div class="info-box purple" style="margin-top:12px">
+            <div class="info-title">🆘 Si blocage — S7 · IA offensive/defensive</div>
+            <p>
+                <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" style="color:var(--cyan)">OWASP LLM Top 10</a> ·
+                <a href="https://github.com/anthropics/anthropic-cookbook" target="_blank" style="color:var(--cyan)">Anthropic Cookbook (GitHub)</a> ·
+                <a href="https://learnprompting.org" target="_blank" style="color:var(--cyan)">LearnPrompting.org</a> ·
+                <a href="https://hackaprompt.com" target="_blank" style="color:var(--cyan)">HackAPrompt — prompt injection game</a>
+            </p>
+        </div>
+<div id="s7-quiz-section" class="quiz-week-section">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
                 <span class="quiz-week-title">Quiz S7 — IA offensive/défensive</span>
                 <span class="quiz-badge" id="s7-quiz-badge">Validé</span>
@@ -1304,7 +1368,16 @@
             </div>
         </div>
 
-        <div id="s8-quiz-section" class="quiz-week-section">
+                <div class="info-box purple" style="margin-top:12px">
+            <div class="info-title">🆘 Si blocage — S8 · HTB solo + OSINT</div>
+            <p>
+                <a href="https://ippsec.rocks" target="_blank" style="color:var(--cyan)">IppSec — recherche par machine ou technique</a> ·
+                <a href="https://book.hacktricks.xyz" target="_blank" style="color:var(--cyan)">HackTricks — méthodologie complète</a> ·
+                <a href="https://github.com/sherlock-project/sherlock" target="_blank" style="color:var(--cyan)">Sherlock — doc & issues</a> ·
+                <a href="https://osintframework.com" target="_blank" style="color:var(--cyan)">OSINT Framework</a>
+            </p>
+        </div>
+<div id="s8-quiz-section" class="quiz-week-section">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
                 <span class="quiz-week-title">Quiz S8 — Box HTB + OSINT × LLM + bilan</span>
                 <span class="quiz-badge" id="s8-quiz-badge">Validé</span>
