@@ -135,7 +135,7 @@
 <div class="container">
     <header>
         <h1 class="title">PHASE 2 — WEB SEC &amp; AI</h1>
-        <p class="subtitle">qyrn.dev — 8 semaines • 27 avril → 22 juin 2026</p>
+        <p class="subtitle">qyrn.dev — 8 semaines • 4 mai → 29 juin 2026</p>
         <span class="badge badge-soc">🛡️ SOC Paris (2027)</span>
         <span class="badge badge-pentest">🔴 Pentest Berlin (2028+)</span>
         <span class="badge badge-ai">🤖 AI offense/defense</span>
@@ -151,7 +151,6 @@
 
     <nav>
         <button class="nav-btn active" onclick="showTab('overview')">Accueil</button>
-        <button class="nav-btn" onclick="showTab('s0')">Setup</button>
         <button class="nav-btn" onclick="showTab('s1')">S1</button>
         <button class="nav-btn" onclick="showTab('s2')">S2</button>
         <button class="nav-btn" onclick="showTab('s3')">S3</button>
@@ -184,14 +183,14 @@
         <div class="section-title cyan">Calendrier Phase 2</div>
         <table>
             <tr><th>Sem</th><th>Dates</th><th>Thème</th><th>Livrable</th></tr>
-            <tr class="cal-row" onclick="showTab('s1')"><td>S1</td><td>27.04 → 04.05</td><td>Fondations HTTP/JS/Auth + revue P1</td><td>50 cartes Anki + relecture blog</td></tr>
-            <tr class="cal-row" onclick="showTab('s2')"><td>S2</td><td>05.05 → 11.05</td><td>SQL Injection</td><td>Write-up SQLi + scanner v0.1</td></tr>
-            <tr class="cal-row" onclick="showTab('s3')"><td>S3</td><td>12.05 → 18.05</td><td>XSS + Gandalf (premier contact IA)</td><td>Write-up XSS + scanner v0.2</td></tr>
-            <tr class="cal-row" onclick="showTab('s4')"><td>S4</td><td>19.05 → 25.05</td><td>Access Control / IDOR + démarrage contenu</td><td>Write-up + 1er stream + 1er TikTok</td></tr>
-            <tr class="cal-row" onclick="showTab('s5')"><td>S5</td><td>26.05 → 01.06</td><td>SSRF + Upload + API + OWASP LLM</td><td>Write-up + scanner v0.4</td></tr>
-            <tr class="cal-row" onclick="showTab('s6')"><td>S6</td><td>02.06 → 08.06</td><td>Auth/JWT + box HTB Easy retired</td><td>Write-up Auth/JWT + box solved</td></tr>
-            <tr class="cal-row" onclick="showTab('s7')"><td>S7</td><td>09.06 → 15.06</td><td>Focus IA pure — projets Python × LLM</td><td>2 projets GitHub + write-up IA</td></tr>
-            <tr class="cal-row" onclick="showTab('s8')"><td>S8</td><td>16.06 → 22.06</td><td>Box HTB solo + crossover OSINT × LLM + review</td><td>Write-up box + bilan phase</td></tr>
+            <tr class="cal-row" onclick="showTab('s1')"><td>S1</td><td>04.05 → 11.05</td><td>Fondations HTTP/JS/Auth + revue P1</td><td>50 cartes Anki + relecture blog</td></tr>
+            <tr class="cal-row" onclick="showTab('s2')"><td>S2</td><td>12.05 → 18.05</td><td>SQL Injection</td><td>Write-up SQLi + scanner v0.1</td></tr>
+            <tr class="cal-row" onclick="showTab('s3')"><td>S3</td><td>19.05 → 25.05</td><td>XSS + Gandalf (premier contact IA)</td><td>Write-up XSS + scanner v0.2</td></tr>
+            <tr class="cal-row" onclick="showTab('s4')"><td>S4</td><td>26.05 → 01.06</td><td>Access Control / IDOR + démarrage contenu</td><td>Write-up + 1er stream + 1er TikTok</td></tr>
+            <tr class="cal-row" onclick="showTab('s5')"><td>S5</td><td>02.06 → 08.06</td><td>SSRF + Upload + API + OWASP LLM</td><td>Write-up + scanner v0.4</td></tr>
+            <tr class="cal-row" onclick="showTab('s6')"><td>S6</td><td>09.06 → 15.06</td><td>Auth/JWT + box HTB Easy retired</td><td>Write-up Auth/JWT + box solved</td></tr>
+            <tr class="cal-row" onclick="showTab('s7')"><td>S7</td><td>16.06 → 22.06</td><td>Focus IA pure — projets Python × LLM</td><td>2 projets GitHub + write-up IA</td></tr>
+            <tr class="cal-row" onclick="showTab('s8')"><td>S8</td><td>23.06 → 29.06</td><td>Box HTB solo + crossover OSINT × LLM + review</td><td>Write-up box + bilan phase</td></tr>
         </table>
 
         <div class="section-title green">Objectifs mesurables fin de phase</div>
@@ -246,76 +245,16 @@
 
     </div>
 
-    <!-- S0 SETUP -->
-    <div id="s0" class="tab">
-        <div class="week-header">
-            <div>
-                <div class="section-title green">Setup pré-démarrage</div>
-                <div class="week-dates">Dimanche 26.04.2026 — avant le lundi 27</div>
-            </div>
-        </div>
-
-        <div class="info-box green">
-            <div class="info-title">🟢 Objectif S0</div>
-            <p>Tout setuper le dimanche pour que lundi 18h on ouvre Burp et on attaque, pas qu'on perde une heure à créer des comptes.</p>
-        </div>
-
-        <div class="card">
-            <div class="card-header"><div class="card-title">🛠️ Setup technique</div></div>
-            <div class="tasks">
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-vm"><span>VM Kali boot OK, Burp s'ouvre sans erreur</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-foxy"><span>FoxyProxy installé sur Firefox + config Burp 127.0.0.1:8080</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-cert"><span>Certificat Burp CA importé dans Firefox (HTTPS lisible)</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-anki-pc"><span>Anki Desktop installé sur PC</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-anki-web"><span>Compte AnkiWeb créé + sync activé</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-anki-mobile"><span>AnkiDroid installé + synced</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-deck"><span>Deck "qyrn cyber" créé + 30-50 cartes de base sur Phase 1</span></label>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header"><div class="card-title">🌐 Comptes &amp; bookmarks</div></div>
-            <div class="tasks">
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-portswigger"><span>Compte PortSwigger Academy créé (gratuit)</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-thm"><span>TryHackMe encore loggé</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-htb"><span>HackTheBox encore loggé</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-tracelabs"><span>Compte Trace Labs créé (CTF mensuel)</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-osintdojo"><span>OSINT Dojo bookmarké (challenges Ninja)</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-sector"><span>Sector035 Sunday Quiz bookmarké</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-gandalf"><span>Gandalf Lakera bookmarké</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-vpn"><span>ProtonVPN free installé (pour OSINT)</span></label>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header"><div class="card-title">📺 YouTube subs</div></div>
-            <div class="tasks">
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-yt-fr"><span>FR : FransOsint, Defend Intelligence, Micode, Underscore_, Hackerf0x, Waked XY, Michel Kartner, Parlons Cyber, OSINT-FR</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-yt-en"><span>EN : IppSec , John Hammond, LiveOverflow, PinkDraconian <code>~notifall</code></span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-podcast"><span>Darknet Diaries dans l'app podcast (Spotify/Apple/etc.)</span></label>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header"><div class="card-title">🏠 Espace de travail</div></div>
-            <div class="tasks">
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-desk"><span>Bureau fixe identifié (PAS le lit, JAMAIS le lit)</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-phone"><span>Endroit pour téléphone hors de la chambre la nuit</span></label>
-                <label class="task" data-phase="0"><input type="checkbox" data-id="s0-pomo"><span>Timer Pomodoro choisi (app PC ou web)</span></label>
-            </div>
-        </div>
-    </div>
-
     <!-- S1 -->
     <div id="s1" class="tab">
         <div class="week-nav">
-            <button onclick="showTab('s0')">← Setup</button>
+            <button onclick="showTab('overview')">← Accueil</button>
             <button onclick="showTab('s2')">S2 →</button>
         </div>
         <div class="week-header">
             <div>
                 <div class="section-title cyan">S1 — Fondations</div>
-                <div class="week-dates">Lun 27.04 → Dim 04.05</div>
+                <div class="week-dates">Lun 04.05 → Dim 11.05</div>
             </div>
             <span class="tag tag-soc">Consolidation</span>
         </div>
@@ -349,7 +288,7 @@
         <div class="card">
             <div class="card-header"><div class="card-title">🔍 OSINT / contenu passif</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-sector"><span>1er Sector035 Sunday Quiz (dim 04/05) <code>~30min</code><span class="tag tag-osint">OSINT</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s1-sector"><span>1er Sector035 Sunday Quiz (dim 11/05) <code>~30min</code><span class="tag tag-osint">OSINT</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s1-passif"><span>Contenu passif : IppSec / Defend Intelligence / FransOsint <code>~30min/jour</code><span class="tag tag-blog">YT</span></span></label>
             </div>
         </div>
@@ -440,7 +379,7 @@
         <div class="week-header">
             <div>
                 <div class="section-title red">S2 — SQL Injection</div>
-                <div class="week-dates">Lun 05.05 → Dim 11.05</div>
+                <div class="week-dates">Lun 12.05 → Dim 18.05</div>
             </div>
             <span class="tag tag-pentest">Attaque #1</span>
         </div>
@@ -573,7 +512,7 @@
         <div class="week-header">
             <div>
                 <div class="section-title red">S3 — XSS &amp; premier contact IA</div>
-                <div class="week-dates">Lun 12.05 → Dim 18.05</div>
+                <div class="week-dates">Lun 19.05 → Dim 25.05</div>
             </div>
             <span class="tag tag-pentest">Attaque #2</span>
             <span class="tag tag-ai">LLM Intro</span>
@@ -708,7 +647,7 @@
         <div class="week-header">
             <div>
                 <div class="section-title pink">S4 — Access Control + démarrage contenu</div>
-                <div class="week-dates">Lun 19.05 → Dim 25.05</div>
+                <div class="week-dates">Lun 26.05 → Dim 01.06</div>
             </div>
             <span class="tag tag-pentest">Mid-phase</span>
             <span class="tag tag-stream">Streams ON</span>
@@ -736,9 +675,9 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📺 Démarrage contenu</div><span class="tag tag-stream">STREAM</span></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream1"><span>1er stream Twitch qyrnsec — mardi 20/05 (labs en cours) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream2"><span>2e stream — samedi 24/05 <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-tiktok"><span>1er TikTok cyber — "C'est quoi un IDOR en 60s" (dim 25/05) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream1"><span>1er stream Twitch qyrnsec — mardi 27/05 (labs en cours) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream2"><span>2e stream — samedi 31/05 <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
+                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-tiktok"><span>1er TikTok cyber — "C'est quoi un IDOR en 60s" (dim 01/06) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
             </div>
         </div>
 
@@ -848,7 +787,7 @@
         <div class="week-header">
             <div>
                 <div class="section-title orange">S5 — SSRF / Upload / API + LLM theory</div>
-                <div class="week-dates">Lun 26.05 → Dim 01.06</div>
+                <div class="week-dates">Lun 02.06 → Dim 08.06</div>
             </div>
             <span class="tag tag-pentest">Server-side</span>
             <span class="tag tag-ai">LLM lecture</span>
@@ -989,7 +928,7 @@
         <div class="week-header">
             <div>
                 <div class="section-title yellow">S6 — Auth/JWT + box HTB</div>
-                <div class="week-dates">Lun 02.06 → Dim 08.06</div>
+                <div class="week-dates">Lun 09.06 → Dim 15.06</div>
             </div>
             <span class="tag tag-pentest">Premier assemblage</span>
             <span class="tag tag-thm">HTB</span>
@@ -1144,7 +1083,7 @@
         <div class="week-header">
             <div>
                 <div class="section-title purple">S7 — Focus IA pure</div>
-                <div class="week-dates">Lun 09.06 → Dim 15.06</div>
+                <div class="week-dates">Lun 16.06 → Dim 22.06</div>
             </div>
             <span class="tag tag-ai">AI offensive/defensive</span>
             <span class="tag tag-project">2 projets</span>
@@ -1297,7 +1236,7 @@
         <div class="week-header">
             <div>
                 <div class="section-title red">S8 — Autonomie + crossover + review</div>
-                <div class="week-dates">Lun 16.06 → Dim 22.06</div>
+                <div class="week-dates">Lun 23.06 → Dim 29.06</div>
             </div>
             <span class="tag tag-pentest">Final boss</span>
         </div>
