@@ -553,12 +553,237 @@
         </div>
 
         <div class="card">
-            <div class="card-header"><div class="card-title">🛡️ Lecture défense (SOC)</div><span class="tag tag-soc">DEF</span></div>
+            <div class="card-header"><div class="card-title">🛡️ Fiches défense (SOC)</div><span class="tag tag-soc">DEF · FR</span></div>
+            <p style="font-size:0.78rem;color:var(--dim);margin:-4px 0 10px 0">Contenu condensé en français, lecture rapide. Le lien externe au bas de chaque fiche reste là pour approfondir si besoin.</p>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-def-owasp"><span><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html" target="_blank" style="color:var(--cyan)">OWASP XSS Prevention Cheat Sheet</a> : output encoding par contexte <code>~30min</code><span class="tag tag-soc">OWASP</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-def-psw"><span><a href="https://portswigger.net/web-security/cross-site-scripting/preventing" target="_blank" style="color:var(--cyan)">PortSwigger : How to prevent XSS</a> : encoding, validation, CSP <code>~20min</code><span class="tag tag-soc">PSW</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-def-csp"><span><a href="https://content-security-policy.com" target="_blank" style="color:var(--cyan)">content-security-policy.com</a> : directives, nonces, pièges <code>~20min</code><span class="tag tag-soc">CSP</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-def-llm"><span><a href="https://genai.owasp.org/llm-top-10/" target="_blank" style="color:var(--cyan)">OWASP Top 10 LLM (LLM01 prompt injection)</a> : mitigations côté défense <code>~20min</code><span class="tag tag-ai">LLM</span></span></label>
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-def-owasp" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.92rem">Fiche 1 · Output encoding par contexte <span class="tag tag-soc" style="font-size:0.6rem">Q5</span></strong>
+                        <div style="margin-top:6px;font-size:0.82rem;color:var(--text);line-height:1.55">
+                            <strong>L'idée :</strong> chaque endroit où la donnée ressort a sa propre "langue". Encoder dans la mauvaise langue laisse une faille.
+                            <ul style="margin:6px 0 4px 18px;padding:0">
+                                <li><strong>HTML body</strong> (entre balises) : entités HTML. Ex : <code>&amp;lt;</code> au lieu de <code>&lt;</code>.</li>
+                                <li><strong>Attribut HTML</strong> (dans <code>value="..."</code>) : entités + guillemets stricts. Ex : <code>&amp;quot;</code>.</li>
+                                <li><strong>Inline JS</strong> (dans <code>&lt;script&gt;</code>) : JavaScript encoding. Ex : <code>\x3c</code>.</li>
+                                <li><strong>URL</strong> (paramètre) : URL encoding. Ex : <code>%3C</code>.</li>
+                            </ul>
+                            <strong style="color:var(--purple)">Règle d'or :</strong> encoder au rendu, dans le dialecte du contexte de sortie. Mélanger les contextes = bypass garanti.
+                        </div>
+                        <div style="margin-top:6px;font-size:0.72rem;color:var(--dim)">📖 Approfondir : <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html" target="_blank" style="color:var(--cyan)">OWASP XSS Prevention Cheat Sheet</a> · <code>~10min</code></div>
+                    </span>
+                </label>
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-def-csp" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.92rem">Fiche 2 · CSP en pratique <span class="tag tag-soc" style="font-size:0.6rem">Q6</span></strong>
+                        <div style="margin-top:6px;font-size:0.82rem;color:var(--text);line-height:1.55">
+                            <strong>L'idée :</strong> la CSP ne corrige pas un XSS. Elle <em>limite</em> ce qu'un attaquant peut faire s'il en trouve un (charger un script externe, exfiltrer via fetch). C'est de la défense en profondeur.
+                            <ul style="margin:6px 0 4px 18px;padding:0">
+                                <li><code>default-src 'self'</code> seul est insuffisant : il faut aussi durcir <code>script-src</code>.</li>
+                                <li>À bannir : <code>'unsafe-inline'</code>, <code>'unsafe-eval'</code>, <code>data:</code> dans <code>script-src</code>.</li>
+                                <li>À poser : <code>connect-src</code> (anti-exfiltration), <code>frame-ancestors</code> (anti-clickjacking), <code>base-uri 'self'</code>.</li>
+                                <li>Pratique moderne : <strong>nonce</strong> ou <strong>hash</strong> par script inline, jamais <code>unsafe-inline</code>.</li>
+                            </ul>
+                            <div style="background:rgba(168,85,247,0.08);border-left:2px solid var(--purple);padding:6px 8px;margin-top:6px;font-size:0.78rem">Exemple solide : <code>script-src 'self' 'nonce-rAnd0m'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'</code></div>
+                        </div>
+                        <div style="margin-top:6px;font-size:0.72rem;color:var(--dim)">📖 Approfondir : <a href="https://content-security-policy.com" target="_blank" style="color:var(--cyan)">content-security-policy.com</a> · <code>~10min</code></div>
+                    </span>
+                </label>
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-def-cookies" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.92rem">Fiche 3 · Flags cookies de session <span class="tag tag-soc" style="font-size:0.6rem">Q7</span></strong>
+                        <div style="margin-top:6px;font-size:0.82rem;color:var(--text);line-height:1.55">
+                            <strong>L'idée :</strong> 3 flags, 3 menaces différentes. Aucun ne corrige le XSS, ils en limitent les dégâts.
+                            <ul style="margin:6px 0 4px 18px;padding:0">
+                                <li><strong>HttpOnly</strong> : <code>document.cookie</code> ne voit plus le cookie. Bloque l'exfiltration JS via XSS.</li>
+                                <li><strong>Secure</strong> : envoi interdit en HTTP clair. Bloque le vol par MITM réseau.</li>
+                                <li><strong>SameSite=Lax / Strict</strong> : pas envoyé sur requête cross-origin. Bloque CSRF.</li>
+                            </ul>
+                            <div style="background:rgba(239,68,68,0.08);border-left:2px solid var(--red);padding:6px 8px;margin-top:6px;font-size:0.78rem"><strong>Limite :</strong> un XSS peut toujours agir au nom de la victime via <code>fetch(..., {credentials:'include'})</code>. Le cookie est protégé en lecture, pas en usage.</div>
+                            <div style="background:rgba(34,197,94,0.08);border-left:2px solid var(--green);padding:6px 8px;margin-top:6px;font-size:0.78rem"><strong>À retenir :</strong> cookie de session bien configuré = <code>HttpOnly; Secure; SameSite=Lax</code> au minimum.</div>
+                        </div>
+                        <div style="margin-top:6px;font-size:0.72rem;color:var(--dim)">📖 Approfondir : <a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Cookies" target="_blank" style="color:var(--cyan)">MDN · Cookies HTTP (FR)</a> · <code>~10min</code></div>
+                    </span>
+                </label>
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-def-logs" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.92rem">Fiche 4 · Détecter une tentative XSS dans les logs (SOC) <span class="tag tag-soc" style="font-size:0.6rem">Q8</span></strong>
+                        <div style="margin-top:6px;font-size:0.82rem;color:var(--text);line-height:1.55">
+                            <strong>L'idée :</strong> une tentative XSS laisse des traces dans les access logs (WAF, Nginx, app). Le défi est de séparer le signal du bruit légitime.
+                            <p style="margin:6px 0 4px 0"><strong style="color:var(--purple)">Signaux à chercher dans les paramètres GET/POST :</strong></p>
+                            <ul style="margin:0 0 4px 18px;padding:0">
+                                <li>Balises rares : <code>&lt;script</code>, <code>&lt;svg onload</code>, <code>&lt;img src=x onerror</code>.</li>
+                                <li>Handlers d'événement : <code>onerror=</code>, <code>onload=</code>, <code>onclick=</code>, <code>onmouseover=</code>.</li>
+                                <li>Pseudo-protocoles : <code>javascript:</code>, <code>data:text/html</code>.</li>
+                                <li>Encodages : <code>%3Cscript</code>, <code>\x3c</code>, <code>&amp;#x3c;</code>, double-encoding.</li>
+                                <li>User-Agents de scanners : Burp, sqlmap, Nikto, Acunetix.</li>
+                            </ul>
+                            <p style="margin:6px 0 4px 0"><strong style="color:var(--purple)">Trier le faux positif :</strong></p>
+                            <ul style="margin:0 0 4px 18px;padding:0">
+                                <li>Contexte de l'endpoint : <code>/comment</code> avec <code>&lt;script&gt;</code> = suspect. <code>/editor</code> idem = attendu.</li>
+                                <li>Status code retourné : un 403 répétitif = WAF actif. Un 200 avec réflexion = potentiel vrai positif.</li>
+                                <li>Fréquence par IP : 50 requêtes en 10s = scanner. 1 requête isolée = curiosité.</li>
+                            </ul>
+                            <div style="background:rgba(6,182,212,0.08);border-left:2px solid var(--cyan);padding:6px 8px;margin-top:6px;font-size:0.78rem"><strong>Réflexe SOC :</strong> corréler payload + status + réflexion dans la réponse. Mapper sur MITRE ATT&amp;CK T1059.007 (Command and Scripting Interpreter: JavaScript).</div>
+                        </div>
+                        <div style="margin-top:6px;font-size:0.72rem;color:var(--dim)">📖 Approfondir : <a href="https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html" target="_blank" style="color:var(--cyan)">OWASP Logging Cheat Sheet</a> · <code>~10min</code></div>
+                    </span>
+                </label>
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-def-psw" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.92rem">Fiche 5 · Hardening XSS en 5 points (récap)</strong>
+                        <div style="margin-top:6px;font-size:0.82rem;color:var(--text);line-height:1.55">
+                            <ol style="margin:4px 0 4px 22px;padding:0">
+                                <li><strong>Output encoding</strong> par contexte (fiche 1).</li>
+                                <li><strong>Input validation</strong> stricte sur les champs typés (email, URL, nombre).</li>
+                                <li><strong>CSP</strong> avec nonce, sans <code>unsafe-inline</code> (fiche 2).</li>
+                                <li><strong>Cookies</strong> : <code>HttpOnly; Secure; SameSite</code> (fiche 3).</li>
+                                <li><strong>Framework moderne</strong> qui encode par défaut (React JSX, Angular, Vue templating).</li>
+                            </ol>
+                            <div style="background:rgba(234,179,8,0.08);border-left:2px solid var(--yellow);padding:6px 8px;margin-top:6px;font-size:0.78rem"><strong>Piège :</strong> <code>dangerouslySetInnerHTML</code> (React), <code>v-html</code> (Vue), <code>[innerHTML]</code> (Angular) cassent la protection par défaut. À éviter ou à passer dans un sanitizer (DOMPurify).</div>
+                        </div>
+                        <div style="margin-top:6px;font-size:0.72rem;color:var(--dim)">📖 Approfondir : <a href="https://portswigger.net/web-security/cross-site-scripting/preventing" target="_blank" style="color:var(--cyan)">PortSwigger · How to prevent XSS</a> · <code>~10min</code></div>
+                    </span>
+                </label>
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-def-llm" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.92rem">Fiche 6 · Prompt injection LLM01 (défense)</strong>
+                        <div style="margin-top:6px;font-size:0.82rem;color:var(--text);line-height:1.55">
+                            <strong>L'idée :</strong> le LLM ne distingue pas vraiment instructions système et inputs utilisateur. La défense vise à réduire la surface d'attaque, pas à éliminer le risque.
+                            <ul style="margin:6px 0 4px 18px;padding:0">
+                                <li><strong>Séparer</strong> visiblement les instructions système et les inputs (balisage XML, délimiteurs clairs).</li>
+                                <li><strong>Principe du moindre privilège</strong> : l'agent LLM n'a accès qu'aux outils strictement nécessaires.</li>
+                                <li><strong>Human-in-the-loop</strong> pour toute action sensible (suppression, paiement, exfiltration de données).</li>
+                                <li><strong>Filtrer les sorties</strong> avant exécution : ne jamais passer la réponse brute à <code>eval</code>, à un shell, ou à un autre agent.</li>
+                                <li><strong>Logging et détection</strong> : surveiller les patterns d'escalade ("ignore previous instructions", roleplay forcé, fuite de system prompt).</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top:6px;font-size:0.72rem;color:var(--dim)">📖 Approfondir : <a href="https://genai.owasp.org/llm-top-10/" target="_blank" style="color:var(--cyan)">OWASP Top 10 LLM · LLM01 prompt injection</a> · <code>~10min</code></div>
+                    </span>
+                </label>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><div class="card-title">🧪 Mini-labs défense XSS</div><span class="tag tag-soc">DEF · LAB</span></div>
+            <p style="font-size:0.78rem;color:var(--dim);margin:-4px 0 10px 0">Quatre exercices sans environnement, à faire à tête ou dans un éditeur de texte. Cliquer sur "Voir la correction" après avoir essayé.</p>
+            <div class="tasks">
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-lab-encoding" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.9rem">Lab 1 · Matcher payload ↔ contexte ↔ encoding</strong>
+                        <div style="margin-top:6px;font-size:0.82rem;line-height:1.5">Pour chacun de ces 4 cas, indique le contexte de sortie et l'encoding correct.</div>
+                        <ol style="margin:6px 0 4px 22px;padding:0;font-size:0.8rem;line-height:1.5">
+                            <li>Le nom d'utilisateur s'affiche dans <code>&lt;h1&gt;Bonjour USER&lt;/h1&gt;</code></li>
+                            <li>Le nom s'affiche dans <code>&lt;input value="USER"&gt;</code></li>
+                            <li>Le nom est injecté dans <code>&lt;script&gt;var u = "USER";&lt;/script&gt;</code></li>
+                            <li>Le nom part dans un lien <code>&lt;a href="/profile?u=USER"&gt;</code></li>
+                        </ol>
+                        <details style="margin-top:8px;font-size:0.78rem">
+                            <summary style="cursor:pointer;color:var(--green)">✓ Voir la correction</summary>
+                            <ol style="margin:6px 0 0 22px;padding:0;color:var(--text);line-height:1.55">
+                                <li>HTML body, entités HTML (<code>&amp;lt;</code> pour <code>&lt;</code>).</li>
+                                <li>Attribut HTML, entités + guillemets stricts (<code>&amp;quot;</code> pour <code>"</code>).</li>
+                                <li>Inline JS, JavaScript encoding (<code>\x22</code> pour <code>"</code>, <code>\x3c</code> pour <code>&lt;</code>). HTML encoding seul ne protège pas ici.</li>
+                                <li>URL paramètre, URL encoding (<code>%3C</code> pour <code>&lt;</code>).</li>
+                            </ol>
+                        </details>
+                    </span>
+                </label>
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-lab-csp" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.9rem">Lab 2 · Corriger des CSP cassées</strong>
+                        <div style="margin-top:6px;font-size:0.82rem;line-height:1.5">Repère ce qui cloche dans chaque CSP et propose une version durcie.</div>
+                        <ol style="margin:6px 0 4px 22px;padding:0;font-size:0.8rem;line-height:1.55">
+                            <li><code>Content-Security-Policy: default-src *</code></li>
+                            <li><code>Content-Security-Policy: script-src 'self' 'unsafe-inline'</code></li>
+                            <li><code>Content-Security-Policy: script-src 'self' https://cdn.jsdelivr.net data:</code></li>
+                        </ol>
+                        <details style="margin-top:8px;font-size:0.78rem">
+                            <summary style="cursor:pointer;color:var(--green)">✓ Voir la correction</summary>
+                            <ol style="margin:6px 0 0 22px;padding:0;color:var(--text);line-height:1.6">
+                                <li><code>*</code> autorise tout, équivalent à pas de CSP. Durcir : <code>default-src 'self'; object-src 'none'; base-uri 'self'</code>.</li>
+                                <li><code>'unsafe-inline'</code> autorise les scripts inline donc tous les XSS standards passent. Remplacer par nonce : <code>script-src 'self' 'nonce-r4nd0m'</code>.</li>
+                                <li><code>data:</code> dans <code>script-src</code> permet <code>data:text/javascript,...</code> donc bypass facile. Retirer <code>data:</code> et restreindre la CDN à un sous-chemin précis si possible.</li>
+                            </ol>
+                        </details>
+                    </span>
+                </label>
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-lab-cookies" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.9rem">Lab 3 · Flagger les cookies</strong>
+                        <div style="margin-top:6px;font-size:0.82rem;line-height:1.5">Pour chaque cookie, donne les flags qui doivent être posés (HttpOnly, Secure, SameSite).</div>
+                        <ol style="margin:6px 0 4px 22px;padding:0;font-size:0.8rem;line-height:1.5">
+                            <li>Cookie de <strong>session</strong> après login (<code>SESSIONID</code>)</li>
+                            <li>Cookie <strong>CSRF token</strong> lu par le JS pour l'injecter dans un header</li>
+                            <li>Cookie de <strong>tracking marketing</strong> (<code>utm_campaign</code>)</li>
+                            <li>Cookie de <strong>panier</strong> partagé entre site et sous-domaine paiement</li>
+                        </ol>
+                        <details style="margin-top:8px;font-size:0.78rem">
+                            <summary style="cursor:pointer;color:var(--green)">✓ Voir la correction</summary>
+                            <ol style="margin:6px 0 0 22px;padding:0;color:var(--text);line-height:1.6">
+                                <li><code>HttpOnly; Secure; SameSite=Lax</code>. JS ne doit jamais lire SESSIONID. Lax laisse passer les redirections OAuth, Strict casse les liens entrants.</li>
+                                <li><code>Secure; SameSite=Strict</code> mais <strong>pas HttpOnly</strong> : le JS doit pouvoir le lire pour l'injecter dans <code>X-CSRF-Token</code>. Toléré car le token tout seul n'authentifie pas.</li>
+                                <li><code>Secure; SameSite=Lax</code>. Pas critique pour la sécurité mais bonne hygiène. HttpOnly possible si pas lu par JS.</li>
+                                <li><code>HttpOnly; Secure; SameSite=Lax; Domain=.exemple.com</code>. Le domaine parent permet le partage entre <code>shop.exemple.com</code> et <code>pay.exemple.com</code>.</li>
+                            </ol>
+                        </details>
+                    </span>
+                </label>
+
+                <label class="task" data-phase="2" style="align-items:flex-start">
+                    <input type="checkbox" data-id="s3-lab-logs" style="margin-top:6px">
+                    <span style="display:block;flex:1">
+                        <strong style="color:var(--cyan);font-size:0.9rem">Lab 4 · Trier des logs (XSS vs faux positif)</strong>
+                        <div style="margin-top:6px;font-size:0.82rem;line-height:1.5">Pour chaque ligne d'access log, dis si c'est une <strong>tentative XSS</strong>, un <strong>faux positif</strong>, ou <strong>besoin de contexte</strong>.</div>
+                        <ol style="margin:6px 0 4px 22px;padding:0;font-size:0.78rem;line-height:1.55">
+                            <li><code>POST /comment "msg=&lt;script&gt;alert(1)&lt;/script&gt;" 200</code></li>
+                            <li><code>POST /editor/article "body=&lt;script src=//cdn..."  200</code></li>
+                            <li><code>GET /search?q=%3Cscript%3Ealert%28document.cookie%29%3C%2Fscript%3E 403</code></li>
+                            <li><code>GET /search?q=script+kiddie 200</code></li>
+                            <li><code>GET /redirect?url=javascript:alert(1) 302</code></li>
+                            <li><code>GET /docs?title=Comment%20utiliser%20%3Cscript%3E%20dans%20HTML 200</code></li>
+                        </ol>
+                        <details style="margin-top:8px;font-size:0.78rem">
+                            <summary style="cursor:pointer;color:var(--green)">✓ Voir la correction</summary>
+                            <ol style="margin:6px 0 0 22px;padding:0;color:var(--text);line-height:1.6">
+                                <li><strong>XSS</strong>. Balise script brute dans un champ commentaire (200 = potentiellement reflété ou stocké). Action : vérifier la réflexion dans la réponse.</li>
+                                <li><strong>Faux positif probable</strong>. L'endpoint <code>/editor/article</code> accepte du HTML par nature. Action : valider le contexte fonctionnel avant d'alerter.</li>
+                                <li><strong>XSS</strong>, bloquée par WAF (403). Payload URL-encodé classique. Action : noter l'IP, chercher d'autres tentatives sur des endpoints non protégés.</li>
+                                <li><strong>Faux positif</strong>. Le mot "script" dans une recherche est légitime. Action : ignorer, sauf si l'IP a d'autres signaux.</li>
+                                <li><strong>XSS</strong>. Pseudo-protocole <code>javascript:</code> dans un paramètre de redirection. Le 302 indique que le serveur l'a accepté en URL : potentiellement open redirect + XSS si rendu dans une page.</li>
+                                <li><strong>Faux positif</strong>. <code>&lt;script&gt;</code> apparaît dans un titre d'article. Le mot est encodé proprement à l'affichage. Action : vérifier que la page rend bien les entités HTML.</li>
+                            </ol>
+                        </details>
+                    </span>
+                </label>
+
+            </div>
+            <div class="info-box purple" style="margin-top:10px">
+                <div class="info-title">📅 Révision J+7</div>
+                <p style="font-size:0.8rem;line-height:1.5">Quand tu reviens dans une semaine relire S3, suis cette boucle de 30 min :</p>
+                <ol style="margin:6px 0 0 22px;padding:0;font-size:0.78rem;line-height:1.55">
+                    <li>Relire les <strong>6 fiches défense</strong> ci-dessus (10 min, sans cliquer sur les liens externes).</li>
+                    <li>Refaire les <strong>4 mini-labs</strong> de tête sans regarder la correction (10 min).</li>
+                    <li>Relancer le <strong>quiz manuel S3</strong> (lien dans la nav). Objectif : 7/8 minimum, dont les 4 défensives.</li>
+                </ol>
             </div>
         </div>
 
