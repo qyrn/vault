@@ -175,39 +175,35 @@
 
         <div class="min-viable-banner">
             <h4>✓ Minimum viable — la ligne rouge</h4>
-            <p><strong>1h labs/jour, 5j/7. 5h/sem.</strong> Si je tiens ça toutes les semaines, la phase est réussie. Tout le reste — write-ups, streams, projets IA, OSINT — c'est en plus.</p>
+            <p><strong>1h labs/jour, 5j/7. 5h/sem.</strong> Si je tiens ça toutes les semaines, la phase est réussie. Tout le reste (projets IA, OSINT) c'est en plus.</p>
         </div>
 
         <div class="blocking-gate">
             <h4>🔥 Engagement — conséquence si drop</h4>
-            <p>Si une semaine fait <strong>moins de 5h labs</strong>, pas de stream Twitch la semaine suivante. La conséquence vient du projet, pas d'une punition externe.</p>
+            <p>Si une semaine fait <strong>moins de 5h labs</strong>, la semaine suivante repart en minimum viable, sans objectif ajouté. La conséquence vient du projet, pas d'une punition externe.</p>
         </div>
 
         <div class="section-title cyan">Calendrier Phase 2</div>
         <table>
             <tr><th>Sem</th><th>Dates</th><th>Thème</th><th>Livrable</th></tr>
             <tr class="cal-row" onclick="showTab('s1')"><td>S1</td><td>04.05 → 11.05</td><td>Fondations HTTP/JS/Auth + revue P1</td><td>50 cartes Anki + relecture blog</td></tr>
-            <tr class="cal-row" onclick="showTab('s2')"><td>S2</td><td>12.05 → 18.05</td><td>SQL Injection</td><td>Write-up SQLi + scanner v0.1</td></tr>
-            <tr class="cal-row" onclick="showTab('s3')"><td>S3</td><td>19.05 → 25.05</td><td>XSS + Gandalf (premier contact IA)</td><td>Write-up XSS + scanner v0.2</td></tr>
-            <tr class="cal-row" onclick="showTab('s4')"><td>S4</td><td>26.05 → 01.06</td><td>Access Control / IDOR + démarrage contenu</td><td>Write-up + 1er stream + 1er TikTok</td></tr>
-            <tr class="cal-row" onclick="showTab('s5')"><td>S5</td><td>02.06 → 08.06</td><td>SSRF + Upload + API + OWASP LLM</td><td>Write-up + scanner v0.4</td></tr>
-            <tr class="cal-row" onclick="showTab('s6')"><td>S6</td><td>09.06 → 15.06</td><td>Auth/JWT + box HTB Easy retired</td><td>Write-up Auth/JWT + box solved</td></tr>
-            <tr class="cal-row" onclick="showTab('s7')"><td>S7</td><td>16.06 → 22.06</td><td>Focus IA pure — projets Python × LLM</td><td>2 projets GitHub + write-up IA</td></tr>
-            <tr class="cal-row" onclick="showTab('s8')"><td>S8</td><td>23.06 → 29.06</td><td>Box HTB solo + crossover OSINT × LLM + review</td><td>Write-up box + bilan phase</td></tr>
+            <tr class="cal-row" onclick="showTab('s2')"><td>S2</td><td>12.05 → 18.05</td><td>SQL Injection</td><td>scanner v0.1</td></tr>
+            <tr class="cal-row" onclick="showTab('s3')"><td>S3</td><td>19.05 → 25.05</td><td>XSS + Gandalf (premier contact IA)</td><td>scanner v0.2</td></tr>
+            <tr class="cal-row" onclick="showTab('s4')"><td>S4</td><td>26.05 → 01.06</td><td>Access Control / IDOR</td><td>scanner v0.3</td></tr>
+            <tr class="cal-row" onclick="showTab('s5')"><td>S5</td><td>02.06 → 08.06</td><td>SSRF + Upload + API + OWASP LLM</td><td>scanner v0.4</td></tr>
+            <tr class="cal-row" onclick="showTab('s6')"><td>S6</td><td>09.06 → 15.06</td><td>Auth/JWT + box HTB Easy retired</td><td>box HTB solved</td></tr>
+            <tr class="cal-row" onclick="showTab('s7')"><td>S7</td><td>16.06 → 22.06</td><td>Focus IA pure — projets Python × LLM</td><td>2 projets GitHub</td></tr>
+            <tr class="cal-row" onclick="showTab('s8')"><td>S8</td><td>23.06 → 29.06</td><td>Box HTB solo + crossover OSINT × LLM + review</td><td>bilan de phase</td></tr>
         </table>
 
         <div class="section-title green">Objectifs mesurables fin de phase</div>
         <table>
             <tr><th>Cible</th><th>Métrique</th></tr>
             <tr><td>40+</td><td>Labs PortSwigger complétés (dont 8+ Practitioner)</td></tr>
-            <tr><td>5+4</td><td>Write-ups (5 obligatoires + 4 bonus)</td></tr>
             <tr><td>2</td><td>Box HTB résolues (1 retired S6 + 1 active solo S8)</td></tr>
             <tr><td>1</td><td>Mini-scanner web v0.1 → v0.5 sur GitHub</td></tr>
             <tr><td>2</td><td>Projets cyber × IA (auto-pentest LLM + détecteur prompt injection)</td></tr>
             <tr><td>1</td><td>Crossover OSINT × LLM publié</td></tr>
-            <tr><td>5+</td><td>TikToks cyber (à partir de S4)</td></tr>
-            <tr><td>10</td><td>Streams Twitch (S4-S8, 2/sem)</td></tr>
-            <tr><td>1</td><td>Meetup cyber attendu en personne</td></tr>
             <tr><td>3</td><td>DM cyber pros envoyés</td></tr>
             <tr><td>≥80%</td><td>Quiz final auto-administré</td></tr>
             <tr><td>40</td><td>Séances de sport (5/sem × 8)</td></tr>
@@ -216,8 +212,8 @@
         <div class="section-title orange">Charge horaire</div>
         <div class="info-box orange">
             <p><strong>Cible :</strong> 18h cyber/sem (3h × 6j, dimanche cyber off) + 5h sport/sem (1h × 5j).</p>
-            <p style="margin-top:6px"><strong>3h cyber actives par jour :</strong> 100% labs/projets/write-up. Anki et contenu passif sont en bonus sur le reste de la journée, hors des 3h.</p>
-            <p style="margin-top:6px"><strong>Minimum viable :</strong> 5h/sem (1h × 5j), labs uniquement, write-ups bonus.</p>
+            <p style="margin-top:6px"><strong>3h cyber actives par jour :</strong> 100% labs/projets. Anki et contenu passif sont en bonus sur le reste de la journée, hors des 3h.</p>
+            <p style="margin-top:6px"><strong>Minimum viable :</strong> 5h/sem (1h × 5j), labs uniquement.</p>
         </div>
 
         <div class="section-title pink">Piliers transversaux</div>
@@ -238,12 +234,8 @@
             <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">1h/jour à 9h, mix muscu/cardio. Objectif Bullseye / Daredevil — lean ~10-12% body fat.</p>
         </div>
         <div class="card">
-            <div class="card-header"><div class="card-title">📺 Création de contenu (à partir de S4)</div></div>
-            <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">2 streams Twitch/sem (qyrnsec) en doublon des labs + 1 TikTok cyber/sem. YouTube optionnel quand un sujet me parle.</p>
-        </div>
-        <div class="card">
             <div class="card-header"><div class="card-title">👥 Communauté</div></div>
-            <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">1 meetup attendu + 1 hackathon inscrit + 3 DM cyber pros pendant la phase.</p>
+            <p style="font-size:0.85rem;color:var(--dim);margin-top:4px">1 hackathon inscrit + 3 DM cyber pros pendant la phase.</p>
         </div>
 
     </div>
@@ -307,7 +299,7 @@
 
         <div class="info-box yellow">
             <div class="info-title">⚠️ Pas cette semaine</div>
-            <p>Pas de write-up (semaine de fondations). Pas de stream (démarrage S4). Pas d'attaque (consolidation seulement).</p>
+            <p>Pas d'attaque cette semaine. Fondations et consolidation uniquement.</p>
         </div>
 
                 <div class="info-box purple" style="margin-top:12px">
@@ -436,7 +428,6 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s2-writeup"><span>📌 Write-up SQLi publié (obligatoire #1) — sam rédaction, dim publication <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s2-anki"><span>Anki : cartes SQLi (UNION, payloads, syntaxe blind) <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s2-loghebdo"><span>Loghebdo dimanche 18h <code>~15min</code></span></label>
             </div>
@@ -805,8 +796,6 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-writeup"><span>📌 Write-up XSS publié (obligatoire #2) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s3-writeup-bonus"><span>Write-up Gandalf (bonus) <code>~1h30</code><span class="tag tag-blog">Blog</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s3-anki"><span>Anki : cartes XSS + DOM + Gandalf <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s3-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
             </div>
@@ -884,16 +873,15 @@
         </div>
         <div class="week-header">
             <div>
-                <div class="section-title pink">S4 — Access Control + démarrage contenu</div>
+                <div class="section-title pink">S4 — Access Control</div>
                 <div class="week-dates">Lun 26.05 → Dim 01.06</div>
             </div>
             <span class="tag tag-pentest">Mid-phase</span>
-            <span class="tag tag-stream">Streams ON</span>
         </div>
 
         <div class="info-box pink">
-            <div class="info-title">🎯 Objectif S4 — virage</div>
-            <p>IDOR / business logic. Et surtout : démarrage de la création de contenu (streams, TikTok). C'est maintenant que le brand qyrnsec démarre publiquement.</p>
+            <div class="info-title">🎯 Objectif S4</div>
+            <p>IDOR / business logic. Semaine charnière sur le contrôle d'accès.</p>
         </div>
 
         <div class="card">
@@ -907,15 +895,6 @@
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl1"><span><a href="https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls" target="_blank" style="color:var(--cyan)">Excessive trust in client-side controls</a> <code>Apprentice</code><code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s4-bl2"><span><a href="https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-flawed-enforcement-of-business-rules" target="_blank" style="color:var(--cyan)">Flawed enforcement of business rules</a> <code>Apprentice</code><code>~45min</code><span class="tag tag-pentest">PSW</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s4-mass"><span><a href="https://portswigger.net/web-security/api-testing/lab-exploiting-mass-assignment-vulnerability" target="_blank" style="color:var(--cyan)">Exploiting a mass assignment vulnerability</a> <code>Practitioner</code><code>~30min</code><span class="tag tag-pentest">PSW</span></span></label>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header"><div class="card-title">📺 Démarrage contenu</div><span class="tag tag-stream">STREAM</span></div>
-            <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream1"><span>1er stream Twitch qyrnsec — mardi 27/05 (labs en cours) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-stream2"><span>2e stream — samedi 31/05 <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-tiktok"><span>1er TikTok cyber — "C'est quoi un IDOR en 60s" (dim 01/06) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
             </div>
         </div>
 
@@ -937,7 +916,6 @@
         <div class="card">
             <div class="card-header"><div class="card-title">👥 Communauté</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-meetup"><span>Rechercher meetups OWASP Lorraine / Grand Est ou Paris mai-juin <code>~30min</code><span class="tag tag-pentest">OWASP</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s4-hackathon"><span>Identifier 1 hackathon à inscrire <code>~20min</code></span></label>
             </div>
         </div>
@@ -945,8 +923,6 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-writeup"><span>📌 Write-up IDOR publié (obligatoire #3) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s4-writeup-osint"><span>Write-up OSINT séparé (bonus #1) <code>~1h30</code><span class="tag tag-blog">Blog</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s4-anki"><span>Anki : cartes Access Control / IDOR <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s4-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
             </div>
@@ -1068,15 +1044,6 @@
         </div>
 
         <div class="card">
-            <div class="card-header"><div class="card-title">📺 Contenu</div><span class="tag tag-stream">STREAM</span></div>
-            <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-stream1"><span>Stream Twitch mardi <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-stream2"><span>Stream Twitch samedi <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-tiktok"><span>TikTok cyber (sujet : SSRF ou file upload) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
-            </div>
-        </div>
-
-        <div class="card">
             <div class="card-header"><div class="card-title">🔍 OSINT</div></div>
             <div class="tasks">
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s5-osint"><span>1 challenge OSINT <code>~45min</code><span class="tag tag-osint">OSINT</span></span></label>
@@ -1087,7 +1054,6 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s5-writeup"><span>📌 Write-up SSRF / Upload / API publié (obligatoire #4) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s5-anki"><span>Anki : cartes SSRF / Upload / API / OWASP LLM <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s5-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
             </div>
@@ -1221,18 +1187,8 @@
         </div>
 
         <div class="card">
-            <div class="card-header"><div class="card-title">📺 Contenu</div></div>
-            <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-stream1"><span>Stream Twitch mardi <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-stream2"><span>Stream Twitch samedi (live box HTB) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-tiktok"><span>TikTok cyber (sujet : JWT none algorithm en 60s) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
-            </div>
-        </div>
-
-        <div class="card">
             <div class="card-header"><div class="card-title">👥 Communauté</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-meetup"><span>Aller au meetup repéré en S4 (si dispo)<span class="tag tag-pentest">OWASP</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s6-dm1"><span>1er DM cyber pro (LinkedIn ou Discord) <code>~15min</code><span class="tag tag-soc">LinkedIn</span></span></label>
             </div>
         </div>
@@ -1240,8 +1196,6 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-writeup"><span>📌 Write-up Auth/JWT publié (obligatoire #5) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s6-writeup-htb"><span>Write-up box HTB S6 (bonus #2) <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s6-anki"><span>Anki : cartes Auth/JWT/OAuth <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s6-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
             </div>
@@ -1367,15 +1321,6 @@
         </div>
 
         <div class="card">
-            <div class="card-header"><div class="card-title">📺 Contenu</div></div>
-            <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-stream1"><span>Stream Twitch mardi (live coding projet 1) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-stream2"><span>Stream Twitch samedi (live coding projet 2) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-tiktok"><span>TikTok cyber (sujet : prompt injection illustrée) <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
-            </div>
-        </div>
-
-        <div class="card">
             <div class="card-header"><div class="card-title">🔍 OSINT</div></div>
             <div class="tasks">
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s7-osint"><span>1 challenge OSINT <code>~45min</code><span class="tag tag-osint">OSINT</span></span></label>
@@ -1394,7 +1339,6 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📝 Livrables fin de semaine</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s7-writeup"><span>Write-up Focus IA publié (bonus #3) — couvre les 2 projets <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s7-github"><span>2 projets Python publiés sur GitHub qyrnsec<span class="tag tag-project">GH</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s7-anki"><span>Anki : cartes IA / LLM / prompt injection <code>~20min</code><span class="tag tag-soc">Anki</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s7-loghebdo"><span>Loghebdo dimanche <code>~15min</code></span></label>
@@ -1487,7 +1431,6 @@
         <div class="blocking-gate">
             <h4>🔒 Box HTB en autonomie totale</h4>
             <p><strong>Règle :</strong> 1 box HTB Easy <strong>active</strong> (pas retired) à thème web. Zéro walkthrough autorisé pendant <strong>6h</strong>, après seulement si vraiment bloqué.</p>
-            <p style="margin-top:6px"><strong>Write-up à publier avant que la box soit retirée.</strong></p>
             <div class="tasks" style="margin-top:8px">
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-pick"><span>Choisir 1 box HTB Easy active à thème web <code>~20min</code><span class="tag tag-thm">HTB</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s8-htb-recon"><span>Recon complet documenté <code>~1h</code><span class="tag tag-thm">HTB</span></span></label>
@@ -1520,15 +1463,6 @@
         </div>
 
         <div class="card">
-            <div class="card-header"><div class="card-title">📺 Contenu final</div></div>
-            <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-stream1"><span>Stream final mardi <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-stream2"><span>Stream samedi (live box HTB) <code>~1h30</code><span class="tag tag-stream">Twitch</span></span></label>
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-tiktok"><span>TikTok bilan : "8 semaines de web sec, ce que j'ai appris" <code>~1h</code><span class="tag tag-project">TikTok</span></span></label>
-            </div>
-        </div>
-
-        <div class="card">
             <div class="card-header"><div class="card-title">👥 Communauté</div></div>
             <div class="tasks">
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s8-dm3"><span>3e DM cyber pro <code>~15min</code><span class="tag tag-soc">LinkedIn</span></span></label>
@@ -1538,7 +1472,6 @@
         <div class="card">
             <div class="card-header"><div class="card-title">📝 Livrables fin de phase</div></div>
             <div class="tasks">
-                <label class="task" data-phase="2"><input type="checkbox" data-id="s8-writeup-htb"><span>Write-up box HTB S8 (bonus #4) <code>~2h30</code><span class="tag tag-blog">Blog</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s8-bilan"><span>Article blog "Phase 2 — Bilan" écrit à la main FR, traduit après <code>~2h</code><span class="tag tag-blog">Blog</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s8-cross-publish"><span>Crossover OSINT × LLM publié sur GitHub<span class="tag tag-project">GH</span></span></label>
                 <label class="task" data-phase="2"><input type="checkbox" data-id="s8-loghebdo"><span>Loghebdo final + tableau de progression complet <code>~15min</code></span></label>
@@ -1656,7 +1589,7 @@
         <div class="challenge-card">
             <div class="challenge-week">S8</div>
             <div class="challenge-title">🏔️ Box HTB Easy active SOLO</div>
-            <div class="challenge-desc">Zéro walkthrough pendant 6h. Write-up à publier avant que la box soit retirée. Vrai test d'autonomie.</div>
+            <div class="challenge-desc">Zéro walkthrough pendant 6h. Vrai test d'autonomie.</div>
         </div>
 
         <div class="section-title pink">Quiz de mi-phase (S4) — auto-test</div>
@@ -1803,20 +1736,6 @@
             </div>
         </div>
 
-        <div class="section-title orange">Write-ups (5 obligatoires + 4 bonus)</div>
-        <table>
-            <tr><th>Sem</th><th>Sujet</th><th>Type</th><th>Publié</th></tr>
-            <tr><td>S2</td><td>SQL Injection</td><td><span class="tag tag-blog">OBLIGATOIRE #1</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s2-sqli"><span></span></label></td></tr>
-            <tr><td>S3</td><td>XSS</td><td><span class="tag tag-blog">OBLIGATOIRE #2</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s3-xss"><span></span></label></td></tr>
-            <tr><td>S3</td><td>Gandalf / prompt injection</td><td><span class="tag tag-ai">BONUS</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s3-gandalf"><span></span></label></td></tr>
-            <tr><td>S4</td><td>IDOR / Access Control</td><td><span class="tag tag-blog">OBLIGATOIRE #3</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s4-idor"><span></span></label></td></tr>
-            <tr><td>S4</td><td>OSINT (Dojo Ninja series)</td><td><span class="tag tag-osint">BONUS #1</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s4-osint"><span></span></label></td></tr>
-            <tr><td>S5</td><td>SSRF / Upload / API</td><td><span class="tag tag-blog">OBLIGATOIRE #4</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s5-ssrf"><span></span></label></td></tr>
-            <tr><td>S6</td><td>Auth / JWT</td><td><span class="tag tag-blog">OBLIGATOIRE #5</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s6-auth"><span></span></label></td></tr>
-            <tr><td>S6</td><td>Box HTB S6</td><td><span class="tag tag-thm">BONUS #2</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s6-htb"><span></span></label></td></tr>
-            <tr><td>S7</td><td>Focus IA — projets Python</td><td><span class="tag tag-ai">BONUS #3</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s7-ia"><span></span></label></td></tr>
-            <tr><td>S8</td><td>Box HTB S8 + Bilan phase</td><td><span class="tag tag-thm">BONUS #4</span></td><td style="text-align:center"><label class="task" data-phase="0" style="padding:2px;justify-content:center"><input type="checkbox" data-id="wu-s8-bilan"><span></span></label></td></tr>
-        </table>
     </div>
 
     <!-- LOGBOOK -->
@@ -1836,19 +1755,6 @@
 - Tomorrow: [une ligne]</div>
         <p style="font-size:0.8rem;color:var(--dim);margin-top:6px">Si une journée a 20 min de boulot et zéro compris, je l'écris : c'est ce qui est le plus utile pour identifier les patterns.</p>
 
-        <div class="section-title orange">Write-up (template 6 sections)</div>
-        <div class="logbook">1. Context (3-4 phrases) — C'est quoi le lab/la faille ? Pourquoi c'est un problème ?
-2. Mon approche (5-8 phrases) — Qu'est-ce que j'ai essayé ? Dans quel ordre ?
-3. Où j'ai galéré (3-5 phrases) — Précis. "J'ai pas su X" ou "j'ai essayé Y mais Z bloquait".
-4. Le déclic (3-5 phrases) — Qu'est-ce qui a fait que ça s'est débloqué ?
-5. La commande / payload que je retiens — 1 bloc de code, commenté.
-6. Ce que je me dirais avant de commencer — La leçon en 2 phrases.
-
-Cible : 500-800 mots. 1h30-2h de travail.
-1 write-up = 1 topic bouclé.
-Rédaction samedi, publication dimanche.</div>
-        <p style="font-size:0.8rem;color:var(--dim);margin-top:6px">À remplir <strong>en français</strong>, à la main d'abord. Claude traduit/corrige <strong>après</strong>. Si une section a moins de 2 phrases écrites par moi, le write-up sort pas.</p>
-
         <div class="section-title pink">Loghebdo dominical (15 min)</div>
         <div class="logbook">## Semaine X (du JJ au JJ)
 - Heures cyber faites: [X / 18h cible]
@@ -1865,9 +1771,6 @@ Rédaction samedi, publication dimanche.</div>
 - Anki cartes actives: __
 - Sport séances: __ / 5
 - Sommeil moyen ressenti: __ / 5
-- Write-up publié: oui / non
-- TikTok publié: oui / non / NA
-- Streams: __ / 2
 - Défi OSINT: oui / non
 - DM cyber: __
 - État général: __ / 5
@@ -1878,7 +1781,7 @@ Rédaction samedi, publication dimanche.</div>
             <tr><th>Claude PEUT</th><th>Claude NE PEUT PAS</th></tr>
             <tr><td>Expliquer un concept que je n'ai pas compris</td><td>Faire un lab/challenge à ma place</td></tr>
             <tr><td>Me challenger via un quiz</td><td>Écrire mes notes d'apprentissage</td></tr>
-            <tr><td>Corriger l'anglais d'un write-up rédigé par moi</td><td>Rédiger le fond d'un write-up</td></tr>
+            <tr><td>Corriger l'anglais d'un texte rédigé par moi</td><td>Rédiger le fond d'un texte à ma place</td></tr>
             <tr><td>Relire mon code et indiquer où ça casse</td><td>Coder mes projets à ma place</td></tr>
             <tr><td>Traduire mes notes FR → EN</td><td>Inventer des sections que je n'ai pas écrites</td></tr>
             <tr><td>M'orienter quand bloqué &gt; 30 min</td><td>Donner la solution direct sans que j'aie cherché</td></tr>
@@ -1910,34 +1813,12 @@ Rédaction samedi, publication dimanche.</div>
         </div>
 
         <div class="card">
-            <div class="card-header"><div class="card-title">Mardi &amp; Samedi (à partir de S4) — soirées stream</div></div>
-            <table>
-                <tr><th>Heure</th><th>Activité</th></tr>
-                <tr><td>19:00</td><td>Setup OBS, scène, alertes</td></tr>
-                <tr><td>19:30</td><td>Stream Twitch qyrnsec — 1h30, labs en doublon</td></tr>
-                <tr><td>21:00</td><td>End stream, dîner</td></tr>
-            </table>
-        </div>
-
-        <div class="card">
-            <div class="card-header"><div class="card-title">Samedi en plus — write-up</div></div>
-            <table>
-                <tr><th>Heure</th><th>Activité</th></tr>
-                <tr><td>14:00</td><td>Rédaction write-up draft FR (1h30-2h)</td></tr>
-                <tr><td>16:00</td><td>Passe Claude pour traduction/correction</td></tr>
-                <tr><td>17:00</td><td>Relecture finale, prêt pour dim</td></tr>
-            </table>
-        </div>
-
-        <div class="card">
             <div class="card-header"><div class="card-title">Dimanche — jour structuré allégé</div></div>
             <table>
                 <tr><th>Heure</th><th>Activité</th></tr>
                 <tr><td>09:00</td><td>Sport (5e séance) ou off complet</td></tr>
-                <tr><td>14:00</td><td>Finalisation et publication write-up</td></tr>
                 <tr><td>15:30</td><td>Enrichissement Anki — 5-10 nouvelles cartes</td></tr>
                 <tr><td>16:30</td><td>Défi OSINT/GEOINT hebdo</td></tr>
-                <tr><td>17:30</td><td>Publication TikTok cyber (à partir de S4)</td></tr>
                 <tr><td>18:00</td><td>Loghebdo 15 min</td></tr>
                 <tr><td>Soir</td><td>Repos total</td></tr>
             </table>
@@ -1952,7 +1833,7 @@ Rédaction samedi, publication dimanche.</div>
                 <li>Émotionnel → minimum viable et on attend que ça passe</li>
                 <li>Santé → on récupère, point</li>
             </ul>
-            <p style="margin-top:8px"><strong>Conséquence :</strong> pas de stream Twitch la semaine suivante.</p>
+            <p style="margin-top:8px"><strong>Conséquence :</strong> la semaine suivante repart en minimum viable, sans objectif ajouté.</p>
         </div>
 
         <div class="section-title cyan">Discipline quotidienne — règles fixes</div>
@@ -2173,7 +2054,7 @@ Rédaction samedi, publication dimanche.</div>
         <div class="resource-grid">
             <div class="resource-item">
                 <h4>blog.qyrn.dev</h4>
-                <p>Write-ups + bilan de phase. 5 obligatoires + 4 bonus.</p>
+                <p>Bilan de phase et notes publiques, au gré de l'envie.</p>
             </div>
             <div class="resource-item">
                 <h4>github.com/qyrnsec</h4>
@@ -2181,11 +2062,11 @@ Rédaction samedi, publication dimanche.</div>
             </div>
             <div class="resource-item">
                 <h4>twitch.tv/qyrnsec</h4>
-                <p>Streams en doublon des sessions, à partir de S4.</p>
+                <p>Streams quand l'envie et l'inspiration sont là.</p>
             </div>
             <div class="resource-item">
                 <h4>TikTok @qyrn</h4>
-                <p>1 publication/sem à partir de S4. Format 60s.</p>
+                <p>Format 60s, au gré des sujets qui me parlent.</p>
             </div>
         </div>
     </div>
